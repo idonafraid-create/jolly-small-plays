@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Small Plays — The Jolly</title>
+<script>try { document.documentElement.dataset.theme = localStorage.getItem('jolly-theme') || 'dark'; } catch { document.documentElement.dataset.theme = 'dark'; }</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+  /* dark is the default; [data-theme="light"] swaps the page to warm paper */
+  :root {
+    color-scheme: dark;
+    --paper: #151417; --ink: #ebe3d3; --ink-2: rgba(235, 227, 211, .62); --ink-3: rgba(235, 227, 211, .36); --hair: rgba(235, 227, 211, .13); --dot: rgba(235, 227, 211, .06);
+    --accent: #e3687c; --on-ink: #151417;
+    --coral: #e97780; --lime: #ade408; --wine: #b8304a; --brass: #b8954a; --cream: #f6efe2; --btn: #1e1a18;
+    --top: 86px; --bot: 196px;
+    --serif: 'Playfair Display', Georgia, serif; --script: 'Pinyon Script', 'Playfair Display', cursive;
+    --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace; --pix: 'Silkscreen', monospace;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --paper: #e7e0d1; --ink: #1e1a18; --ink-2: rgba(30, 26, 24, .62); --ink-3: rgba(30, 26, 24, .38); --hair: rgba(30, 26, 24, .16); --dot: rgba(30, 26, 24, .08);
+    --accent: #8e1b2c; --on-ink: #f6efe2; --wine: #8e1b2c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: var(--mono); }
+  body { background-image: radial-gradient(var(--dot) 0.6px, transparent 0.7px); background-size: 9px 9px; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+
+  /* ── header ── */
+  .top { position: fixed; inset: 0 0 auto 0; height: var(--top); display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; padding: 0 28px 14px; border-bottom: 1px solid var(--hair); z-index: 5; }
+  .brand .crest { font-family: var(--script); font-size: 38px; line-height: .8; }
+  .brand .crest em { font-style: normal; color: var(--accent); }
+  .brand .sub, .kicker, .meta, .side, .floors .n, .tl-label, .chip .role { font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; }
+  .brand .sub { margin-top: 9px; color: var(--ink-2); }
+  .titleblock { text-align: center; }
+  .kicker { color: var(--ink-2); display: flex; gap: 10px; justify-content: center; align-items: center; }
+  .kicker .no { font-family: var(--pix); letter-spacing: .06em; color: var(--ink); font-size: 11px; }
+  .kicker .dot { width: 5px; height: 5px; background: var(--coral); transform: rotate(45deg); display: inline-block; }
+  h1 { margin: 7px 0 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 31px; line-height: 1; }
+  .meta { justify-self: end; text-align: right; color: var(--ink-2); display: grid; gap: 6px; justify-items: end; }
+  .live { display: flex; align-items: center; gap: 7px; color: var(--accent); }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: blink 1.2s steps(2) infinite; }
+  .live.off { color: var(--ink-3); } .live.off i { background: var(--ink-3); animation: none; }
+  @keyframes blink { 50% { opacity: .15; } }
+  .tc { font-size: 15px; letter-spacing: .04em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .tc small { color: var(--ink-3); font-size: 11px; }
+  .case { display: flex; align-items: center; gap: 6px; cursor: help; }
+  .case i { width: 7px; height: 7px; border: 1px solid var(--ink-2); transform: rotate(45deg); transition: background .3s, border-color .3s; }
+  .case i.got { background: var(--accent); border-color: var(--accent); }
+  .case b { font-weight: 500; color: var(--ink); letter-spacing: .08em; }
+  #toast { position: absolute; left: 50%; top: 18px; transform: translate(-50%, -8px); background: var(--paper); border: 1px solid var(--ink); padding: 8px 14px 7px; display: flex; gap: 12px; align-items: baseline;
+    font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; z-index: 6; }
+  #toast b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 19px; letter-spacing: 0; text-transform: none; color: var(--accent); }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ── viewport ── */
+  #viewport { position: fixed; top: var(--top); bottom: var(--bot); left: 0; right: 0; overflow: hidden; }
+  #viewport canvas { position: absolute; image-rendering: pixelated; image-rendering: crisp-edges; cursor: grab; }
+  #viewport.dragging canvas { cursor: grabbing; }
+  .crop { position: absolute; width: 16px; height: 16px; border: 0 solid var(--ink-3); pointer-events: none; }
+  .crop.tl { left: 22px; top: 14px; border-left-width: 1px; border-top-width: 1px; }
+  .crop.tr { right: 22px; top: 14px; border-right-width: 1px; border-top-width: 1px; }
+  .crop.bl { left: 22px; bottom: 14px; border-left-width: 1px; border-bottom-width: 1px; }
+  .crop.br { right: 22px; bottom: 14px; border-right-width: 1px; border-bottom-width: 1px; }
+  .reg { position: absolute; top: 50%; width: 13px; height: 13px; margin-top: -6px; pointer-events: none; }
+  .reg::before, .reg::after { content: ''; position: absolute; background: var(--ink-3); }
+  .reg::before { left: 6px; top: 0; width: 1px; height: 13px; } .reg::after { top: 6px; left: 0; height: 1px; width: 13px; }
+  .reg.l { left: 30px; } .reg.r { right: 30px; }
+  .side { position: absolute; top: 50%; color: var(--ink-3); white-space: nowrap; pointer-events: none; }
+  .side.l { left: 18px; transform: translate(-50%, 70px) rotate(-90deg) translate(50%, 0); transform-origin: left center; left: 25px; }
+  .side.r { right: 25px; transform: translate(50%, -70px) rotate(90deg) translate(-50%, 0); transform-origin: right center; }
+  #hint { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); background: var(--ink); color: var(--on-ink); font-family: var(--pix); font-size: 11px; letter-spacing: .08em; padding: 9px 14px 8px; pointer-events: none; transition: opacity .4s; }
+  #hint span { font-family: var(--mono); font-size: 9.5px; letter-spacing: .16em; opacity: .65; margin-left: 10px; }
+  #hint.hide { opacity: 0; }
+  #zoomPill { position: absolute; right: 26px; bottom: 20px; display: flex; align-items: center; gap: 8px; font-size: 9.5px; letter-spacing: .16em; color: var(--ink-2); pointer-events: none; }
+  #zoomPill .scale { width: 64px; height: 7px; position: relative; border-left: 1px solid var(--ink-3); border-right: 1px solid var(--ink-3); }
+  #zoomPill .scale::before { content: ''; position: absolute; left: 0; right: 0; top: 3px; height: 1px; background: var(--ink-3); }
+  #zoomPill .scale i { position: absolute; top: -1px; width: 3px; height: 9px; background: var(--ink); margin-left: -1px; }
+
+  /* names over heads (the spinning triangles live in the 3D scene) */
+  #names { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+  .nm { position: absolute; transform: translate(-50%, -100%); white-space: nowrap; text-align: center; line-height: 1.1;
+    font-family: var(--pix); font-size: 20px; letter-spacing: .05em; color: var(--c);
+    text-shadow: 2px 0 #1e1a18, -2px 0 #1e1a18, 0 2px #1e1a18, 0 -2px #1e1a18, 2px 2px #1e1a18, -2px -2px #1e1a18, 2px -2px #1e1a18, -2px 2px #1e1a18; }
+  .nm small { display: block; margin-top: 2px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #f6efe2;
+    text-shadow: 1px 0 #1e1a18, -1px 0 #1e1a18, 0 1px #1e1a18, 0 -1px #1e1a18, 1px 1px #1e1a18, -1px -1px #1e1a18; }
+  .nm.clue { color: #ffe28a; }
+
+  /* elevator doors */
+  #doors { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+  .door { position: absolute; top: 0; bottom: 0; width: 50.2%; background: var(--paper); transition: transform .38s cubic-bezier(.7, 0, .3, 1);
+    background-image: repeating-linear-gradient(90deg, transparent 0 23px, rgba(184, 149, 74, .22) 23px 24px), radial-gradient(var(--dot) .6px, transparent .7px); background-size: auto, 9px 9px; }
+  .door.l { left: 0; transform: translateX(-101%); border-right: 1px solid var(--brass); }
+  .door.r { right: 0; transform: translateX(101%); border-left: 1px solid var(--brass); }
+  #doors.shut .door { transform: none; }
+  #floorFlash { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; opacity: 0; transition: opacity .2s; z-index: 4; pointer-events: none; }
+  #floorFlash b { display: block; font-family: var(--serif); font-size: 88px; line-height: .95; font-weight: 400; }
+  #floorFlash span { font-size: 10px; letter-spacing: .3em; color: var(--ink-2); }
+  #doors.shut + #floorFlash { opacity: 1; }
+
+  /* ── footer: the timeline on its own row, controls below ── */
+  .bottom { position: fixed; inset: auto 0 0 0; height: var(--bot); border-top: 1px solid var(--hair); display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: 48px 1fr;
+    column-gap: 32px; align-items: center; padding: 0 28px 16px; z-index: 5; }
+  .transport { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .tbtn { height: 36px; min-width: 36px; border: 1px solid var(--ink); display: grid; place-items: center; padding: 0 12px; font-size: 9.5px; letter-spacing: .16em; transition: background .15s, color .15s; }
+  .tbtn:hover { background: var(--ink); color: var(--on-ink); }
+  .tbtn svg { width: 12px; height: 12px; fill: currentColor; }
+  .tbtn.ghost { border-color: var(--hair); color: var(--ink-2); }
+  .panel { display: grid; justify-items: center; gap: 6px; }
+  #dial { width: 236px; height: 64px; overflow: visible; }
+  #dial .arc { fill: none; stroke: var(--ink); stroke-width: 1; }
+  #dial .base { stroke: var(--ink); stroke-width: 1; }
+  #dial .ray { stroke: rgba(184, 149, 74, .45); stroke-width: .8; }
+  #dial .tick { stroke: var(--ink); stroke-width: 1; }
+  #dial text { font-family: var(--pix); font-size: 8.5px; fill: var(--ink-2); text-anchor: middle; }
+  #dial text.on { fill: var(--accent); }
+  #needle { transition: transform .9s cubic-bezier(.3, 1.4, .5, 1); transform-origin: 118px 60px; }
+  #needle circle { fill: var(--paper); }
+  .floors { display: flex; gap: 18px; }
+  .floor { display: grid; justify-items: center; gap: 6px; }
+  .floor .k { width: 42px; height: 42px; border-radius: 50%; background: var(--btn); color: var(--cream); display: grid; place-items: center; font-family: var(--pix); font-size: 12px;
+    box-shadow: inset 0 0 0 2px var(--btn), inset 0 0 0 3.5px var(--brass), 0 0 0 1px var(--hair); transition: transform .15s, box-shadow .2s, color .2s; }
+  .floor:hover .k { transform: translateY(-2px); }
+  .floor.on .k { color: var(--coral); box-shadow: inset 0 0 0 2px var(--btn), inset 0 0 0 3.5px var(--coral), 0 0 0 3px var(--paper), 0 0 0 4px var(--coral), 0 0 18px rgba(233, 119, 128, .55); }
+  .floor .n { color: var(--ink-2); font-size: 8.5px; }
+  .floor.on .n { color: var(--ink); }
+  .cast { justify-self: end; display: flex; gap: 22px; }
+  .chip { display: grid; grid-template-columns: 9px auto; column-gap: 8px; row-gap: 3px; align-items: center; }
+  .chip i { width: 9px; height: 9px; grid-row: span 2; }
+  .chip b { font-family: var(--pix); font-weight: 400; font-size: 11px; letter-spacing: .04em; }
+  .chip .role { color: var(--ink-3); font-size: 8.5px; }
+  .timeline { grid-column: 1 / -1; grid-row: 1; position: relative; align-self: stretch; cursor: pointer; }
+  .timeline .line { position: absolute; left: 0; right: 0; bottom: 12px; height: 1px; background: var(--hair); }
+  .timeline .prog { position: absolute; left: 0; bottom: 11px; height: 3px; background: var(--ink); width: 0; }
+  .timeline .head { position: absolute; bottom: 8px; width: 9px; height: 9px; background: var(--paper); border: 1px solid var(--ink); transform: translateX(-50%) rotate(45deg); }
+  .tl-mark { position: absolute; bottom: 12px; width: 1px; height: 7px; background: var(--ink-3); }
+  .tl-label { position: absolute; bottom: 22px; transform: translateX(2px); color: var(--ink-3); font-size: 8px; white-space: nowrap; }
+  .tl-label.now { color: var(--accent); }
+
+  body.capture .top, body.capture .bottom, body.capture .crop, body.capture .reg, body.capture .side, body.capture #hint, body.capture #zoomPill { display: none; }
+  body.capture #viewport { inset: 0; }
+
+  @media (max-width: 900px) {
+    :root, :root[data-theme="light"] { --top: 74px; --bot: 178px; }
+    .top { grid-template-columns: 1fr auto; padding: 0 16px 12px; } .meta .zoomtxt, .brand .sub { display: none; }
+    .titleblock { text-align: right; } .kicker { justify-content: flex-end; } h1 { font-size: 22px; }
+    .meta { display: none; }
+    .bottom { grid-template-columns: auto 1fr; grid-template-rows: 44px 1fr; column-gap: 16px; padding: 0 16px 14px; } .cast, .side, .reg { display: none; }
+    .transport { max-width: 168px; }
+    .panel { justify-self: end; } #dial { width: 190px; height: 50px; } .floors { gap: 10px; } .floor .k { width: 36px; height: 36px; }
+    .tl-label { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="crest">The <em>Jolly</em></div>
+    <div class="sub">Hotel &amp; Supper Club · Brooklyn, N.Y. · Est. 1961</div>
+  </div>
+  <div class="titleblock">
+    <div class="kicker"><span class="no" id="chNo">CH.01</span><i class="dot"></i><span id="chPlace">The Jolly Club</span><i class="dot"></i><span id="chClock">23:47</span></div>
+    <h1 id="chTitle">No Talk, All Bark</h1>
+  </div>
+  <div class="meta">
+    <div class="live off" id="live"><i></i><span>Paused</span></div>
+    <div class="tc" id="tc">00:00.0 <small>/ 00:30.0</small></div>
+    <div class="case" id="case" title="Find one piece of evidence on every floor. Click it when it glints."><span>Case file</span><i data-id="ribbon"></i><i data-id="bell"></i><i data-id="lipstick"></i><i data-id="stiletto"></i><b id="caseN">0/4</b></div>
+  </div>
+</header>
+
+<main id="viewport">
+  <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+  <i class="reg l"></i><i class="reg r"></i>
+  <div class="side l">Small Plays — A Jolly Anthology — Vol. 2</div>
+  <div class="side r">WebGL · 2:1 Isometric · Low-res pass ×<span id="ps">4</span></div>
+  <div id="names"></div>
+  <div id="doors"><div class="door l"></div><div class="door r"></div></div>
+  <div id="floorFlash"><b id="ffKey">1F</b><span id="ffName">The Jolly Club</span></div>
+  <div id="hint">▶ CLICK TO PLAY<span>Scroll · zoom &nbsp;/&nbsp; Drag · pan &nbsp;/&nbsp; Hover · names</span></div>
+  <div id="toast"><span id="toastK">Evidence</span><b id="toastV"></b><span id="toastN"></span></div>
+  <div id="zoomPill">ZOOM <div class="scale"><i id="zoomTick"></i></div><b id="zoomVal">1.0×</b></div>
+</main>
+
+<footer class="bottom">
+  <div class="timeline" id="timeline"><div class="line"></div><div class="prog" id="prog"></div><div id="marks"></div><div class="head" id="head"></div></div>
+  <div class="transport">
+    <button class="tbtn" id="play" title="Play / pause (Space)"><svg viewBox="0 0 12 12" id="playIcon"><path d="M2 1 L11 6 L2 11 Z"/></svg></button>
+    <button class="tbtn" id="restart" title="Restart (R)"><svg viewBox="0 0 12 12"><path d="M6 2.2V0.4L8.8 3 6 5.6V3.8A2.4 2.4 0 1 0 8.4 6.2h1.6A4 4 0 1 1 6 2.2z"/></svg></button>
+    <button class="tbtn ghost" id="sound" title="Sound">SOUND · ON</button>
+    <button class="tbtn ghost" id="snap" title="Save this frame as a PNG (P)">SNAP</button>
+    <button class="tbtn ghost" id="theme" title="Dark / light page">THEME · DARK</button>
+  </div>
+  <div class="panel">
+    <svg id="dial" viewBox="0 0 236 66">
+      <g id="rays"></g>
+      <path class="arc" d="M 68 60 A 50 50 0 0 1 168 60"/>
+      <line class="base" x1="58" y1="60" x2="178" y2="60"/>
+      <g id="ticks"></g>
+      <g id="needle"><line x1="118" y1="60" x2="118" y2="17" stroke="#b8954a" stroke-width="2"/><circle cx="118" cy="60" r="4.5" stroke="#b8954a" stroke-width="1.5"/></g>
+    </svg>
+    <div class="floors" id="floors"></div>
+  </div>
+  <div class="cast">
+    <div class="chip"><i style="background:var(--coral)"></i><b>JOJO</b><span class="role">Sax · No talk</span></div>
+    <div class="chip"><i style="background:var(--lime)"></i><b>LYLY</b><span class="role">Bass · All bark</span></div>
+    <div class="chip"><i style="background:var(--wine)"></i><b>YOYO</b><span class="role">Boss · All bite</span></div>
+  </div>
+</footer>
+<audio id="audio" preload="auto"></audio>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

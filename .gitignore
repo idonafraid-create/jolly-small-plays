@@ -1,0 +1,4 @@
+# render output and audio intermediates (the page plays the .m4a files)
+out/
+assets/*.wav
+__pycache__/
