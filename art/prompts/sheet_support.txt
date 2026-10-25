@@ -1,0 +1,9 @@
+TASK: a CHARACTER MODEL SHEET for the supporting cast of the comic, the reference for every panel they appear in. Plain flat cream background. Four characters standing side by side in front three-quarter view, full body, each with a small head close-up beside it. Order left to right: Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff. Mr. Bunny is the tallest (his ears go well above everyone); Hootsby and Mrs. Fluff are mid-height; Mr. Slowe is short and stooped.
+
+{BUNNY}
+
+{SUPPORT}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

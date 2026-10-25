@@ -1,0 +1,18 @@
+{CLUBREFS}
+
+PANEL: ALL BARK. A wide, flat row of SIX patrons of the club, side by side, all facing us, each throwing its head back and barking at the ceiling like a dog during the chorus, in a warm smoky spotlight. The picture will be CUT INTO SIX EQUAL VERTICAL STRIPS, so put exactly one character (or pair) in each sixth of the width, centred in its strip, with nothing important on the strip boundaries; heads at about 40% of the height, bodies down to the bottom. Left to right:
+1. Mr. Hamm the pig banker, bowler hat flying off, tumbler sloshing.
+2. Siam the Siamese cat, martini in hand, barking with total disdain, eyes half shut.
+3. Crowley the crow, cigar flying out of his beak.
+4. Prof. Hoot the owl, lowering his newspaper to hoot-bark.
+5. Vinnie and Sal the two rats, playing cards flying up into the air.
+6. Moe the sleepy dog, slumped on his table, barking half asleep.
+Background: the bar mirror, bottles and green wallpaper, dark and simple.
+
+{CROWD}
+
+{CLUB}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET and Image 2 = a SUPPORTING CAST MODEL SHEET: together they set the drawing style for the whole series (cartoon animals, bold ink, flat colours). Image 3 = a low-resolution pixel-art frame of the alley, for the characters' COLOURS only; do not copy its pixel style.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+TASK: a CHARACTER MODEL SHEET for the BACK ALLEY episode, the reference for every panel these characters appear in. Plain flat cream background, no floor, no scenery. In front three-quarter view, full body, evenly spaced, nothing overlapping, left to right: Tubbs, Patch, Ghost (the three cats standing upright, about half the height of Old Blue), Old Blue (sitting on an upturned crate, harmonica at his mouth), Nibs (tiny, with his umbrella), Edgar (perched on a short length of wire). Beside the three cats, a small row of their head close-ups.
+
+{ALLEYCATS}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

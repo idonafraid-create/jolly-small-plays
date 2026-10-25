@@ -1,0 +1,16 @@
+{ALLEYREFS}
+
+PANEL (this picture will be the first frame of an animation): TRASH NIGHT. By the green dumpster in the rain, medium shot:
+- Left: Lyly in her band suit, holding ONE black trash bag in EACH paw, both bags swung back over her shoulder, about to heave them onto the dumpster.
+- Centre-right: on the closed dumpster lid the three alley cats (Tubbs, Patch, Ghost) arching their backs and hissing at her, fur on end, tails bristling. Leave clear space ABOVE and around the cats (they will leap off in three directions).
+- Background: the club's back wall, the stage door under its bare bulb, the pink neon glow, rain streaks and puddles.
+
+{LYLYCLUB}
+
+{ALLEYCATS}
+
+{ALLEY}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

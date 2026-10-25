@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: case closed, the quiet payoff. A close-up of Jojo from the chest up, facing three-quarters toward us. With one white paw Jojo is clipping a small shiny CORAL-PINK STILETTO-SHAPED TIE CLIP (a tiny high-heeled shoe in coral pink enamel with a thin gold edge) back onto the narrow dark tie, where it belongs. Eyes peacefully CLOSED, the faintest satisfied curl at one corner of the shut mouth. Hat brim casting a soft shadow, warm lamp light, plain mustard wallpaper behind with a small soft red neon reflection. Calm, smug, simple composition.
+
+{JOJO}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

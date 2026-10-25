@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET and Image 2 = a SUPPORTING CAST MODEL SHEET: together they set the drawing style for the whole series (cartoon animals, bold ink, flat colours). Image 3 = a low-resolution pixel-art frame of the club, for the characters' COLOURS only; do not copy its pixel style.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+TASK: a CHARACTER MODEL SHEET for the STAFF of the Jolly Club, the reference for every panel they appear in. Plain flat cream background, no floor, no scenery. Six characters standing side by side in front three-quarter view, full body, evenly spaced, nothing overlapping, left to right: Felix (holding his empty silver tray), Madame Lapin (one gloved hand raised as if singing), Walter (polishing a glass with a cloth), Callie, Bruno (holding two drumsticks), Old Chester (hands clasped). Heights: Walter and Bruno the biggest, Madame Lapin tall with her ears, Felix and Old Chester medium, Callie the smallest.
+
+{CLUBSTAFF}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

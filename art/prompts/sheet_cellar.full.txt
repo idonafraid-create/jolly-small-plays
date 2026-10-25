@@ -1,0 +1,19 @@
+Use your built-in image generation tool (image_gen). Produce ONE image, then copy the final PNG into the current working directory as `sheet_cellar.png` (never overwrite an existing file). Do not write any code or other files.
+
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET of another episode, whose clean, flat line work is the target rendering for the whole series.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+TASK: a CHARACTER MODEL SHEET for the cellar episode, the reference for every panel these characters appear in. Plain flat cream background, no floor, no scenery. Everything in front three-quarter view, full figure, evenly spaced, nothing overlapping.
+- LEFT: THE THING: its round iron drain grate seen at a slight angle, with the one huge eye looking up through the bars and all six tentacles rising out of it and curling, about as tall as a standing dog.
+- CENTRE, in a row: the four hooded candle rats (Brother Nibble, Sister Crumb, Brother Squeak, The Young One), each holding its candle, plus one plain grey cellar rat on all fours.
+- RIGHT: YOYO sitting on a stack of red beer crates with a wine-red velvet cushion, a small dark-plum electric guitar across her lap (its headstock is shaped like two long rabbit ears, pink inside), one paw petting the tip of a teal tentacle that curls up to her like a pet; smug lipstick smile. YOYO is a SMALL kitten, about half the height of a dog.
+
+THE THING IN THE DRAIN: it lives under the round iron grate. One huge round eye, acid yellow-green with a tall black vertical slit pupil like a cat's, and six long tentacles that rise through the grate: smooth, banded in two shades of teal blue, a row of round PINK suckers along the underside, the last third fading to violet at the tips. Goofy rather than gory: no teeth, no slime drips, no gore.
+
+THE CANDLE CULT: four small rats, each about half as tall as a dog, in long wine-red hooded robes with the hoods pulled low, only pink noses, whiskers, glowing red eyes and pink tails showing; each holds one short white candle in both paws. Names: Brother Nibble (the tallest), Sister Crumb (round), Brother Squeak (thin, nervous), The Young One (the smallest, eager, hood too big). Also some ordinary grey cellar rats, no clothes.
+
+YOYO, the boss: a SMALL silver-grey tabby kitten (about half as tall as the dogs) with big round dark eyes and a smug smile smeared with red lipstick, a big wine-red velvet bow on the head, a wine-red collar with a little gold bell, a cream lace lolita dress with layered ruffles, black Mary-Jane shoes; usually carries a small black umbrella. Mischievous, never caught.
+
+ART STYLE (must stay identical across the whole series): a hand-inked panel from a 1950s American Sunday-newspaper "funny animal" detective comic. Bold black brush-and-nib ink outlines with confident, varied line weight; generous spotted solid blacks and hard noir cast shadows; simple FLAT cel colours from a restricted vintage four-colour-press palette (brick red, coral pink, mustard yellow, teal blue, olive green, tan, cream, black), at most one flat shadow tone per colour. Cartoon animals with big readable expressions in the tradition of Carl Barks and Walt Kelly, staged and lit like a Will Eisner crime page. Clean flat colour areas only: absolutely NO halftone dots, NO Ben-Day screen, NO paper texture, NO gradients, NO airbrush glow, NO 3D render, NO photo-realism (dots and paper are added later in print). NO text, NO letters, NO numbers, NO speech balloons, NO captions, NO sound-effect lettering, NO signature, NO panel border: full-bleed artwork only.
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

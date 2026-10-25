@@ -1,0 +1,18 @@
+{ALLEYREFS}
+
+PANEL: THE BELL. In the rain by a puddle, medium shot:
+- Left: Lyly in her band suit crouching, holding up a tiny GOLD BELL between the fingers of her RIGHT paw, studying it, tongue out in concentration; ripples in the puddle where it landed.
+- Right: Jojo standing, raising the long-handled GOLD OPERA GLASSES to his eyes with one paw, looking up toward the upper right (a lit window high above, off the picture). Make the two round lenses of the opera glasses large, clear and facing the viewer at a slight angle.
+- Background: the chain-link fence with its torn hole at the bottom, and the three cats slipping through it one after another.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{ALLEYCATS}
+
+{ALLEY}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

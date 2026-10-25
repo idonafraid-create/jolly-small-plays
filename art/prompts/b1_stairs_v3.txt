@@ -1,0 +1,18 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (copy YOYO and the leads' faces exactly; ignore the outfits shown there). Image 2 = a SUPPORTING CAST MODEL SHEET whose clean, flat line work is the target rendering for the whole series. Image 3 = the MODEL SHEET for this episode (the Thing in the drain, the hooded candle rats, YOYO with her rabbit-ear guitar): copy those designs exactly. Image 4 = the BAND MODEL SHEET: Lyly's outfit in this episode is EXACTLY the one on Image 4 (dark bottle-green suit, white shirt, coral-pink bow tie, two-tone spectator shoes, round yellow sunglasses). Image 5 = the previous version of THIS picture: keep its composition, camera, staging, lighting and every pose exactly, and change only what is listed under FIXES.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: a TALL panel (the page will crop away the top 7% and the bottom 7%, so keep the door at the top and Lyly's feet at the bottom inside the middle 86% of the height). A side view down the cellar staircase, read from top to bottom:
+- TOP: the open door at the head of the narrow wooden stairs, warm yellow light spilling out of it and down the first steps; the thin brass hand-rail.
+- MIDDLE: the steep wooden steps running diagonally down through the dark stone stairwell, a copper pipe on the wall, a bare bulb hanging on its cord, a drip of water falling.
+- BOTTOM: on the wet flagstones at the foot of the stairs, Lyly, full figure, cheerful and unsuspecting, tongue tip out: a small steel beer keg tucked under her LEFT arm, a flashlight in her RIGHT paw pointing ahead, its white beam cutting a cone into the dark; an arched alcove of dusty wine racks beside her. Lyly is the biggest thing at the bottom; the darkness around her is deep.
+
+{LYLYCLUB}
+
+{CELLAR}
+
+
+FIXES: Lyly is NOT a police officer in this story. Redraw her in her band outfit from Image 4: dark bottle-green suit jacket and trousers, white shirt, coral-pink bow tie, two-tone spectator shoes; NO police uniform, NO police cap or badge, NO duty belt, NO holster. Keep her round yellow sunglasses, her face, her pose and whatever she holds exactly as in Image 5. Also keep: (1) The candles on the floor are NOT lit yet: no flames, no candle glow, only plain white candles with black wicks. (2) The far room beyond Lyly is DARK: no red crate throne, no candelabra, no glowing lipstick circle; the drain grate is only a faint green gleam in the darkness. (3) Keep the keg under the arm on the LEFT of the picture and the flashlight in the paw on the RIGHT of the picture, as in Image 5.
+
+{STYLE}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

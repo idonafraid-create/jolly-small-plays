@@ -1,0 +1,18 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (copy YOYO and the leads' faces exactly; ignore the outfits shown there). Image 2 = a SUPPORTING CAST MODEL SHEET whose clean, flat line work is the target rendering for the whole series. Image 3 = the MODEL SHEET for this episode (the Thing in the drain, the hooded candle rats, YOYO with her rabbit-ear guitar): copy those designs exactly. Image 4 = the BAND MODEL SHEET: Lyly's outfit in this episode is EXACTLY the one on Image 4 (dark bottle-green suit, white shirt, coral-pink bow tie, two-tone spectator shoes, round yellow sunglasses). Image 5 = the previous version of THIS picture: keep its composition, camera, staging, lighting and every pose exactly, and change only what is listed under FIXES.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: EXIT. The foot of the cellar stairs, EVENLY AND BRIGHTLY LIT like a flash photograph (the page darkens it later):
+- Lyly bolting UP the wooden stairs at full speed, seen from behind and the side, both arms flung up, ears flat, speed lines, a big cloud of dust kicked up behind her; her round yellow sunglasses flying off her nose in mid-air (where the cap was in Image 5).
+- Foreground, lying on the flagstones: her flashlight, abandoned, lens toward us. Draw NO light beam at all (the beam is added later).
+- Background: the steel beer keg has rolled across the floor and come to rest against the red crate throne; the tip of one teal tentacle sinking back into the green grate.
+
+{LYLYCLUB}
+
+{CELLAR}
+
+
+FIXES: Lyly is NOT a police officer in this story. Redraw her in her band outfit from Image 4: dark bottle-green suit jacket and trousers, white shirt, coral-pink bow tie, two-tone spectator shoes; NO police uniform, NO police cap or badge, NO duty belt, NO holster. Replace the flying police cap of Image 5 with her round yellow sunglasses flying off in mid-air; keep her face and pose exactly as in Image 5. Also keep: Lyly has EXACTLY TWO arms and two legs: both arms flung up above her head (one paw on each side of her head), nothing else at her sides; count her paws: two hands up, two feet on the stairs. The candles on the lipstick circle are blown out (thin smoke wisps, no flames).
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

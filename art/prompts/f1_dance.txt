@@ -1,0 +1,19 @@
+{CLUBREFS}
+
+PANEL: THE SECOND CHORUS. A wide view across the whole club in full swing (the page crops the top 5% and bottom 5%):
+- Centre and right: the black-and-white checkerboard dance floor, Duke and Kitty and Hopper and Fifi swing-dancing; behind them on the stage Lyly doing a high kick with her bass, the band playing, the pink neon sign above the sunburst blazing (no letters).
+- Left: the bar, Walter polishing a glass; behind the bar, next to the bottle shelves, a SMALL PLAIN DARK DOOR clearly visible (the cellar door).
+- Back: in one red booth Bea and Dot share one drink with two straws; in the next booth Prof. Hoot reads a big folded newspaper with its front page facing us (blank, no letters).
+- Foreground: Moe asleep at a little table.
+
+{LYLYCLUB}
+
+{CLUBSTAFF}
+
+{CROWD}
+
+{CLUB}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

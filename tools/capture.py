@@ -20,7 +20,7 @@ def frames(scene, times, dest, upscale):
         page = browser.new_page(viewport={'width': 2000, 'height': 1200})
         page.on('console', lambda m: m.type == 'error' and '404' not in m.text and print('console:', m.text))
         page.on('pageerror', lambda e: print('pageerror:', e))
-        page.goto(f'http://127.0.0.1:8765/jolly2/index.html?capture&scene={scene}')
+        page.goto(f'http://127.0.0.1:8765/jolly2/v2/index.html?capture&scene={scene}')
         page.wait_for_function('window.__renderAt !== undefined', timeout=90000)
         page.evaluate('__renderAt(0)')
         paths = []

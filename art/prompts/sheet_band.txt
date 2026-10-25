@@ -1,0 +1,15 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO): copy Jojo's and Lyly's HEADS, faces, fur colours and body shapes exactly, but NOT their outfits (that sheet shows the detective and police costumes of another episode). Image 2 = a SUPPORTING CAST MODEL SHEET whose clean, flat line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the club band, for the OUTFITS and instruments only (Lyly's green suit and coral bow tie, Jojo's grey suit and hat); do not copy its pixel style.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+TASK: a CHARACTER MODEL SHEET for the BAND versions of the two leads, the reference for every panel of the club, alley and cellar episodes. Plain flat cream background, no floor, no scenery. Left to right, evenly spaced, nothing overlapping:
+- Jojo full figure, front three-quarter view, holding his gold alto saxophone; beside him a head-and-shoulders close-up showing the tie and the small pink stiletto tie clip.
+- Lyly full figure, front three-quarter view, empty-handed, arms relaxed, grinning with her tongue out; beside her a head-and-shoulders close-up showing the coral bow tie and the sunglasses.
+- Lyly again, smaller, standing behind a big wooden upright double bass, slapping its strings.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

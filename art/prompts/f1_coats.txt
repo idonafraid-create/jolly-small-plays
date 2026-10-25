@@ -1,0 +1,13 @@
+{CLUBREFS}
+
+PANEL: THE COAT CHECK, a close-up, just after the blackout: the small counter, and behind it a rail of hanging coats (grey, brown, green, wine, navy) still SWINGING; Callie the cream cat in her navy beret behind the counter, shrugging with both paws up; between two of the coats peek the tip of a big WINE-RED VELVET BOW and a tiny PINK glint (a little pink high-heeled tie clip) in the dark gap.
+
+{CLUBSTAFF}
+
+{YOYO}
+
+{CLUB}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

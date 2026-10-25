@@ -1,0 +1,23 @@
+{CELLARREFS}
+Image 5 = the previous version of THIS panel: keep its composition, camera, the throne, the huge tentacle entering from the right edge, the candelabra and the hooded rats exactly, and change only what is listed under FIXES.
+
+PANEL: THE BOSS. A medium shot of YOYO on her throne in the back-right corner of the cellar, lit by a hard red spotlight from above:
+- Centre: YOYO sitting on the stacked red beer crates on the wine-red velvet cushion, legs crossed, the small dark-plum rabbit-ear guitar across her lap (held by its neck with her LEFT paw); a long teal tentacle enters the picture from the RIGHT EDGE of the frame, about halfway up, and curls up to her like a happy pet; she strokes its violet tip with her free paw; half-closed eyes, smug red-lipstick smile. Make her paw and the tentacle tip big and clear: the page starts on a close-up of them.
+- Beside the throne: a brass candelabra with three lit candles.
+- Left edge: Brother Nibble and Sister Crumb bowing low in their hooded robes.
+- LOWER LEFT CORNER, small but complete and clear of everything else: The Young One (the smallest hooded rat) jumping for joy with both arms up, holding its lit candle high.
+- Stone wall behind, dark; the red light makes the scene glow.
+
+{YOYO}
+
+{THING}
+
+{CULT}
+
+{CELLAR}
+
+FIXES: YOYO must be drawn EXACTLY like the kitten in Image 1 and Image 3: a silver-grey TABBY with clear dark tabby stripes on her forehead, cheeks and legs, a pink nose, VERY BIG ROUND dark eyes with white highlights (wide open, not half-closed, not sleepy), a smug smile SMEARED with bright red lipstick past the corners of her mouth, the big wine-red velvet bow, the wine-red collar with the little gold bell, the cream lace lolita dress with layered ruffles, black Mary-Jane shoes. She is small and cute, not a lanky cat. She still pets the violet tentacle tip with one paw and holds the rabbit-ear guitar by its neck with the other.
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

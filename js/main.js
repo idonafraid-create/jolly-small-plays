@@ -1,5 +1,7 @@
-// Small Plays · The Jolly — scene switcher, playback, camera zoom/pan, DOM HUD.
-import { Stage, clamp, makeMarker } from './engine.js';
+// Small Plays · The Jolly — scene switcher, playback, camera zoom/pan, DOM HUD, the Sunday comic pages.
+import * as THREE from 'three';
+import { Stage, clamp, makeMarker, canvasOf } from './engine.js';
+import { Comic } from './comic.js';
 
 const QS = new URLSearchParams(location.search);
 const CAPTURE = QS.has('capture');
@@ -104,13 +106,15 @@ function playDing() {
   } catch {}
 }
 async function switchTo(id, userGesture = false) {
-  if (switching || !defs[id] || (cur && cur.def.id === id)) return;
+  if (switching || comic?.busy || !defs[id] || (cur && cur.def.id === id)) return;
+  comic?.close();
   switching = true;
   const d = defs[id], wasPlaying = playing || (userGesture && !started);
   $('ffKey').textContent = d.floor; $('ffName').textContent = d.place;
   $('needle').style.transform = `rotate(${angleOf(ORDER.indexOf(id))}deg)`;
   document.querySelectorAll('#ticks text').forEach(t => t.classList.toggle('on', t.dataset.id === id));
   document.querySelectorAll('.floor').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+  $('read').classList.toggle('off', !comic?.has(id));
   if (cur) { $('doors').classList.add('shut'); audio.pause(); await new Promise(r => setTimeout(r, 420)); }
   cur = await getScene(id);
   stage.setScene(cur.def); stage.resetView(); stage.zoom = 1; stage.pan = { x: 0, y: 0 }; stage.applyView();
@@ -120,6 +124,7 @@ async function switchTo(id, userGesture = false) {
   document.title = `${d.title} — Small Plays`;
   setChapters(cur.rt.chapters, cur.total);
   render(0);
+  await comic?.prepare(id);                             // the floor's comic is built behind the shut doors, not when it is opened
   await new Promise(r => setTimeout(r, cur && $('doors').classList.contains('shut') ? 260 : 0));
   $('doors').classList.remove('shut');
   playDing();
@@ -151,12 +156,25 @@ viewport.addEventListener('wheel', e => {
   const nx = ((e.clientX - r.left) / r.width) * 2 - 1, ny = 1 - ((e.clientY - r.top) / r.height) * 2;
   stage.zoomAt(Math.exp(-e.deltaY * 0.0015), nx, ny);
 }, { passive: false });
-$('play').addEventListener('click', () => setPlaying(!playing));
-$('restart').addEventListener('click', () => { seek(0); setPlaying(true); });
+// the transport belongs to the footage: with the comic open, play goes back to the footage at the panel being read
+// (as ▶ WATCH THIS SCENE does) and restart goes back to its start, instead of playing sound under the page
+$('play').addEventListener('click', () => {
+  if (comic?.busy) return;
+  if (comic?.active) comic.exit(comic.panel?.d.t ?? undefined); else setPlaying(!playing);
+});
+$('restart').addEventListener('click', () => {
+  if (comic?.busy) return;
+  if (comic?.active) comic.exit(0); else { seek(0); setPlaying(true); }
+});
 $('sound').addEventListener('click', () => { audio.muted = !audio.muted; $('sound').textContent = audio.muted ? 'SOUND · OFF' : 'SOUND · ON'; });
-$('timeline').addEventListener('click', e => { const r = e.currentTarget.getBoundingClientRect(); seek((e.clientX - r.left) / r.width * cur.total); });
+$('timeline').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect(), t = (e.clientX - r.left) / r.width * cur.total;
+  if (comic?.active) comic.exit(t); else seek(t);
+});
 addEventListener('keydown', e => {
-  if (e.code === 'Space') { setPlaying(!playing); e.preventDefault(); }
+  if ((comic?.active || comic?.busy) && !(e.key >= '1' && e.key <= '4')) { comic.key(e); return; }
+  if (e.key === 'c' || e.key === 'C') { openComic(); return; }
+  if (e.code === 'Space') { if (!e.repeat) setPlaying(!playing); e.preventDefault(); }        // a held space bar toggles once
   else if (e.key >= '1' && e.key <= '4') switchTo(ORDER[+e.key - 1], true);
   else if (e.key === 'ArrowRight') seek(tNow() + 2);
   else if (e.key === 'ArrowLeft') seek(tNow() - 2);
@@ -165,8 +183,12 @@ addEventListener('keydown', e => {
   else if (e.key === '=' || e.key === '+') stage.zoomAt(1.25);
   else if (e.key === '-') stage.zoomAt(0.8);
 });
-audio.addEventListener('ended', () => { holdUntil = performance.now() + 1200; });
-addEventListener('resize', () => stage.resize());
+audio.addEventListener('ended', () => {
+  if (comic?.active || comic?.busy) return;                           // a panel's soundtrack stretch ran to the end
+  if (comic?.has(cur.def.id)) { holdUntil = 0; setTimeout(() => { if (!comic.active && audio.ended) openComic(true); }, 700); return; }
+  holdUntil = performance.now() + 1200;
+});
+addEventListener('resize', () => { stage.resize(); comic?.resize(); });
 
 // ── the case file: one piece of evidence per floor, clicked when it glints ──
 let found = new Set();
@@ -232,7 +254,43 @@ function snap() {
   toast('Snapshot', `${cur.def.place}, ${fmt(t)}`, 'PNG');
 }
 $('snap').addEventListener('click', snap);
-addEventListener('keydown', e => { if (e.key === 'p' || e.key === 'P') snap(); });
+addEventListener('keydown', e => { if ((e.key === 'p' || e.key === 'P') && !comic?.active) snap(); });
+
+// ── the Sunday comic: at the end of a floor (or READ / C) the footage is printed into a comic page ──
+// a copy of the pixel play's frame at time t (default: now, as framed on screen), optionally re-framed on a world point;
+// `hud: false` leaves out the play's own captions and glints (a panel letters its own); `marks` names world points to locate
+function grab({ t, zoom, at, hud = true, marks = {} } = {}) {
+  const tKeep = Math.min(tNow(), cur.total - 0.001), view = { zoom: stage.zoom, pan: stage.pan };
+  if (zoom) {
+    stage.zoom = 1; stage.pan = { x: 0, y: 0 }; stage.applyView();
+    const [sx, sy] = at ? stage.screenOf(new THREE.Vector3(...at)) : [stage.lowW / 2, stage.lowH / 2], unit = 2 * stage.baseH / stage.lowH;
+    stage.zoom = zoom; stage.pan = { x: (sx - stage.lowW / 2) * unit, y: (stage.lowH / 2 - sy) * unit }; stage.applyView();
+  }
+  render(Math.min(t ?? tKeep, cur.total - 0.001), hud);
+  const c = canvasOf(stage.lowW, stage.lowH); c.getContext('2d').drawImage(canvas, 0, 0);
+  const pts = {};
+  for (const o of cur.rt.people) if (o.rig.root.visible) pts[o.name] = stage.screenOf(o.rig.head);
+  for (const [name, xyz] of Object.entries(marks)) pts[name] = stage.screenOf(new THREE.Vector3(...xyz));
+  if (zoom) { stage.zoom = view.zoom; stage.pan = view.pan; stage.applyView(); }
+  render(tKeep);
+  return { canvas: c, pts };
+}
+const comic = CAPTURE ? null : new Comic({
+  viewport, stage, audio, grab, toast,
+  draw: () => render(Math.min(tNow(), cur.total - 0.001)),
+  found: id => found.has(id),
+  onExit: t => { seek(t); setPlaying(true); },
+  // the issues run in story order (a page's `nextScene`); otherwise on to the next floor
+  onNext: () => switchTo(comic.page?.def.nextScene || ORDER[(ORDER.indexOf(cur.def.id) + 1) % ORDER.length], true),
+});
+function openComic(atEnd = false) {
+  if (!cur || comic?.active || comic?.busy || switching) return;
+  if (!comic?.has(cur.def.id)) { toast('Sunday comic', 'This floor is still at the printer.', 'SOON'); return; }
+  const t = atEnd ? cur.total : Math.min(tNow(), cur.total - 0.001);
+  setPlaying(false);
+  comic.enter(cur.def.id, { t, atEnd });
+}
+$('read').addEventListener('click', () => openComic());
 
 // ── frame ──
 function drawNames() {
@@ -257,12 +315,13 @@ function drawHover() {
   const { o, x, y } = best;
   names.push({ x, y: y - 3, text: o.name, sub: o.role, color: o.color });
 }
-function render(t) {
+function render(t, hud = true) {
   if (!cur) return;
   cur.rt.update(t);
   const spin = CAPTURE ? t : performance.now() / 1000;
   cur.rt.markers.forEach(mk => markerPos(mk, spin));
   stage.render(cur.rt.scene, () => {
+    if (!hud) return;
     cur.rt.hud(t);
     if (CAPTURE) { for (const mk of cur.rt.markers) if (mk.mesh.visible) stage.label(mk.o.name, stage.screenOf(mk.mesh.position.clone().setY(mk.mesh.position.y + 0.12)), mk.o.color); return; }
     drawNames(); drawClues(t); drawHover();
@@ -273,6 +332,7 @@ function loop() {
   requestAnimationFrame(loop);
   const now = performance.now(), dt = Math.min(0.1, (now - last) / 1000); last = now;
   if (!cur) return;
+  if (comic?.active || comic?.busy) { if (comic.active) comic.frame(); return; }
   stage.stepView(dt);
   if (holdUntil && now > holdUntil) { holdUntil = 0; seek(0); if (playing) audio.play().catch(() => {}); }
   if (playing && !holdUntil && (audio.error || audio.readyState < 2)) clockT = Math.min(cur.total - 0.01, clockT + dt);
@@ -299,4 +359,4 @@ if (CAPTURE) {
   if (QS.has('t')) { clockT = +QS.get('t'); }
   loop();
 }
-window.__sp = { stage, defs, built, seek, switchTo, get t() { return tNow(); } };
+window.__sp = { stage, defs, built, seek, switchTo, comic, grab, get t() { return tNow(); } };

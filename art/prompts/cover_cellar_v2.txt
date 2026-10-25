@@ -1,0 +1,25 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (copy YOYO and the leads' faces exactly; ignore the outfits shown there). Image 2 = a SUPPORTING CAST MODEL SHEET whose clean, flat line work is the target rendering for the whole series. Image 3 = the MODEL SHEET for this episode (the Thing in the drain, the hooded candle rats, YOYO with her rabbit-ear guitar): copy those designs exactly. Image 4 = the BAND MODEL SHEET: Lyly's outfit in this episode is EXACTLY the one on Image 4 (dark bottle-green suit, white shirt, coral-pink bow tie, two-tone spectator shoes, round yellow sunglasses). Image 5 = the previous version of THIS picture: keep its composition, camera, staging, lighting and every pose exactly, and change only what is listed under FIXES.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+COVER ART for issue No. 3 of a 1950s American funny-animal detective comic: "The Thing in the Keg Room". The logo band sits ABOVE this picture and a title ribbon and a small TV-monitor box will be laid over its BOTTOM fifth, so keep every face and the key action in the upper three quarters.
+LANDSCAPE frame, the whole cellar at night, horror-movie poster staging played for laughs:
+- Left, big and close: Lyly at the foot of the wooden stairs, frozen in terror, eyes huge, tongue out, her yellow round sunglasses slid down to the very tip of her nose; she holds a FLASHLIGHT in her RIGHT paw only and its white beam cuts diagonally across the dark picture; a small steel beer keg is tumbling out of her left arm.
+- Centre, where the beam lands: the round iron drain grate in its red lipstick circle, and through the bars the ONE huge acid yellow-green eye with a black slit pupil staring back up at her; teal tentacles with pink suckers curl up out of the grate into the frame.
+- Back right, small, in a wash of red light: YOYO on her throne of red beer crates with the rabbit-ear guitar on her lap, smirking; the four hooded candle rats stand around the lipstick circle, their candles lit.
+Colour: deep blacks and dark green-grey stone, the beam pale yellow-white, the eye and the grate glow acid green, the throne corner hot red; strong saturated four-colour printing.
+
+{LYLYCLUB}
+
+{YOYO}
+
+{THING}
+
+{CULT}
+
+{CELLAR}
+
+FIXES: Lyly is NOT a police officer in this story. Redraw her in her band outfit from Image 4: dark bottle-green suit jacket and trousers, white shirt, coral-pink bow tie, two-tone spectator shoes; NO police uniform, NO police cap or badge, NO duty belt, NO holster. Keep her round yellow sunglasses, her face, her pose and whatever she holds exactly as in Image 5.
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 4:3 (for example 1536x1152). If that size is not available, use 3:2 (1536x1024).

@@ -1,0 +1,24 @@
+{ALLEYREFS}
+
+COVER ART for issue No. 2 of a 1950s American funny-animal detective comic: "Rain Check", out back of the Jolly. The logo band sits ABOVE this picture; a small TV-monitor box will be laid over the UPPER-RIGHT corner and a title ribbon over the LOWER-LEFT fifth, so keep the UPPER-RIGHT quarter calm (dark rainy sky and wet brick, nothing important) and keep every face out of the bottom-left fifth.
+LANDSCAPE frame, the back alley at night in slanting rain:
+- Centre-left: Jojo under the single bare bulb by the stage door, eyes shut, playing his gold sax in the rain; Lyly sitting on a crate beside him, nodding along.
+- Centre: the three alley cats (Tubbs, Patch, Ghost) sitting on the green dumpster lid like an audience.
+- Upper centre-left: the black iron fire escape caught in a white lightning flash; at its top the small black silhouette of a kitten with a big bow and an open umbrella.
+- Right: the chain-link fence, and beyond it the bright headlight beam of a freight locomotive cutting through the rain.
+- Foreground, in mid-air: a tiny gold bell falling, catching the light.
+Colour: slate blue-grey night, neon pink, signal orange and the warm bulb, strong saturated four-colour printing.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{YOYO}
+
+{ALLEYCATS}
+
+{ALLEY}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 4:3 (for example 1536x1152). If that size is not available, use 3:2 (1536x1024).

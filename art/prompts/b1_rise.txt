@@ -1,0 +1,16 @@
+{CELLARREFS}
+
+PANEL (this picture will be the first frame of an animation): IT RISES. A dramatic low angle at floor level, from just behind the round drain grate:
+- Foreground centre: the iron grate in its red lipstick circle, glowing acid green from below; through the bars the ONE huge yellow-green eye, HALF OPEN, its black slit pupil looking at Lyly; the tips of the six teal tentacles with pink suckers just starting to rise out between the bars. Leave clear dark space ABOVE the grate (the tentacles will rise into it).
+- Background, mid-height on the right: Officer Lyly frozen in terror, full figure, eyes huge, her round yellow sunglasses slid down to the tip of her nose, holding the flashlight in her RIGHT paw only (beam pointing at the grate); her LEFT paw empty and open; the small steel beer keg lying on its side on the floor at her feet.
+- The bare bulb on its cord is dark (dead). The only light: the green glow from the grate and Lyly's flashlight beam; candles burning on the lipstick circle.
+
+{LYLY}
+
+{THING}
+
+{CELLAR}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

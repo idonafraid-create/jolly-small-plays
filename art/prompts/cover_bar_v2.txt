@@ -1,0 +1,25 @@
+{CLUBREFS}
+Image 6 = the previous version of THIS cover: keep its cast, poses, colours, lighting and overall staging, and change only what is listed under FIXES.
+
+COVER ART for issue No. 1 of a 1950s American funny-animal detective comic: "No Talk, All Bark", live at the Jolly Club. The logo band sits ABOVE this picture; a small TV-monitor box will be laid over the UPPER-LEFT corner and a title ribbon over the LOWER-LEFT fifth, so keep the UPPER-LEFT quarter calm and dark (navy velvet curtain and shadow, nothing important) and keep every face out of the bottom-left fifth.
+LANDSCAPE frame, a low angle up at the stage, big and festive:
+- Centre: Jojo, eyes shut, blowing his gold alto sax, the small PINK STILETTO TIE CLIP on his tie catching one bright white glint; Madame Lapin at the ribbon microphone beside him; the navy-and-gold sunburst behind them, footlights blazing.
+- Right of centre: Lyly mid-spin with her big upright double bass swung out sideways, tongue out, sunglasses flying.
+- Mid-left, in the air: a martini glass tumbling end over end, the olive flying out.
+- LOWER RIGHT: the coat-check counter and a rail of hanging coats; between two coats peek a big wine-red velvet bow and two wide eyes (YOYO hiding, only the bow and eyes visible).
+- Foreground edges: dancers and barking patrons in silhouette against the light.
+Colour: navy, gold and coral pink against deep blacks; strong saturated four-colour printing.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{CLUBSTAFF}
+
+{CLUB}
+
+FIXES: the UPPER-LEFT area (the left 30% of the width and the top 34% of the height) must be EMPTY: only dark navy velvet curtain falling in deep shadow, no characters, no faces, no bar shelves, no lamps, no flying glass there. Move the bar with Walter and Felix further down and slightly right (below that area), and move the tumbling martini glass to the middle of the left side, just under that empty corner. Keep the band on the stage, the dancers, and YOYO's bow and eyes peeking between the coats in the lower right exactly as they are.
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 4:3 (for example 1536x1152). If that size is not available, use 3:2 (1536x1024).

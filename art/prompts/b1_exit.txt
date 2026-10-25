@@ -1,0 +1,14 @@
+{CELLARREFS}
+
+PANEL: EXIT. The foot of the cellar stairs, EVENLY AND BRIGHTLY LIT like a flash photograph (the page darkens it later):
+- Officer Lyly bolting UP the wooden stairs at full speed, seen from behind and the side, both arms flung up, ears flat, speed lines, a big cloud of dust kicked up behind her; her peaked police cap flying off her head in mid-air.
+- Foreground, lying on the flagstones: her flashlight, abandoned, lens toward us. Draw NO light beam at all (the beam is added later).
+- Background: the steel beer keg has rolled across the floor and come to rest against the red crate throne; the tip of one teal tentacle sinking back into the green grate.
+
+{LYLY}
+
+{CELLAR}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

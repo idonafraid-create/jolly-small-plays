@@ -1,0 +1,21 @@
+{ALLEYREFS}
+
+PANEL: THE SOLO. A wide view of the alley in the rain (the page crops the top and bottom 8%):
+- Left: the stage door open, spilling warm light; under the bare bulb Jojo in his band suit, eyes shut, playing a soaring sax solo in the drizzle.
+- Next to him: Lyly sitting on a crate, nodding along with her eyes shut.
+- Centre: the three alley cats (Tubbs, Patch, Ghost) sitting in a neat row on the wet ground, their backs half to us, swaying, listening.
+- Right: under the green-and-white striped awning, Old Blue on an upturned crate, joining in on his harmonica.
+- On the brick wall between the door and the awning, a CLEAR bare patch of brick at about head height (something will be lettered there later).
+- Steam rising from a manhole, puddles reflecting the pink neon.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{ALLEYCATS}
+
+{ALLEY}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

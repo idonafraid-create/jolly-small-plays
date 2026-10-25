@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: the evidence, seen low along the floor with a dramatic wide-angle perspective. FOREGROUND LOWER-LEFT: the limp arm of the pink plush rabbit lying on the carpet, a seam torn open and fluffy white stuffing spilling out in big tufts. MIDDLE: a trail of small bright-red LIPSTICK paw prints of a kitten (tiny cat paw prints, four toes and a pad each, about eight of them) walking away from the stuffing across the orange-and-brown diamond carpet, getting smaller with distance. BACKGROUND UPPER-RIGHT: the prints climb the wall up to the sash window; the window's brass latch is flipped OPEN, the window is raised a few inches, rain is dripping in onto the sill and a small puddle shines on the floor below it. Nobody is in the picture. Moody lamp light, deep shadows in the corners. The three clues must be clearly separated: stuffing lower-left, paw-print trail in the centre, open latch upper-right.
+
+{ROOM}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

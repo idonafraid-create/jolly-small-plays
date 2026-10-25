@@ -1,0 +1,20 @@
+{CLUBREFS}
+
+PANEL: MISSING. The moment the lights come back on, on the stage, everyone startled, fur standing on end:
+- Centre, big: Jojo, BOTH EYES WIDE OPEN for once (shocked), looking down at his own tie: the tie clip is GONE (the tie hangs loose, nothing on it); his sax hangs from its strap.
+- At his feet on the stage boards: a single WINE-RED VELVET RIBBON lying in a curl.
+- Behind him: Lyly with her jaw dropped, sunglasses askew, hugging her bass; Madame Lapin fainting backwards into Bruno's arms.
+- Front edge: patrons' heads popping up with hair and fur on end.
+Lights flickering back: harsh white light, deep shadows.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{CLUBSTAFF}
+
+{CLUB}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

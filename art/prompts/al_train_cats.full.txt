@@ -1,0 +1,10 @@
+Use your built-in image generation tool (image_gen). Produce ONE image, then copy the final PNG into the current working directory as `al_train_cats.png` (never overwrite an existing file). Do not write any code or other files.
+
+Attached references: Image 1 = the ALLEY CATS MODEL SHEET (copy Tubbs, Patch and Ghost exactly). Image 2 = a freight-train cut-out on a pure green background.
+Keep fills flat.
+
+TASK: return Image 2 EXACTLY as it is, same size, same train in exactly the same place, same pure green (#00FF00) background, and add only this: the three alley cats from Image 1 riding on the small open BACK PORCH at the far LEFT end of the red caboose, behind its railing: Tubbs (big orange tabby, black waistcoat) raising one paw in a salute, Ghost (white cat, slate jacket) waving, Patch (black cat with an eye patch, brown jacket) looking back over his shoulder. The cats are small, in scale with the caboose (their heads reach about the caboose's window height), drawn side-on like the train. Change nothing else: no ground, no rails, no shadow, no background.
+
+ART STYLE (must stay identical across the whole series): a hand-inked panel from a 1950s American Sunday-newspaper "funny animal" detective comic. Bold black brush-and-nib ink outlines with confident, varied line weight; generous spotted solid blacks and hard noir cast shadows; simple FLAT cel colours from a restricted vintage four-colour-press palette (brick red, coral pink, mustard yellow, teal blue, olive green, tan, cream, black), at most one flat shadow tone per colour. Cartoon animals with big readable expressions in the tradition of Carl Barks and Walt Kelly, staged and lit like a Will Eisner crime page. Clean flat colour areas only: absolutely NO halftone dots, NO Ben-Day screen, NO paper texture, NO gradients, NO airbrush glow, NO 3D render, NO photo-realism (dots and paper are added later in print). NO text, NO letters, NO numbers, NO speech balloons, NO captions, NO sound-effect lettering, NO signature, NO panel border: full-bleed artwork only.
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

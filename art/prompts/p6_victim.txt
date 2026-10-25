@@ -1,0 +1,14 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL (this picture will be the first frame of an animation): the scene of the "crime". Medium-wide shot. In the centre, Mr. Bunny the tall pink plush rabbit lies flat on his back on the orange-and-brown diamond carpet inside a white chalk outline, eyes closed, long ears spread on the floor, a tuft of white stuffing poking out of an arm seam. Leave clear empty space ABOVE the rabbit (he is about to sit up). On the right, Hootsby the owl photographer leans in with his big press camera. At the far left, Mr. Slowe the tortoise peeks in nervously from the hallway doorway. Mrs. Fluff is NOT in this picture. In the background on the back wall, the rainy sash window with half-raised blinds, the glass dark and EMPTY (nobody outside yet), a red neon glow from across the street.
+
+{BUNNY}
+
+{SUPPORT}
+
+{ROOM}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

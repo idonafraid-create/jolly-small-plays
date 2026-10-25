@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: the lightning reveal. We look from inside the dark motel room toward the window. A jagged white lightning bolt splits the night sky over the Brooklyn rooftops and water towers; the sky behind the glass is lit electric pale blue-white. On the black iron fire escape right outside the window stands a SMALL CAT SILHOUETTE: YOYO as a pure solid-black silhouette against the bright sky, recognisable only by the big bow on her head, her pointed ears, her ruffled dress and the open umbrella she holds. Diagonal rain streaks. The venetian blinds cast hard striped shadows into the room. In the dark foreground, Jojo (hat and trench coat) and Lyly (police cap, ears straight up) seen from behind as black silhouettes, frozen, staring at the window. Almost everything is solid black except the lightning-lit window.
+
+{YOYO}
+
+{STYLE}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536). Keep all important content inside the middle 80% of the height (the top and bottom tenth will be cropped).

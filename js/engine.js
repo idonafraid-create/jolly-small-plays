@@ -669,7 +669,10 @@ export class Stage {
     const az = Math.PI / 4, el = Math.PI / 6;
     this.camera.position.set(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el)).multiplyScalar(80).add(def.target);
     this.camera.lookAt(def.target);
+    // post-pass effects belong to the scene that set them; scenes only write them while active
     this.setFlash(0);
+    const u = this.post.uniforms;
+    u.lens.value.set(0, 0, 0, 0); u.shake.value.set(0, 0); u.mono.value = 0; u.vignette.value = 0;
     this.resize();
   }
   // the page colour behind the diorama (light / dark theme); kept exact by the post pass
@@ -705,7 +708,9 @@ export class Stage {
     this.ps = ps;
     this.renderer.setSize(this.lowW, this.lowH, false);
     this.rt.setSize(this.lowW, this.lowH);
-    this.hud.width = this.lowW; this.hud.height = this.lowH;
+    // three.js allocates a texture's GPU storage once, at its first size: a HUD canvas of another size would only be
+    // uploaded into part of it and the rest would keep the last floor's lettering (2F's CASE CLOSED over 1F). Reallocate.
+    if (this.hud.width !== this.lowW || this.hud.height !== this.lowH) { this.hud.width = this.lowW; this.hud.height = this.lowH; this.hudTex.dispose(); }
     this.post.uniforms.res.value.set(this.lowW, this.lowH);
     this.baseH = hh; this.baseW = hh * this.lowW / this.lowH;
     this.applyView();

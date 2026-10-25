@@ -1,0 +1,21 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny the plush rabbit and friends), whose clean, flat line work is the target rendering. Image 3 = the previous cover painting of this issue: keep its cast, story and mood, but recompose it for a wide frame as described below.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+COVER ART for issue No. 4 of a 1950s American detective comic. The logo and price box sit in a separate band ABOVE this picture, so the picture itself has no empty sky band: compose the action edge to edge.
+LANDSCAPE frame. Composition, on a strong diagonal from lower-left to upper-right, in Room 203 during a lightning flash:
+- Left third, big and close: Detective Jojo kneeling, raising the gold long-handled opera glasses straight at the reader; the two lenses glint; stern, unimpressed, mouth shut.
+- Centre, lower half: the tall pink plush rabbit Mr. Bunny lying "dead" on the orange-and-brown diamond carpet inside a white chalk outline, a tuft of stuffing at his arm; a trail of small red lipstick cat paw prints leads from him toward the window.
+- Right: Officer Lyly in her navy police uniform leaping back in shock, eyes huge behind the yellow sunglasses, her pink donut flying out of her paw.
+- Upper centre-right, behind them: the window with half-raised blinds, a white lightning bolt, and on the fire escape the small solid-black silhouette of a kitten with a big bow and an open umbrella (YOYO), watching.
+- Keep the UPPER-LEFT corner (behind Jojo's hat: dark wallpaper and shadow) and the LOWER-RIGHT corner (carpet in deep shadow) calm and simple: a caption and a small inset box will sit there.
+Colour: strong, saturated four-colour printing: hot pink, lemon yellow, true red, deep cyan blue, against generous solid blacks; the lightning makes the window the brightest spot.
+
+{JOJO}
+
+{LYLY}
+
+{BUNNY}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 4:3 (for example 1536x1152). If that size is not available, use 3:2 (1536x1024).

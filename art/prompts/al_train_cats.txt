@@ -1,0 +1,8 @@
+Attached references: Image 1 = the ALLEY CATS MODEL SHEET (copy Tubbs, Patch and Ghost exactly). Image 2 = a freight-train cut-out on a pure green background.
+Keep fills flat.
+
+TASK: return Image 2 EXACTLY as it is, same size, same train in exactly the same place, same pure green (#00FF00) background, and add only this: the three alley cats from Image 1 riding on the small open BACK PORCH at the far LEFT end of the red caboose, behind its railing: Tubbs (big orange tabby, black waistcoat) raising one paw in a salute, Ghost (white cat, slate jacket) waving, Patch (black cat with an eye patch, brown jacket) looking back over his shoulder. The cats are small, in scale with the caboose (their heads reach about the caboose's window height), drawn side-on like the train. Change nothing else: no ground, no rails, no shadow, no background.
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

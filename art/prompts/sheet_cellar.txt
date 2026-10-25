@@ -1,0 +1,17 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET of another episode, whose clean, flat line work is the target rendering for the whole series.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+TASK: a CHARACTER MODEL SHEET for the cellar episode, the reference for every panel these characters appear in. Plain flat cream background, no floor, no scenery. Everything in front three-quarter view, full figure, evenly spaced, nothing overlapping.
+- LEFT: THE THING: its round iron drain grate seen at a slight angle, with the one huge eye looking up through the bars and all six tentacles rising out of it and curling, about as tall as a standing dog.
+- CENTRE, in a row: the four hooded candle rats (Brother Nibble, Sister Crumb, Brother Squeak, The Young One), each holding its candle, plus one plain grey cellar rat on all fours.
+- RIGHT: YOYO sitting on a stack of red beer crates with a wine-red velvet cushion, a small dark-plum electric guitar across her lap (its headstock is shaped like two long rabbit ears, pink inside), one paw petting the tip of a teal tentacle that curls up to her like a pet; smug lipstick smile. YOYO is a SMALL kitten, about half the height of a dog.
+
+{THING}
+
+{CULT}
+
+{YOYO}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

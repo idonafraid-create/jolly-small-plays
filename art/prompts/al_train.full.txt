@@ -1,0 +1,11 @@
+Use your built-in image generation tool (image_gen). Produce ONE image, then copy the final PNG into the current working directory as `al_train.png` (never overwrite an existing file). Do not write any code or other files.
+
+Attached references: Image 1 = a SUPPORTING CAST MODEL SHEET that sets the drawing style for the series (bold ink, flat colours). Image 2 = a low-resolution pixel-art frame showing the freight train's colours (dark green locomotive, brown and blue boxcars, red caboose); do not copy its pixel style.
+Keep fills flat.
+
+TASK: a CUT-OUT of a 1950s American freight train for a comic, drawn in EXACT SIDE ELEVATION (perfectly flat side-on, no perspective, no three-quarter view), on a PLAIN FLAT PURE GREEN (#00FF00) BACKGROUND with nothing else in the picture: no rails, no ground, no shadow, no rain, no sky.
+The whole train in ONE ROW filling the width of the picture from left to right, all wheels on the same straight horizontal line: at the LEFT a red CABOOSE with a cupola on its roof, a small open BACK PORCH with a railing at its far LEFT end, and two lit yellow windows; then a blue boxcar; then a brown boxcar; then at the RIGHT a dark green diesel LOCOMOTIVE facing RIGHT with its round headlight lit. Couplers between the cars. Bold black ink outlines, flat colours, a few white highlights.
+
+ART STYLE (must stay identical across the whole series): a hand-inked panel from a 1950s American Sunday-newspaper "funny animal" detective comic. Bold black brush-and-nib ink outlines with confident, varied line weight; generous spotted solid blacks and hard noir cast shadows; simple FLAT cel colours from a restricted vintage four-colour-press palette (brick red, coral pink, mustard yellow, teal blue, olive green, tan, cream, black), at most one flat shadow tone per colour. Cartoon animals with big readable expressions in the tradition of Carl Barks and Walt Kelly, staged and lit like a Will Eisner crime page. Clean flat colour areas only: absolutely NO halftone dots, NO Ben-Day screen, NO paper texture, NO gradients, NO airbrush glow, NO 3D render, NO photo-realism (dots and paper are added later in print). NO text, NO letters, NO numbers, NO speech balloons, NO captions, NO sound-effect lettering, NO signature, NO panel border: full-bleed artwork only.
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

@@ -1,0 +1,15 @@
+{ALLEYREFS}
+
+PANEL: LIGHTNING. A dramatic worm's-eye view straight up the black iron fire escape that zig-zags up the club's wet red-brick wall, in the white glare of a lightning flash:
+- Top, against the white-and-violet lightning sky: the small black silhouette of a kitten with a big bow and an open umbrella standing on the top landing, one eye glinting in a wink; a tiny GOLD BELL just falling from her collar.
+- Upper part of the wall, beside the top landing: a LIT WINDOW with half-raised yellow venetian blinds (make it clear and fairly big).
+- Bottom corner, close and dark: the backs of Jojo's grey porkpie hat and Lyly's brown head with cropped ears, looking up (no police caps).
+- Rain streaks lit white by the flash.
+
+{YOYO}
+
+{ALLEY}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

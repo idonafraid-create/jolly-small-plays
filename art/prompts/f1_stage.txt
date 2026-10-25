@@ -1,0 +1,20 @@
+{CLUBREFS}
+
+PANEL: DOWNBEAT. The whole band on the stage, seen from the dance floor, medium-wide, the navy-and-gold sunburst behind them and the pink neon sign above (no letters):
+- Centre-left: Jojo, eyes shut, cheeks puffed, blowing his gold alto sax; his narrow black tie with the small PINK STILETTO-SHAPED TIE CLIP clearly visible on his chest (big enough to read as a tiny pink high-heeled shoe).
+- Right: Lyly slapping the strings of her upright double bass, tongue out, grinning.
+- Centre: Madame Lapin singing into the chrome ribbon microphone, one gloved hand raised.
+- Back left: Old Chester at the black grand piano; back right: Bruno at the drum kit, sticks up.
+Warm footlights, spotlight beams.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{CLUBSTAFF}
+
+{CLUB}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

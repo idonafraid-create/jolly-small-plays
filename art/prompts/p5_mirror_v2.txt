@@ -1,0 +1,14 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: "signed." The lights have just come back on. A close, dramatic shot from just behind Officer Lyly's shoulder, looking into an oval vanity mirror in an ornate gold frame on the mustard wallpaper. The mirror fills the middle of the picture and is FULL OF REFLECTION, not empty: in it we see Lyly's own reflected face, huge-eyed behind the yellow sunglasses, jaw dropped, tongue out, ears straight up in shock, and behind her reflection, smaller, Jojo in hat and trench coat looking on, unimpressed, plus the reflected warm lamp and the room. Only a thin band across the TOP of the mirror glass shows plain reflected wallpaper with nothing on it (lipstick lettering will be painted there later, so keep that band clear and uncluttered). In the bottom-left foreground, Lyly's brown paw has just let go of her pink-frosted donut, which is falling in mid-air with a few sprinkles flying, big and close to the camera. The back of Lyly's police cap and shoulder frame the right edge of the picture.
+
+{LYLY}
+
+{JOJO}
+
+{ROOM}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024). The mirror must not look blank: it is busy with the reflected faces.

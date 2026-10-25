@@ -1,0 +1,20 @@
+{CLUBREFS}
+
+PANEL (this picture will be the first frame of an animation): THE MARTINI. On the stage, medium shot:
+- Right: Lyly mid-spin with her upright double bass, BOTH paws on the bass neck, the big body of the bass swinging out sideways toward the left.
+- Lower left: Felix the fox waiter walking past the stage with his round silver tray held flat on ONE paw, a single martini glass (with an olive) standing on the tray, about to be clipped by the swinging bass.
+- Upper left: Jojo playing his gold sax with his eyes shut; his RIGHT paw is on the sax keys, his LEFT paw relaxed at his side, open.
+- Leave clear empty space in the air between the tray and Jojo's left paw (the glass will fly through it).
+The sunburst and footlights behind, warm spotlight.
+
+{JOJOCLUB}
+
+{LYLYCLUB}
+
+{CLUBSTAFF}
+
+{CLUB}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

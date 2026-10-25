@@ -1,0 +1,16 @@
+{CLUBREFS}
+
+PANEL: BLACKOUT. A TALL, NARROW panel (the page crops it to about 1 : 1.9, so keep everything inside the central 60% of the width). The Jolly Club stage the instant the power dies, drawn as a night scene in deep blue-black, readable only by what still glows:
+- Centre: the dark silhouette of Jojo on the stage edge, his porkpie hat and the outline of his sax caught by a faint rim of blue light; his face lost in shadow.
+- Right beside his chest, at the height of his tie: TWO round PALE BLUE GLOWING EYES floating in the dark (someone small is right next to him), and between them and his tie a tiny bright PINK glint.
+- Low in a corner: the small green glow of the exit sign, lighting nothing.
+- The dead footlights along the stage edge as dull grey bumps; the navy-and-gold sunburst behind only just visible as darker rays.
+Mostly solid black and very dark navy, with the eyes, the pink glint and the green sign the only bright spots. Strong ink silhouettes, no gradients, no glow effects beyond flat pale shapes.
+
+{JOJOCLUB}
+
+{CLUB}
+
+{STYLE}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

@@ -1,0 +1,19 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (copy YOYO and the leads' faces exactly; ignore the outfits shown there). Image 2 = a SUPPORTING CAST MODEL SHEET whose clean, flat line work is the target rendering for the whole series. Image 3 = the MODEL SHEET for this episode (the Thing in the drain, the hooded candle rats, YOYO with her rabbit-ear guitar): copy those designs exactly. Image 4 = the BAND MODEL SHEET: Lyly's outfit in this episode is EXACTLY the one on Image 4 (dark bottle-green suit, white shirt, coral-pink bow tie, two-tone spectator shoes, round yellow sunglasses). Image 5 = the previous version of THIS picture: keep its composition, camera, staging, lighting and every pose exactly, and change only what is listed under FIXES.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL (this picture will be the first frame of an animation): IT RISES. A dramatic low angle at floor level, from just behind the round drain grate:
+- Foreground centre: the iron grate in its red lipstick circle, glowing acid green from below; through the bars the ONE huge yellow-green eye, HALF OPEN, its black slit pupil looking at Lyly; the tips of the six teal tentacles with pink suckers just starting to rise out between the bars. Leave clear dark space ABOVE the grate (the tentacles will rise into it).
+- Background, mid-height on the right: Lyly frozen in terror, full figure, eyes huge, her round yellow sunglasses slid down to the tip of her nose, holding the flashlight in her RIGHT paw only (beam pointing at the grate); her LEFT paw empty and open; the small steel beer keg lying on its side on the floor at her feet.
+- The bare bulb on its cord is dark (dead). The only light: the green glow from the grate and Lyly's flashlight beam; candles burning on the lipstick circle.
+
+{LYLYCLUB}
+
+{THING}
+
+{CELLAR}
+
+FIXES: Lyly is NOT a police officer in this story. Redraw her in her band outfit from Image 4: dark bottle-green suit jacket and trousers, white shirt, coral-pink bow tie, two-tone spectator shoes; NO police uniform, NO police cap or badge, NO duty belt, NO holster. Keep her round yellow sunglasses, her face, her pose and whatever she holds exactly as in Image 5.
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

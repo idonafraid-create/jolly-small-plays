@@ -1,0 +1,12 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: "Detective Jojo doesn't talk. Jojo looks." A dramatic close-up of Jojo crouched low on the carpet beside the chalk outline, raising the long-handled gold opera glasses to the eyes and peering straight through them toward the viewer, one paw resting on the knee. The two round lenses of the opera glasses catch a hard white glint. Mouth firmly shut, unimpressed. Strong warm side light from a bedside lamp on the left, the right half of the face and the trench coat falling into solid black noir shadow; behind, the mustard wallpaper with the bulldog's big hard-edged shadow thrown across it. In the bottom-left corner of the frame, the limp pink plush leg of the "victim" pokes in.
+
+{JOJO}
+
+{ROOM}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024). Keep the head and the opera glasses in the upper-middle of the frame.

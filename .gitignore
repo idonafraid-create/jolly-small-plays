@@ -2,3 +2,9 @@
 out/
 assets/*.wav
 __pycache__/
+# codex raw outputs and logs stay local; the page uses assets/comic
+art/src/
+art/prompts/*.log
+art/.libtv/
+# v2/ is the local working copy; this root is what GitHub Pages serves (copied over from v2 when releasing)
+v2/

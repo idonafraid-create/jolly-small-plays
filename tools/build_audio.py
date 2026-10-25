@@ -2,7 +2,9 @@
 
 python tools/build_audio.py "D:/ClaudeAbout/JOLLY MV" [bar alley cellar motel]
   → assets/<scene>.wav, <scene>.m4a, <scene>.json
-Music comes from the JOLLY song stems; ambience (crowd, rain, thunder, drips, drones) is synthesized here.
+Music comes from the JOLLY song stems. Effects are CC0 recordings where there is a good one (the JOLLY MV library, and
+assets/sfx made by tools/sfx_prep.py: rain, thunder, drips, a door, hissing cats, the freight, glass), each levelled to the
+synthesized sound it replaced (`like`) so the mix stays as it was; the rest (crowd, drones, footsteps, clangs) is synthesized.
 """
 import json, subprocess, sys
 from pathlib import Path
@@ -18,6 +20,7 @@ RNG = np.random.default_rng(7)
 TL = json.loads((MV / '10_music/timeline.json').read_text(encoding='utf-8'))
 BEATS, BARS = np.array(TL['beats']), np.array(TL['bars'])
 SFX = MV / '10_music/sfx'
+REC = Path(__file__).resolve().parents[1] / 'assets/sfx'
 
 
 # ───────────────────────── io & dsp helpers ─────────────────────────
@@ -175,6 +178,42 @@ def neon_hum(dur):
     return ((np.sin(2 * np.pi * 120 * t) + 0.4 * np.sin(2 * np.pi * 240 * t)) * 0.3).astype(np.float32)
 
 
+# ───────────────────────── recordings ─────────────────────────
+def rec(name):
+    return load(REC / f'{name}.mp3')
+
+
+def rms(x):
+    a = np.abs(x); on = a > a.max() * 0.01                      # loudness while it sounds, not over its silences
+    return float(np.sqrt(np.mean(x[on] ** 2))) if on.any() else 0.0
+
+
+def like(x, ref):
+    """x scaled to the loudness of `ref` (the synthesized sound it replaces), so the mix keeps its balance; its peaks are
+    soft-limited to ref's, or one sharp transient (a thunder crack) would set the whole mix's normalization and sink it."""
+    y, pk = x.astype(np.float64), float(np.abs(ref).max()) * 1.3 + 1e-9
+    for _ in range(4):                                         # level, limit, level again: limiting costs loudness
+        y = y * rms(ref) / (rms(y) + 1e-9)
+        if np.abs(y).max() > pk: y = pk * np.tanh(y / pk)
+    return y.astype(np.float32)
+
+
+def loop(x, dur):
+    n = int(dur * SR); return np.tile(x, n // len(x) + 1)[:n].astype(np.float32)
+
+
+def thunder_rec(dur=4.0, crack=True):
+    n = int(dur * SR); y = np.zeros(n, np.float32)
+    r = rec('rumble')[:n - int(0.12 * SR)]; y[int(0.12 * SR):int(0.12 * SR) + len(r)] += r
+    if crack: c = rec('crack'); y[:len(c)] += c * 1.3
+    if dur < len(r) / SR + 0.12: y[-int(0.6 * SR):] *= np.linspace(1, 0, int(0.6 * SR))
+    return like(y, thunder(dur, crack))
+
+
+def rain_rec(dur, density=1.0, bright=6000):
+    return like(loop(rec('rain'), dur), rain(min(dur, 6.0), density, bright))
+
+
 class Mix:
     def __init__(self, total):
         self.buf = np.zeros((int(total * SR), 2), np.float32); self.total = total
@@ -250,10 +289,11 @@ def build_bar():
     duck[int(ev['blackout'] * SR):int(ev['lights'] * SR)] = 0.0
     m.add(bed * filt(duck, 'low', 3), 0, -17)
     for t in RNG.uniform(0.3, total - 1, 14):
-        if not (ev['blackout'] < t < ev['lights']): m.add(clink(), t, -24, pan=RNG.uniform(-0.8, 0.8))
+        if not (ev['blackout'] < t < ev['lights']): m.add(like(pitch(rec('clink'), RNG.uniform(-3, 4)), clink()), t, -24, pan=RNG.uniform(-0.8, 0.8))
     for k in ['bark1', 'bark2']: crowd_bark(m, ev[k], 6, -7)
     for k in ['wang1', 'wang2']: crowd_bark(m, ev[k], 3, -10)
-    m.add(whoosh(0.4), ev['knock'], -12); m.add(clink(3400), ev['knock'], -16); m.add(clink(2600), ev['catch'], -12)
+    m.add(like(rec('whip'), whoosh(0.4)), ev['knock'], -12); m.add(like(pitch(rec('clink'), 3), clink(3400)), ev['knock'], -16)
+    m.add(like(rec('clink'), clink(2600)), ev['catch'], -12)
     m.add(load(SFX / 'listen_dl/switch_off.mp3'), ev['blackout'], -6)
     m.add(load(SFX / 'bells/bell_4_closeup.wav'), ev['blackout'] + 0.35, -4)
     m.add(load(SFX / 'candidates/C2_jingle_bell_short.mp3'), ev['blackout'] + 1.1, -12, pan=-0.5)
@@ -315,15 +355,19 @@ def train_pass(m, t0, v, db=-6):
     dur = (ALLEY_HD * 2 + total_len) / v + 0.8
     n = int(dur * SR); tt = np.arange(n) / SR
     env_ = np.clip(np.minimum(tt / 0.5, (dur - tt) / 0.8), 0, 1) ** 0.7
-    m.add(filt(RNG.standard_normal(n).astype(np.float32), 'low', 200, 3) * env_ * 2.8, t0, db)
-    m.add(filt(RNG.standard_normal(n).astype(np.float32), 'band', [500, 2200]) * env_ * 0.35, t0, db - 4)
+    synth = filt(RNG.standard_normal(n).astype(np.float32), 'low', 200, 3) * env_ * 2.8 + filt(RNG.standard_normal(n).astype(np.float32), 'band', [500, 2200]) * env_ * 0.35 * 10 ** (-4 / 20)
+    # a recorded train, the loud middle of its pass (slowed down for the slow one)
+    r = rec('train'); r = pitch(r, -4) if v < 8 else r
+    mid = int(np.argmax(np.convolve(np.abs(r), np.ones(SR // 4), 'same'))); a = int(np.clip(mid - n // 2, 0, max(0, len(r) - n)))
+    body = r[a:a + n]; body = np.pad(body, (0, n - len(body)))
+    body = body * env_; m.add(body * float(np.abs(synth).max()) / (float(np.abs(body).max()) + 1e-9), t0, db - 3)     # a recording is denser than noise at the same peak: 3 dB under it
     trucks = []
     for c, L in centers: trucks += [c + L / 2 - 0.75, c - L / 2 + 0.75]
     for joint in [-1.2, 1.2]:                                # two rail joints in view
         for tr in trucks:
             tc = t0 + (joint - tr + ALLEY_HD) / v
             for d in (0, 0.07): m.add(thump(120, 0.09, 1.2), tc + d, db - 2)
-    m.add(horn(1.2), t0 - 0.4, db - 3)
+    m.add(like(rec('horn' if v >= 8 else 'toots'), horn(1.2)), t0 - 0.4, db - 5)
     return dur
 
 
@@ -336,7 +380,7 @@ def build_alley():
     ev['blind'] = ev['opera'] + 0.6; ev['point'] = ev['pick'] + 2.8; ev['catsGo'] = ev['pick'] + 1.2
     ev['train2'] = ev['point'] + 0.9; ev['end'] = ev['train2'] + 6.8
     total = ev['end']; m = Mix(total)
-    m.add(rain(total, density=0.35, bright=5000), 0, -15)
+    m.add(rain_rec(total, density=0.35, bright=5000), 0, -15)
     train_pass(m, ev['train1'], 10.0); train_pass(m, ev['train2'], 5.0, db=-8)
     # the club through the stage door: muffled, brighter whenever the door swings open
     inside = song()[int(26.98 * SR):int((26.98 + 9.8) * SR)].mean(1)
@@ -346,10 +390,10 @@ def build_alley():
     fade = np.clip((9.6 - tt) / 0.8, 0, 1)
     m.add((muffled * 0.5 + bright * door) * fade, 0, -11)
     m.add(filt(murmur(10.0)[:n], 'low', 600) * fade, 0, -22)
-    m.add(creak(0.7), a, -10); m.add(thump(65, 0.3, 0.8), a + 1.2, -12)
-    m.add(creak(0.6, 260), j - 0.4, -12)
+    m.add(like(rec('creak'), creak(0.7)), a, -10); m.add(thump(65, 0.3, 0.8), a + 1.2, -12)
+    m.add(like(pitch(rec('creak'), 2), creak(0.6, 260)), j - 0.4, -12)
     for t in np.arange(a + 0.3, ev['bagsDrop'] - 0.4, 0.42): m.add(splash_step(), t, -12); m.add(rustle(0.35), t + 0.05, -20)
-    for i, d in enumerate([0, 0.12, 0.3]): m.add(pitch(hiss(0.6), RNG.uniform(-2, 3)), ev['hiss'] + d, -9, pan=-0.3 + i * 0.2)
+    for i, d in enumerate([0, 0.12, 0.3]): m.add(like(pitch(rec('hiss'), RNG.uniform(-2, 3)), hiss(0.6)), ev['hiss'] + d, -9, pan=-0.3 + i * 0.2)
     m.add(rustle(0.6), ev['bagsDrop'] - 0.1, -12); m.add(clang(), ev['bagsDrop'] + 0.15, -9)
     m.add(thump(90, 0.2, 0.6), ev['catsJump'] + 0.45, -16)
     m.add(load(SFX / 'listen_dl/bark_sj2.mp3'), ev['bark'], -4)
@@ -358,8 +402,8 @@ def build_alley():
     solo[-int(0.05 * SR):] *= np.linspace(1, 0, int(0.05 * SR))
     m.add(solo, ev['solo'], -2)
     m.add(load(SFX / 'candidates/C5_single_jingle_shake.mp3'), ev['flash1'] - 0.3, -20, pan=-0.6)
-    m.add(thunder(4.5), ev['flash1'] + 0.22, -1); m.add(thunder(4.0), ev['flash2'] + 0.12, -3)
-    m.add(load(SFX / 'bells/bell_1_coatcheck.wav'), ev['bellLand'], -8); m.add(drip(1200), ev['bellLand'], -10)
+    m.add(thunder_rec(4.5), ev['flash1'] + 0.22, -1); m.add(thunder_rec(4.0), ev['flash2'] + 0.12, -3)
+    m.add(load(SFX / 'bells/bell_1_coatcheck.wav'), ev['bellLand'], -8); m.add(like(rec('drip'), drip(1200)), ev['bellLand'], -10)
     for k in range(3): m.add(sniff(), ev['pick'] + 0.5 + k * 0.18, -14)
     m.add(load(SFX / 'listen_dl/bark_kw.mp3'), ev['pick'] + 1.3, -12)
     m.add(load(SFX / 'listen_dl/switch2.mp3'), ev['blind'], -14)
@@ -397,10 +441,10 @@ def build_cellar():
     for k in range(int(total / 1.9) + 2):                             # the three visible drips, plus strays
         for i in range(3):
             tt = k * 1.9 - i * 0.7 + 0.6
-            if 0 < tt < total: m.add(reverb(drip(), 1.2, 0.4), tt, -18 - i * 2, pan=(-0.5, 0.1, 0.5)[i])
+            if 0 < tt < total: m.add(reverb(like(pitch(rec('drip'), (-2, 0, 3)[i]), drip()), 1.2, 0.4), tt, -18 - i * 2, pan=(-0.5, 0.1, 0.5)[i])
     hum = neon_hum(ev['rise']); hum *= (RNG.random(len(hum)) > 0.0002).astype(np.float32)
     m.add(filt(hum, 'band', [100, 900]), 0, -30)
-    m.add(reverb(creak(0.8, 180), 1.5, 0.4), ev['enter'] - 0.6, -14)
+    m.add(reverb(like(pitch(rec('creak'), -3), creak(0.8, 180)), 1.5, 0.4), ev['enter'] - 0.6, -14)
     m.add(load(SFX / 'listen_dl/switch2.mp3'), ev['enter'] - 0.1, -12)
     for tt in np.arange(ev['enter'] + 0.1, ev['bottom'], 0.34): m.add(reverb(thump(120, 0.14, 0.8), 0.8, 0.3), tt, -10)
     for tt in np.arange(ev['bottom'], ev['pickKeg'] - 0.3, 0.4): m.add(thump(95, 0.12, 0.6), tt, -15)
@@ -450,8 +494,8 @@ def build_motel():
           'lens5': 19.2, 'donutDrop': 19.6, 'twitch': 23.0, 'sitUp': 24.0, 'peekIn': 24.3, 'vo': 24.6, 'stiletto': 25.6, 'pick': 26.6, 'pin': 27.4, 'stamp': 28.0, 'sting': 28.3, 'end': 34.0}
     flashes = [0.8, 2.6, 6.1, 9.8, 21.0]
     total = ev['end']; m = Mix(total)
-    m.add(filt(rain(total, 0.6, 7000), 'high', 900), 0, -13)
-    for tt in RNG.uniform(0, total, 40): m.add(drip(RNG.uniform(2500, 4200)), tt, -26)
+    m.add(filt(rain_rec(total, 0.6, 7000), 'high', 900), 0, -13)
+    for tt in RNG.uniform(0, total, 40): m.add(like(pitch(rec('drip'), RNG.uniform(3, 8)), drip(3000)), tt, -26)
     tv = load(SFX / 'tv_channel_static.mp3')
     for k in range(int(total / (len(tv) / SR)) + 1): m.add(filt(tv, 'band', [800, 6000]), k * len(tv) / SR, -28)
     m.add(neon_hum(total), 0, -32)
@@ -460,19 +504,19 @@ def build_motel():
     for tt in np.arange(2.4, 5.2, 0.13):
         if RNG.random() < 0.7: m.add(load(SFX / f'cand_v2/T{RNG.integers(1, 4)}_key{RNG.integers(1, 4)}.mp3') if False else bleep(RNG.uniform(500, 900), 0.02) * 0.6, tt, -24)
     for k in ['lens1', 'lens2', 'lens3', 'lens4', 'lens5']: m.add(bleep(1700, 0.05), ev[k], -16); m.add(bleep(2300, 0.05), ev[k] + 0.07, -16)
-    m.add(thunder(5, crack=False), ev['rumble'], -8)
-    m.add(thunder(4.5), ev['bolt1'] + 0.08, -1); m.add(thunder(4), ev['bolt2'] + 0.06, -3)
+    m.add(thunder_rec(5, crack=False), ev['rumble'], -8)
+    m.add(thunder_rec(4.5), ev['bolt1'] + 0.08, -1); m.add(thunder_rec(4), ev['bolt2'] + 0.06, -3)
     m.add(load(SFX / 'candidates/C5_single_jingle_shake.mp3'), ev['bolt1'] + 0.1, -16)
     m.add(load(SFX / 'listen_dl/switch_off.mp3'), ev['dark'], -6); m.add(load(SFX / 'listen_dl/switch2.mp3'), ev['lights'], -6)
-    m.add(squeak(0.6), ev['lights'] + 0.15, -12)
+    m.add(like(rec('squeak')[:int(1.6 * SR)], squeak(0.6)), ev['lights'] + 0.15, -12)
     m.add(thump(160, 0.12, 0.8), ev['donutDrop'] + 0.35, -14)
     m.add(rustle(0.4), ev['twitch'], -14); m.add(rustle(0.3), ev['twitch'] + 0.4, -14)
     m.add(boing(0.6), ev['sitUp'], -6)
-    m.add(load(SFX / 'listen_dl/bark_kw.mp3'), ev['sitUp'] + 0.08, -5); m.add(hoot(), ev['sitUp'] + 0.15, -10); m.add(thump(90, 0.2, 0.6), ev['sitUp'] + 0.2, -10)
+    m.add(load(SFX / 'listen_dl/bark_kw.mp3'), ev['sitUp'] + 0.08, -5); m.add(like(rec('hoot'), hoot()), ev['sitUp'] + 0.15, -10); m.add(thump(90, 0.2, 0.6), ev['sitUp'] + 0.2, -10)
     m.add(load(SFX / 'candidates/C2_jingle_bell_short.mp3'), ev['peekIn'], -12)
     vo = trim_lead(load(MV / '10_music/vo/yoyo_13_piannidela_keai_liyaoling_v1.wav'))
     m.add(vo, ev['vo'], 0)
-    m.add(clink(3000), ev['stiletto'] + 0.45, -10)
+    m.add(like(pitch(rec('clink'), 2), clink(3000)), ev['stiletto'] + 0.45, -10)
     m.add(load(SFX / 'cand_v2/S1_stamp.mp3'), ev['stamp'], -2)
     sting = song_cut(float(BARS[32]), float(BARS[32]) + 5.4); sting[-int(1.2 * SR):] *= np.linspace(1, 0, int(1.2 * SR))[:, None]
     m.add(sting, ev['sting'], -3)

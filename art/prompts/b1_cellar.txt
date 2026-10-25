@@ -1,0 +1,19 @@
+{CELLARREFS}
+
+PANEL: a WIDE panel (the page will crop away the top 9% and the bottom 9%, so keep everything important in the middle 80% of the height). The whole cellar seen from the foot of the stairs, EVENLY AND BRIGHTLY LIT like a flash photograph, so every detail is readable (the page darkens it later):
+- Centre: the round iron drain grate glowing green inside the red lipstick summoning circle with its paw-print sigils; the very tip of ONE teal tentacle curls up out of the grate like a question mark.
+- Around the circle: the eight short white candles, UNLIT (no flames, just wicks); the four hooded candle rats standing around the circle holding their unlit candles, red eyes.
+- Lower left foreground, on the flagstones: a single small lipstick tube, gold case, wine-red lipstick, lying on its side.
+- Back wall: the three arched alcoves with wine racks; left: barrels and the stack of steel kegs.
+- Far back-right corner, deep in shadow even in this light: the red crate throne, and on it only a small dark silhouette with a big wine-red bow and two glinting eyes (YOYO, hiding).
+Nobody else in the picture: no dogs.
+
+{THING}
+
+{CULT}
+
+{CELLAR}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

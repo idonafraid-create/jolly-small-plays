@@ -1,0 +1,11 @@
+Use your built-in image generation tool (image_gen). Produce ONE image, then copy the final PNG into the current working directory as `sheet_support.png` (never overwrite an existing file). Do not write any code or other files.
+
+TASK: a CHARACTER MODEL SHEET for the supporting cast of the comic, the reference for every panel they appear in. Plain flat cream background. Four characters standing side by side in front three-quarter view, full body, each with a small head close-up beside it. Order left to right: Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff. Mr. Bunny is the tallest (his ears go well above everyone); Hootsby and Mrs. Fluff are mid-height; Mr. Slowe is short and stooped.
+
+MR. BUNNY, "the victim": a tall pale-pink rabbit who is obviously a plush toy — visible stitched seams, black bead eyes, long soft ears, a tuft of white stuffing poking out of one seam on the arm.
+
+HOOTSBY, the forensic photographer: a grey owl in a dark grey suit and fedora, holding a big 1950s press camera with a round flash bulb. MR. SLOWE, the motel manager: an old green-brown tortoise in round glasses, a brown cardigan and cream shirt, shell on his back. MRS. FLUFF, the nosy neighbour from Room 204: a pale-pink poodle in a quilted pink housecoat with hair curlers.
+
+ART STYLE (must stay identical across the whole series): a hand-inked panel from a 1950s American Sunday-newspaper "funny animal" detective comic. Bold black brush-and-nib ink outlines with confident, varied line weight; generous spotted solid blacks and hard noir cast shadows; simple FLAT cel colours from a restricted vintage four-colour-press palette (brick red, coral pink, mustard yellow, teal blue, olive green, tan, cream, black), at most one flat shadow tone per colour. Cartoon animals with big readable expressions in the tradition of Carl Barks and Walt Kelly, staged and lit like a Will Eisner crime page. Clean flat colour areas only: absolutely NO halftone dots, NO Ben-Day screen, NO paper texture, NO gradients, NO airbrush glow, NO 3D render, NO photo-realism (dots and paper are added later in print). NO text, NO letters, NO numbers, NO speech balloons, NO captions, NO sound-effect lettering, NO signature, NO panel border: full-bleed artwork only.
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

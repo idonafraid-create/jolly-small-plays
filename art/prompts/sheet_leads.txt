@@ -1,0 +1,13 @@
+Attached: Image 1 = Jojo design sheet (photo-real design, copy face, markings, proportions). Image 2 = Jojo FACE MASTER. Image 3 = Lyly design sheet. Image 4 = Lyly FACE MASTER. Image 5 = YOYO design sheet. Image 6 = YOYO FACE MASTER. Image 7 = the trio together (relative sizes). The references are photo-real; the result must NOT be: redraw these exact characters as cartoon comic characters, keeping every identifying marking.
+
+TASK: a CHARACTER MODEL SHEET that will be the reference for every panel of the comic. Plain flat cream background. The three leads side by side, each shown twice: a full-body standing pose in front three-quarter view, and next to it a large head close-up with their typical expression. Order left to right: Jojo, Lyly, YOYO. Jojo and Lyly are exactly the same height; YOYO's head reaches about the dogs' chest.
+
+{JOJO}
+
+{LYLY}
+
+{YOYO}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

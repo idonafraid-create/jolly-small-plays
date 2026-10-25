@@ -1,0 +1,14 @@
+{ALLEYREFS}
+
+PANEL: THE RAILWAY, ONE LONG CONTINUOUS PANORAMA that the page will cut into three panels side by side (left third, middle third, right third), so the scenery must run on seamlessly across the whole width. IMPORTANT LAYOUT: keep everything inside the MIDDLE HALF of the height (the top 26% and bottom 26% are cropped away). A flat side view from the railway, in the rain at night:
+- The TWO STEEL RAILS run perfectly STRAIGHT and HORIZONTAL across the entire width at 62% of the image height, on dark sleepers and grey gravel. The space just above the rails is EMPTY all the way across (a train will be laid over it later): no posts, no characters there.
+- Behind the rails, the tall chain-link fence runs across the whole width, with the alley's lights glowing orange and pink through it; at the left the cat-sized hole torn in it.
+- In FRONT of the rails, on the near gravel strip at the bottom of the kept area, the three alley cats appear three times, telling the story from left to right: LEFT THIRD: Tubbs, Patch and Ghost just through the fence hole, sitting in a row, all looking to the left (where a train is coming from). MIDDLE THIRD: the three cats leaping forward to the right, low over the gravel, mid-air. RIGHT THIRD: no cats; only rain, a wooden telegraph pole with Edgar the crow flapping on its wire, and a red signal lamp.
+
+{ALLEYCATS}
+
+{ALLEY}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

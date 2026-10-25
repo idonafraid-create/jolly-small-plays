@@ -1,0 +1,14 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (Jojo, Lyly, YOYO: copy their cartoon designs exactly). Image 2 = the SUPPORTING CAST MODEL SHEET (Mr. Bunny, Hootsby, Mr. Slowe, Mrs. Fluff), whose cleaner, flatter line work is the target rendering for the whole series. Image 3 = a low-resolution pixel-art frame of the same motel room, for LAYOUT ONLY (window with blinds on the back wall, vanity mirror to its right, hallway door on the left, diamond carpet); do not copy its pixel style or its camera angle.
+Keep fills flat: no fabric patterns, no cross-hatching on clothes, no fur texture strokes beyond a few ink accents.
+
+PANEL: "signed." The lights have just come back on. A big vanity mirror in an ornate gold frame hangs on the mustard wallpaper and fills the upper half of the picture; its glass is CLEAN and EMPTY: a smooth flat pale grey-blue surface with only two diagonal white shine streaks, nothing written on it (lettering will be added later). Below and in front of it, Officer Lyly in profile/three-quarter view, jaw dropped, eyes huge behind the yellow sunglasses, tongue out, staring up at the mirror; her pink-frosted donut is slipping out of her paw and falling in mid-air, a few sprinkles flying. At the right edge, Jojo half in frame, looking at the mirror, unimpressed.
+
+{LYLY}
+
+{JOJO}
+
+{ROOM}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024). The empty mirror glass must take up at least the upper 40% of the picture.

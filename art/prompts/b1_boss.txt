@@ -1,0 +1,20 @@
+{CELLARREFS}
+
+PANEL: THE BOSS. A medium shot of YOYO on her throne in the back-right corner of the cellar, lit by a hard red spotlight from above:
+- Centre: YOYO sitting on the stacked red beer crates on the wine-red velvet cushion, legs crossed, the small dark-plum rabbit-ear guitar across her lap (held by its neck with her LEFT paw); a long teal tentacle enters the picture from the RIGHT EDGE of the frame, about halfway up, and curls up to her like a happy pet; she strokes its violet tip with her free paw; half-closed eyes, smug red-lipstick smile. Make her paw and the tentacle tip big and clear: the page starts on a close-up of them.
+- Beside the throne: a brass candelabra with three lit candles.
+- Left edge: Brother Nibble and Sister Crumb bowing low in their hooded robes.
+- LOWER LEFT CORNER, small but complete and clear of everything else: The Young One (the smallest hooded rat) jumping for joy with both arms up, holding its lit candle high.
+- Stone wall behind, dark; the red light makes the scene glow.
+
+{YOYO}
+
+{THING}
+
+{CULT}
+
+{CELLAR}
+
+{STYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).
