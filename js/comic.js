@@ -791,7 +791,7 @@ export class Comic {
     const s = this.seg; if (!s) return;
     const t = this.audio.currentTime;
     this.audio.volume = clamp((t - s.a) / 0.15) * clamp((s.b - t) / 0.45);
-    if (t >= s.b) this.stopSeg();
+    if (t >= s.b || this.audio.ended) this.stopSeg();     // a stretch may run to the very end of the track (the alley's ends past it)
   }
 
   // the floor time the focused panel's soundtrack has reached (the wall clock stands in when the audio isn't moving)
