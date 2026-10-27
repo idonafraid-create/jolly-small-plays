@@ -87,14 +87,27 @@ export default {
     ad: api => { api.foley.play('pop'); api.toast('Rain check issued', 'Valid: never.', '5¢'); },
   },
 
-  // page-wide: rain in every big panel, sliding against the camera (a foreground layer), and the fast freight that
+  // page-wide: rain in the big panels, and the fast freight that
   // tears across the top row the first time the page is seen
   async setup(api, page) {
-    for (const p of page.panels) {
-      if (p.d.inset) continue;
-      const r = api.el('div', 'rain', p.clip, '<i></i><i></i>');
-      r.style.setProperty('--pcx', p.d.rect[0] + p.d.rect[2] / 2);
-    }
+    // the rain keeps out of the camera's way: one sheet of streaks, in the panels on screen, and only while the camera
+    // is still. Rain layers on the move, two sheets in every panel, had the browser re-rastering them all the way: moves
+    // froze for ~0.2 s and jumped, and frames went through with whole tiles of the page missing. A move only hides the
+    // rain (an opacity change: nothing to repaint); which panels have it changes once the camera has settled.
+    const seen = new Map(), dry = page.panels.filter(p => !p.d.inset);
+    const io = new IntersectionObserver(es => es.forEach(e => seen.set(e.target, e.isIntersecting)));
+    for (const p of dry) { api.el('div', 'rain', p.clip); io.observe(p.root); }
+    let lastCam = null, stillSince = 0, raining = false;
+    const weather = (now, cam) => {
+      const moved = !lastCam || Math.abs(cam.x - lastCam.x) + Math.abs(cam.y - lastCam.y) > 0.05 || Math.abs(cam.s - lastCam.s) > 1e-4;
+      lastCam = { ...cam };
+      if (moved) { stillSince = now; if (raining) { raining = false; page.root.classList.remove('raining'); } return; }
+      if (!raining && now - stillSince > 350) {
+        raining = true;
+        dry.forEach(p => p.root.classList.toggle('wet', !!seen.get(p.root)));
+        page.root.classList.add('raining');
+      }
+    };
     const run = api.el('div', 'train-run fast'), H = TRAIN_H * 1.35;
     const box = api.el('div', '', run), img = await inked(api, A('train.webp'), H);
     box.appendChild(img);
@@ -102,7 +115,7 @@ export default {
     let t0 = 0, on = false;
     return {
       frame: (now, cam) => {
-        page.root.style.setProperty('--cx', cam.x);
+        weather(now, cam);
         if (!on) return;
         const k = (now - t0) / 750, w = H * (img.aspect || 6);
         Object.assign(img.style, { width: w + 'px', height: H + 'px' });

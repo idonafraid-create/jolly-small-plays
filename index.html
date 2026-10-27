@@ -287,16 +287,15 @@
   .page .panel .whitekey { position: absolute; top: 0; background: linear-gradient(#fbf6e8 70%, #e6dcc2); border: 3px solid #1d1a1c; border-top: 0; border-radius: 0 0 4px 4px; }
   .page .panel .blackkey { position: absolute; top: 0; z-index: 1; background: linear-gradient(90deg, #141214 70%, #3a3638); border: 2px solid #0b0a0b; border-top: 0; border-radius: 0 0 4px 4px;
     box-shadow: 3px 4px 0 rgba(20, 18, 20, .35); }
-  /* the alley: rain in every panel (a foreground layer that slides against the camera), a train run across panels and
+  /* the alley: rain in the panels on screen while the camera is still, a train run across panels and
      off the page, the lightning gutter, a bell that bounces along the gutters */
-  .page .panel .rain { position: absolute; top: -20%; bottom: -20%; left: -70%; right: -70%; pointer-events: none;
-    transform: translateX(calc((var(--cx, 1000) - var(--pcx, 1000)) * -0.3px)); will-change: transform; }
-  .page .panel .rain i { position: absolute; left: 0; right: 0; top: -140px; bottom: 0; opacity: .3; will-change: transform;      /* moved, not repainted: the falling is a transform */
+  .page .panel .rain { position: absolute; left: 0; top: -140px; width: 100%; height: calc(100% + 140px); pointer-events: none; display: none; will-change: transform;      /* moved, not repainted: the falling is a transform */
     background: repeating-linear-gradient(104deg, transparent 0 13px, rgba(205, 220, 240, .5) 13px 14px, transparent 14px 31px, rgba(205, 220, 240, .28) 31px 32px, transparent 32px 47px);
-    background-size: 100% 140px; animation: rainfall .55s linear infinite; }
-  .page .panel .rain i + i { opacity: .2; top: -90px; background-size: 100% 90px; animation: rainfall2 .8s linear infinite; }
+    background-size: 100% 140px; }
+  .page .panel.wet .rain { display: block; opacity: 0; }     /* on screen when the camera last settled (alley.js); a move hides it at once */
+  .page.raining .panel.wet .rain { opacity: .3; animation: rainfall .55s linear infinite, rainIn .45s ease-out; }     /* the camera is still: it falls */
+  @keyframes rainIn { from { opacity: 0; } }
   @keyframes rainfall { to { transform: translateY(140px); } }
-  @keyframes rainfall2 { from { transform: scaleX(-1) skewX(4deg); } to { transform: scaleX(-1) skewX(4deg) translateY(90px); } }
   .train-run { position: absolute; left: 0; top: 0; width: 2000px; height: 1080px; pointer-events: none; z-index: 7; }
   .train-run > div { position: absolute; overflow: hidden; }
   #viewport .train-run canvas { position: absolute; left: 0; top: 0; will-change: transform; image-rendering: auto; }

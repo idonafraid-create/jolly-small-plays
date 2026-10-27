@@ -11,6 +11,10 @@ const Q = 2;                 // printed px per page px
 const CELL = 2.4;            // halftone cell, page px (fine: the dots read as texture, and as dots only up close)
 const MISREG = 0.5;          // plate misregistration, page px
 const PAD = 30;              // css px kept around a focused panel
+// the closest the camera comes (css px per page px). On a big window a lean-in went past 4×: the page was then too big to
+// re-raster between frames, so the move stalled, and the move back out from it could show a frame with no page at all
+// (1F's tie clip, the piano keys, the alley's glasses). The wheel can still go closer by hand.
+const MAX_S = 2.6;
 const STAGGER = 420;         // ms between the elements of one step
 const NS = 'http://www.w3.org/2000/svg';
 const ease = t => (t = clamp(t), t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
@@ -534,7 +538,7 @@ export class Comic {
       camTo: (cam, ms = 600, whip = false) => (whip ? this.whip(cam, ms) : this.tweenCam(cam, ms)),
       fit: p => this.fitCam(p),
       cam: () => ({ ...this.cam }),
-      setCam: cam => { this.endTween(); this.cam = { ...this.cam, ...cam }; this.applyCam(); },
+      setCam: cam => { this.endTween(); this.cam = { ...this.cam, ...cam }; this.applyCam(); this.driven(); },
       invert: src => { const c = el('canvas'); c.width = src.naturalWidth || src.width; c.height = src.naturalHeight || src.height; const g = c.getContext('2d'); g.filter = 'invert(1)'; g.drawImage(src, 0, 0); return c; },
       goNext: () => { if (this.active && !this.busy) this.go(this.idx + 1); },
       exhibit: (p, o) => this.exhibitFx(p, o),
@@ -601,7 +605,7 @@ export class Comic {
   vsize() { return [this.viewport.clientWidth || 1, this.viewport.clientHeight || 1]; }      // the layer fills the viewport (and may still be hidden)
   fitCam(p, extra = 0) {
     const [x, y, w, h] = p.d.rect, [vw, vh] = this.vsize(), pad = PAD + extra;
-    const s = Math.min((vw - pad * 2) / w, (vh - pad * 2 - 46) / h, p.d.maxZoom ?? 9);
+    const s = Math.min((vw - pad * 2) / w, (vh - pad * 2 - 46) / h, p.d.maxZoom ?? 9, MAX_S);
     return { x: x + w / 2, y: y + h / 2 + 23 / s, s, r: p.d.tilt ?? (p.i % 2 ? 0.5 : -0.5) };      // sits a little high: the reading bar is below
   }
   overCam() {
@@ -622,7 +626,7 @@ export class Comic {
     const from = { ...this.cam }, d = Math.hypot(to.x - from.x, to.y - from.y);
     ms ??= 700 + Math.min(500, d * 0.5);
     this.tw = { from, to, t0: performance.now(), ms, dip: via ? 0 : clamp(d / 1100) * 0.16, path: via && trail([[from.x, from.y], ...via, [to.x, to.y]]), onK, easing };
-    this.board.style.willChange = 'transform';          // scale a cached bitmap while moving, re-raster crisp on arrival
+    this.moving();
     return new Promise(r => { this.tw.done = r; });
   }
   stepCam(now) {
@@ -642,7 +646,7 @@ export class Comic {
     const fit = this.fitCam(p);
     if (!stop || stop.at === 'fit') return fit;
     const [x, y, w, h] = p.d.rect;
-    return { x: x + stop.at[0] * w, y: y + stop.at[1] * h, s: fit.s * (stop.z ?? 1), r: stop.r ?? fit.r };
+    return { x: x + stop.at[0] * w, y: y + stop.at[1] * h, s: Math.min(fit.s * (stop.z ?? 1), MAX_S), r: stop.r ?? fit.r };
   }
   async runTour(p, token) {
     const stops = p.d.tour, T = this.touring = { skip: false };
@@ -664,10 +668,27 @@ export class Comic {
     this.foley.play('whip');
     return this.tweenCam(to, ms, { easing: k => (k = clamp(k), k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2) });
   }
+  // While the camera moves, the board is a cached compositor layer (will-change: transform: the move scales the bitmap
+  // it has); when it stops, the layer goes and the page re-rasters crisp at the new zoom. Making the layer costs a full
+  // raster (~0.1–0.2 s on the alley's page), so it is made again a moment after each stop, while the page sits still and
+  // the reader reads: the next move then starts at once, instead of freezing and jumping ahead.
+  moving() { clearTimeout(this.layerT); this.board.style.willChange = 'transform'; }
+  still() {
+    this.board.style.willChange = '';
+    clearTimeout(this.layerT);
+    this.layerT = setTimeout(() => { if (this.active && !this.tw) this.board.style.willChange = 'transform'; }, 600);
+  }
+  // a camera moved frame by frame (a panel's hook riding the alley's train, the wheel, a drag) is a move too: still
+  // once it has not moved for a moment (re-rastering on every frame of the train ride ran at ~13 fps)
+  driven() {
+    this.moving();
+    clearTimeout(this.stillT);
+    this.stillT = setTimeout(() => { if (!this.tw) this.still(); }, 250);
+  }
   // stop travelling where we are (arrived, or interrupted by a drag/wheel); whoever waits on the move carries on
   endTween() {
     const tw = this.tw; if (!tw) return;
-    this.tw = null; this.board.style.willChange = '';
+    this.tw = null; this.still();
     tw.done();
   }
 
@@ -937,7 +958,7 @@ export class Comic {
       if (!drag) return;
       const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
       if (!drag.moved && Math.hypot(dx, dy) > 5) { drag.moved = true; L.classList.add('dragging'); this.endTween(); }
-      if (drag.moved) { this.cam.x -= dx / this.cam.s; this.cam.y -= dy / this.cam.s; drag.x = e.clientX; drag.y = e.clientY; this.applyCam(); }
+      if (drag.moved) { this.cam.x -= dx / this.cam.s; this.cam.y -= dy / this.cam.s; drag.x = e.clientX; drag.y = e.clientY; this.applyCam(); this.driven(); }
     });
     L.addEventListener('pointerup', () => { if (drag && !drag.moved) this.next(); drag = null; L.classList.remove('dragging'); });
     L.addEventListener('wheel', e => {
@@ -947,7 +968,7 @@ export class Comic {
       const r = L.getBoundingClientRect(), [vw, vh] = this.vsize(), mx = e.clientX - r.left - vw / 2, my = e.clientY - r.top - vh / 2;
       const s0 = this.cam.s, s1 = clamp(s0 * Math.exp(-e.deltaY * 0.0015), this.overCam().s * 0.8, 6);
       this.cam.x += mx / s0 - mx / s1; this.cam.y += my / s0 - my / s1; this.cam.s = s1;
-      this.applyCam();
+      this.applyCam(); this.driven();
     }, { passive: false });
     this.hud.querySelector('.watch').addEventListener('click', () => this.exit(this.panel?.d.t ?? undefined));
     this.hud.querySelector('.auto').addEventListener('click', () => this.setAuto(!this.auto));
