@@ -116,6 +116,22 @@ export class CaseFile {
     this.front = el('div', 'cf-face front', this.flap); this.back = el('div', 'cf-face back', this.flap);
     this.buildCover();
     el('div', 'cf-light', this.board).style.cssText = `left:${DESK_RECT[0]}px;top:${DESK_RECT[1]}px;width:${DESK_RECT[2]}px;height:${DESK_RECT[3]}px`;
+    // Jojo's badge on the desk right of the phone, the way out written on its enamel: by the shut book, back to the footage;
+    // by the open one, shut it again
+    // (its scrolls stamped JOLLY P.D. and DETECTIVE, following their curves: a light lip under each stamped letter)
+    const sm = meta.badge, [fx, fy, fd] = SPOTS.badge.face, fh = fd * sm.w / sm.h;
+    // (the capitals' middle on the line: dropped by half their height, 0.39 of the size for this face)
+    const scrolls = act => `<svg class="scrolls" viewBox="0 0 ${sm.w} ${sm.h}">${SPOTS.badge.scrolls.map(({ word, size, len, d }, j) => {
+      const id = `badge-${act}-${j}`, on = `<textPath href="#${id}" startOffset="50%" textLength="${len}" lengthAdjust="spacing">${word}</textPath>`;
+      return `<path id="${id}" d="${d}" fill="none"/>` + ['lip', ''].map((c, k) => `<text class="${c}" font-size="${size}" dy="${(size * 0.39 + (k ? 0 : 2.5)).toFixed(1)}">${on}</text>`).join('');
+    }).join('')}</svg>`;
+    for (const [act, a, b] of [['home', 'Back', 'to the footage'], ['shut', 'Close', 'the book']]) {
+      const s = el('button', `cf-exit ${act}`, this.board, `<img src="${A}obj/badge.webp" alt="">${scrolls(act)}<span class="face"><b>${a}</b><small>${b}</small></span>`);
+      s.dataset.act = act; s.style.setProperty('--pic', `url(${A}obj/badge.webp)`); s.style.setProperty('--rim', `url(${A}obj/badge_rim.webp)`);
+      const rp = (meta.badge_rim.w - sm.w) / 2;                          // the gold rim round it, behind it (its picture is padded)
+      Object.assign(el('i', 'rim', s).style, { left: -rp / sm.w * 100 + '%', top: -rp / sm.h * 100 + '%', width: meta.badge_rim.w / sm.w * 100 + '%', height: meta.badge_rim.h / sm.h * 100 + '%' });
+      Object.assign(s.querySelector('.face').style, { left: (fx - fd / 2) * 100 + '%', top: (fy - fh / 2) * 100 + '%', width: fd * 100 + '%', height: fh * 100 + '%' });
+    }
     this.lamp = el('div', 'cf-lamp', L);
     this.hud = el('div', 'cf-hud', L, '<span class="where"></span><span class="keys">CLICK · OPEN &nbsp;/&nbsp; 1–4 · REPORTS &nbsp;/&nbsp; ESC · BACK</span><button class="close">✕ BACK TO THE FOOTAGE</button>');
     this.hud.querySelector('.close').addEventListener('click', e => { e.stopPropagation(); this.close(); });
@@ -497,6 +513,7 @@ export class CaseFile {
   async openFolder() {
     if (this.isOpen || this.busy) return;
     this.busy = true;
+    this.layer.classList.add('book-moving');                          // (the tickets by the book: neither while it moves)
     this.foley?.play('swish', { gain: 0.6 });                        // the strap slips off the edge
     const band = this.front.querySelector('.cf-band');
     await band.animate([{ transform: 'none' }, { transform: 'translateX(60px) rotate(3deg)', offset: 0.45 }, { transform: 'translateX(170px) rotate(9deg)', opacity: 0 }],
@@ -512,17 +529,45 @@ export class CaseFile {
     this.left.classList.add('on');
     requestAnimationFrame(() => { this.flap.style.display = 'none'; });           // (hidden is not enough: the copy on its back is set visible)
     this.isOpen = true;
+    this.layer.classList.replace('book-moving', 'book-open');
     this.busy = false;
     this.redrawSketch().then(() => this.finale.maybeClose());
     if (this.pendingFloor) { const id = this.pendingFloor; this.pendingFloor = null; await this.toTop(FLOORS.findIndex(f => f.id === id)); this.view('sheet'); }
   }
+  // and shut it again: the cover swings back over the reports (its back, the left side, copied fresh), the strap goes
+  // back round it
+  async closeFolder() {
+    if (!this.isOpen || this.busy || this.turned) return;
+    this.busy = true;
+    this.layer.classList.replace('book-open', 'book-moving');
+    this.endDust();
+    this.eggs?.reset();
+    await this.copyLeft();
+    this.flap.style.display = '';
+    this.left.classList.remove('on');
+    this.folder.classList.remove('open');
+    this.ground.classList.remove('open');
+    this.foley?.play('page');
+    this.view('cover');
+    await this.flap.animate([{ transform: 'rotateY(-180deg)' }, { transform: 'rotateY(0deg)' }], { duration: 1100, easing: 'cubic-bezier(.45,0,.25,1)', fill: 'forwards' }).finished;
+    this.foley?.play('swish', { gain: 0.5 });
+    await this.front.querySelector('.cf-band').animate([{ transform: 'translateX(170px) rotate(9deg)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+      { duration: 420, easing: 'cubic-bezier(.2,.6,.3,1)', fill: 'forwards' }).finished;
+    this.isOpen = false;
+    this.layer.classList.remove('book-moving');
+    this.busy = false;
+  }
   // the back of the turning cover shows the left side (canvases copied by hand)
+  // (resolves once its pictures are decoded: shown before that, they would blink in a frame late. The composite's wink
+  // video is left out: a fresh copy has no frame yet, and the drawing under it is the same face)
   copyLeft() {
     const copy = this.left.cloneNode(true), from = this.left.querySelectorAll('canvas'), to = copy.querySelectorAll('canvas');
     to.forEach((k, i) => k.getContext('2d').drawImage(from[i], 0, 0));
+    copy.querySelectorAll('video').forEach(v => v.remove());
     copy.classList.add('on');
     this.back.querySelector('.cf-left')?.remove();
     this.back.appendChild(copy);
+    return Promise.all([...copy.querySelectorAll('img')].map(im => im.decode().catch(() => {})));
   }
 
   // ② the sketch: one layer per lifted print (head and fur to begin with, then the bow, the bell, the lips, the eyes),
@@ -639,6 +684,8 @@ export class CaseFile {
       if (a?.tagName !== 'BUTTON' && (!a || a.closest('.cf-folder, .cf-backside')) && !this.dusting && !this.eggs.scoping && !this.eggs.isDark && this.eggs.poke(e)) return;
       if (this.eggs.click(act)) return;
       if (this.finale.click(act, e)) return;
+      if (act === 'home') { this.close(); return; }
+      if (act === 'shut') { this.closeFolder(); return; }
       if (!this.isOpen) { this.openFolder(); return; }
       if (this.dusting) { if (act === 'lift') this.lift(); return; }
       if (act === 'tab') { this.toTop(+a.dataset.i).then(() => this.view('sheet')); return; }

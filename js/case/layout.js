@@ -24,11 +24,11 @@ export const DESK = [
   { o: 'ashtray', x: W + 370, y: 1110, w: 320, r: 0, z: 4, sh: 3, poke: 'wobble' },
   { o: 'matchbook_0', x: W + 130, y: 1196, w: 136, r: 14, z: 4, sh: 1, poke: 'hop' },
   { o: 'matchbook_1', x: W + 236, y: 1236, w: 64, r: 74, z: 4, sh: 0.6, poke: 'hop' },
-  { o: 'marker', x: 360, y: 1180, w: 320, r: -14, z: 4, sh: 1, poke: 'roll' },
+  { o: 'marker', x: 360, y: 1180, w: 320, r: 14, z: 4, sh: 1, poke: 'roll' },
   { o: 'magnifier', x: 880, y: 1176, w: 460, r: -8, z: 4, sh: 3, poke: 'spin' },
   { o: 'brush', x: 1470, y: 1206, w: 360, r: 168, z: 4, sh: 1.4, poke: 'spin' },
   { o: 'phone', x: -480, y: 450, w: 540, r: 12, z: 4, sh: 5, poke: 'ring' },
-  { o: 'pencil', x: -60, y: 214, w: 420, r: 62, z: 4, sh: 1, poke: 'roll' },
+  { o: 'pencil', x: 2, y: 6, w: 420, r: 154, z: 4, sh: 1, poke: 'roll' },
   { o: 'pen_0', x: -470, y: 1166, w: 430, r: -16, z: 4, sh: 1, poke: 'roll' },
   { o: 'pen_1', x: -120, y: 1214, w: 170, r: 0, z: 4, sh: 3, poke: 'wobble' },
   { o: 'pen_2', x: -250, y: 1262, w: 160, r: 30, z: 4, sh: 1, poke: 'roll' },
@@ -168,6 +168,13 @@ export const SPOTS = {
   printcard: { top: [0.036, 0.059, 0.93, 0.154], bottom: [0.036, 0.78, 0.93, 0.157] },
   tag: { body: [0.3, 0.5, 0.62, 0.42] },
   ticket: { body: [0.09, 0.13, 0.8, 0.74] },
+  // the badge: its enamel disc (centre x, y and width, of the picture's width) and each scroll's word: the midline of the
+  // scroll's flat face between its curls (badge.webp px: its two edges read off the picture and smoothed), the type size
+  // (capitals half the scroll's height) and the length the word is spaced out to (about 4/5 of the face)
+  badge: { face: [0.498, 0.527, 0.42], scrolls: [
+    { word: 'JOLLY P.D.', size: 34.9, len: 253, d: 'M100 191.1 L112 186.9 L124 183.1 L136 179.5 L148 176.3 L160 173.4 L172 170.8 L184 168.5 L196 166.6 L208 164.9 L220 163.6 L232 162.6 L244 161.9 L256 161.5 L268 161.4 L280 161.7 L292 162.2 L304 163.1 L316 164.3 L328 165.8 L340 167.6 L352 169.7 L364 172.1 L376 174.9 L388 178.0 L400 181.4 L418 187.0' },
+    { word: 'DETECTIVE', size: 43.1, len: 301, d: 'M84 461.3 L96 467.7 L108 473.7 L120 479.2 L132 484.3 L144 489.0 L156 493.3 L168 497.2 L180 500.6 L192 503.6 L204 506.2 L216 508.3 L228 510.1 L240 511.4 L252 512.3 L264 512.7 L276 512.8 L288 512.4 L300 511.6 L312 510.3 L324 508.7 L336 506.6 L348 504.1 L360 501.2 L372 497.8 L384 494.1 L396 489.9 L408 485.3 L420 480.2 L432 474.8 L444 468.9' },
+  ] },
   // the waybill's form: its header row, the three cells under it, the big box (pencilled), a red ring round the load
   waybill: { typed: [[[0.07, 0.14, 0.86, 0.085], 'Freight waybill', 'h'], [[0.07, 0.225, 0.42, 0.09], 'No. 2358'], [[0.5, 0.225, 0.22, 0.09], 'Car 7'], [[0.73, 0.225, 0.22, 0.09], '10·27']],
     hand: [0.09, 0.35, 0.53, 0.5], ring: [0.02, 0.355, 0.62, 0.2] },

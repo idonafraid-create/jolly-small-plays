@@ -1,0 +1,7 @@
+TASK: ONE 1950s American city police DETECTIVE'S BADGE lying flat on the desk: a polished but well-worn gold-brass SHIELD with a pointed crest, a small spread-wing eagle on top, a raised rope-twist border, a curved blank scroll banner across the top and another across the bottom, and in the middle a round CENTRE DISC of smooth, dark NAVY-BLUE ENAMEL, perfectly plain and EMPTY (no emblem, no letters: words are added later), ringed by a thin raised gold rim. Fine scratches and darker patina in the recesses, bright specular glints on the raised gold from the lamp at the upper left. The badge ALONE: no leather wallet, no pin showing, no chain.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

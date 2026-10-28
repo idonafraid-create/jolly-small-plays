@@ -11,7 +11,14 @@ const $ = id => document.getElementById(id);
 if (CAPTURE) document.body.classList.add('capture');
 
 const viewport = $('viewport'), audio = $('audio');
-const stage = new Stage(viewport, { capture: CAPTURE, captureSize: [480, 270], pxPerM: 24 });
+// when the footage can't be shown (no WebGL, the browser takes it away, a floor fails to build), say so where CLICK TO PLAY is
+function fail(why) {
+  const h = $('hint');
+  h.classList.remove('hide'); h.classList.add('fail');
+  h.innerHTML = `▲ ${why}<span>Reload the page · if it keeps happening, restart the browser</span>`;
+}
+const stage = (() => { try { return new Stage(viewport, { capture: CAPTURE, captureSize: [480, 270], pxPerM: 24 }); } catch (e) { fail('The footage can\'t play: WebGL is off in this browser'); throw e; } })();
+stage.renderer.domElement.addEventListener('webglcontextlost', () => fail('The footage stopped: the browser turned WebGL off'));
 
 // ── page theme: dark by default, remembered per browser; the post pass keeps the page colour exact ──
 const root = document.documentElement;
@@ -395,7 +402,7 @@ if (CAPTURE) {
   window.__total = cur.total;
   window.__renderAt = t => { render(t); return canvas.toDataURL('image/png'); };
 } else {
-  await switchTo(QS.get('scene') && defs[QS.get('scene')] ? QS.get('scene') : 'bar');
+  await switchTo(QS.get('scene') && defs[QS.get('scene')] ? QS.get('scene') : 'bar').catch(e => { console.error(e); fail('The footage didn\'t load'); });
   if (QS.has('t')) { clockT = +QS.get('t'); }
   loop();
 }

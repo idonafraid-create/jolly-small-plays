@@ -1,13 +1,17 @@
-"""Two case-file props made from codex's objects (run after tools/cf_assets.py, which rewrites objects.json):
+"""Case-file props made from codex's objects (run after tools/cf_assets.py, which rewrites objects.json):
 
-python tools/cf_props.py        → assets/casefile/obj/newspaper_front.webp, folder_inside.webp, ground_*.webp (+ objects.json)
-python tools/cf_props.py ground → only the shadows under the book
+python tools/cf_props.py               → assets/casefile/obj/newspaper_front.webp, folder_inside.webp, ground_*.webp, seal.webp, badge.webp (+ objects.json)
+python tools/cf_props.py ground badge  → only those steps (any of: newspaper folder ground seal badge)
 
 newspaper_front — the newspaper on Jojo's desk, its top half made the morning edition's front page: the masthead, the
   headline (the pink stiletto, gone in the blackout), a photo of the Jolly bandstand (a frame of the footage, grabbed
   headless and screened like newsprint) and, in the last column, the '200%' scrawl turning up at a third club. The old
   type is lifted off the paper first (its own paper tone, text taken out), then the new type is inked over it.
 folder_inside — the leather folder's inside with the raised spine piece taken out: the two halves meet at a fold.
+badge — Jojo's detective badge, the way back to the footage / to shut the book written on its enamel (art/src/cfx_badge.png);
+  seal — the wax seal tried for it before. Both trimmed, a green screen keyed out if codex could not give a transparent
+  background, and kept at 640 px. badge_rim — a line of even width round the badge's outline (its alpha grown by RIM px,
+  padded by RIM_PAD all round), for the page to fill gold and glow.
 ground_open, ground_shut — the book's shadow on the desk, open (both halves) and shut (the right half): its outline
   blurred four ways (a little all round, tight where it touches, softer and further down-right away from the lamp),
   at half size, padded.
@@ -189,12 +193,41 @@ def ground():
     return out
 
 
+def cutout(name):
+    im = Image.open(ROOT / f'art/src/cfx_{name}.png').convert('RGBA')
+    a = np.asarray(im).astype(float)
+    if a[..., 3].min() > 250:                                            # no alpha: key out the chroma green, softly at the edge
+        r, g, b = a[..., 0], a[..., 1], a[..., 2]
+        green = np.clip((g - np.maximum(r, b) - 40) / 50, 0, 1)
+        a[..., 3] = 255 * (1 - green)
+        a[..., 1] = np.minimum(g, np.maximum(r, b) + 10)                 # no green fringe left on the edge
+        im = Image.fromarray(a.astype(np.uint8), 'RGBA')
+    im = im.crop(im.getchannel('A').point(lambda v: 255 if v > 8 else 0).getbbox())
+    im.thumbnail((640, 640), Image.LANCZOS)
+    im.save(OBJ / f'{name}.webp', quality=92, method=6)
+    return im.size
+
+
+RIM, RIM_PAD = 10, 18
+
+
+def rim(name):
+    a = np.asarray(Image.open(OBJ / f'{name}.webp').convert('RGBA'))[..., 3] / 255
+    a = np.pad(a, RIM_PAD)
+    d = ndimage.distance_transform_edt(a < 0.5)                         # how far each pixel is outside the outline
+    line = np.clip(RIM + 0.5 - d, 0, 1)
+    out = np.dstack([np.full_like(line, 255), np.full_like(line, 255), np.full_like(line, 255), line * 255]).astype(np.uint8)
+    Image.fromarray(out, 'RGBA').save(OBJ / f'{name}_rim.webp', quality=92, method=6)
+    return out.shape[1], out.shape[0]
+
+
 if __name__ == '__main__':
     import sys
     meta_p = ROOT / 'assets/casefile/objects.json'
     meta = json.loads(meta_p.read_text())
-    made = list(ground().items())
-    if sys.argv[1:] != ['ground']: made += [('newspaper_front', newspaper()), ('folder_inside', folder())]
+    steps = {'newspaper': lambda: [('newspaper_front', newspaper())], 'folder': lambda: [('folder_inside', folder())],
+             'ground': lambda: list(ground().items()), 'seal': lambda: [('seal', cutout('seal'))], 'badge': lambda: [('badge', cutout('badge')), ('badge_rim', rim('badge'))]}
+    made = [m for k in (sys.argv[1:] or steps) for m in steps[k]()]
     for name, size in made:
         meta[name] = {**meta.get(name, {}), 'w': size[0], 'h': size[1]}
         print(name, size)
