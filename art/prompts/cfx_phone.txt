@@ -1,0 +1,7 @@
+TASK: a black 1950s rotary DESK TELEPHONE seen from directly above, the receiver on its cradle, a coiled cord.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

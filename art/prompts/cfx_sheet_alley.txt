@@ -1,0 +1,7 @@
+TASK: ONE single blank sheet of old letter-size typing paper, portrait, lying flat and filling most of the picture: ivory gone yellow with age, darker tanned edges, faint foxing, folded in thirds long ago (two faint horizontal creases), a couple of tiny edge tears; plus rain: dried raindrop spots, a water tide line along the bottom edge, the paper a little wavy from getting wet, and one small grubby wet cat paw print near the bottom left.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

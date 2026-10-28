@@ -1,0 +1,9 @@
+Attached reference: Image 1 = the comic's LEAD CHARACTER MODEL SHEET; use it only for the colour and shape of this prop (draw no characters).
+
+TASK: a small round BRASS JINGLE BELL from a cat's collar (a slot across its lower half ending in a round hole at each end, a little loop on top), drawn large, with a short cut piece of wine-red ribbon through its loop; a tiny dent and a scratch.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

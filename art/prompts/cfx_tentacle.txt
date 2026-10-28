@@ -1,0 +1,7 @@
+TASK: ONE long, slender TENTACLE of a small deep-sea creature, lying flat and curving gently from the bottom-left towards the upper right, its thin tip curled into a loose hook: glossy wet skin, deep TEAL-BLUE on top shading to paler turquoise at the edges, a row of round PINK suckers along one edge getting smaller towards the tip. The thick end ends in a clean straight cut at the bottom left (it continues under something).
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

@@ -1,0 +1,9 @@
+Attached reference: Image 1 = the comic's LEAD CHARACTER MODEL SHEET; use it only for the colour and shape of this prop (draw no characters).
+
+TASK: YOYO's big WINE-RED VELVET HAIR BOW (as on Image 1), dropped and a little crushed: two plump loops, a knotted centre, two short tails with V-cut ends, rich velvet sheen, one loose thread.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

@@ -1,0 +1,7 @@
+TASK: a torn scrap of an old railroad freight WAYBILL, yellowed, printed blank boxes in faded blue, rain-spotted, no legible characters.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

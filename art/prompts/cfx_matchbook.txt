@@ -1,0 +1,7 @@
+TASK: a 1950s nightclub MATCHBOOK, closed, cream card with a pink and black art-deco martini-glass motif (no letters), a brown striker strip, plus two loose paper matches lying beside it.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

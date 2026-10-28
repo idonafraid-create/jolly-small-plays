@@ -61,6 +61,23 @@ PROMPTS['p7_stiletto'] = (
     '第 2.4–3.8 秒：同一只右爪离开领带，抬到礼帽帽檐，用两根手指把帽檐轻轻往下一压，同时微微点一下头。'
     '第 3.8–5 秒：他保持这个酷酷的眼神，一边眉毛微微挑起，嘴角带一点得意的笑，但嘴巴始终紧闭、不说话、不露牙。'
     '画面里只有他的一只爪子（右爪），另一只手臂一直不出现。背景墙上的霓虹红光轻轻闪。')
+# the case file: V1, the composite (a pencil drawing, not the comic's ink), and V2, YOYO's snapshot from the coat check
+SKETCH = ('保持原图的画风：白纸上的石墨铅笔素描，灰黑色的线条、交叉排线和纸面质感全程不变，像这张素描本身活了一下。'
+          '不要上色，不要变成 3D 或照片，不要加光影、景深或镜头光晕。纸和画的位置、大小不动。不要出现任何文字。')
+STYLES = {'cfx_sketch': SKETCH}
+PROMPTS['cfx_sketch'] = (
+    '固定机位，镜头完全不动。白纸上一张铅笔素描画像：戴大蝴蝶结、蕾丝领子和小铃铛的虎斑小猫，正面。'
+    '第 0–1.5 秒：画像完全静止。'
+    '第 1.5–2.5 秒：小猫画面右边那只眼睛慢慢眨一下（闭上再睁开），画面左边那只眼睛一直睁着不动。'
+    '第 2.5–3.5 秒：嘴角往上翘，露出一个狡猾、得意的小笑，嘴巴闭着不张开；头上的大蝴蝶结轻轻抖一下。'
+    '第 3.5–5 秒：表情慢慢回到第一帧的样子，最后一秒和第一帧完全一样，静止不动。')
+PROMPTS['cf_scrap_sax'] = (
+    '固定机位，镜头完全不动。从衣帽间两件挂着的大衣中间的缝隙往外偷看，远处舞台的一束圆形白色追光下，'
+    '穿灰西装、戴灰色礼帽的白色斗牛犬闭着眼睛吹金色萨克斯。'
+    '第 0–5 秒：斗牛犬全程闭着眼、两只爪子一直按在萨克斯的按键上，身体随着音乐左右轻轻摆，礼帽跟着微微晃；'
+    '追光的光柱里有几粒小灰尘慢慢飘。'
+    '第 2–3 秒：前景左边那件大衣轻轻晃一下，缝隙变窄一点又恢复。'
+    '斗牛犬画面右边那只眼睛周围的黑色眼线状斑块保持在原位。他只有两只前爪，都在萨克斯上。')
 PROMPTS['al_trash'] = (
     '固定机位，镜头完全不动。夜里下着细雨。'
     '第 0–1.2 秒：左边穿深绿西装、打珊瑚色领结、戴黄色圆墨镜的棕色恶霸犬，两只爪子各拎一个黑色垃圾袋，把两个袋子从肩后一起甩出去，砸到右边绿色垃圾箱的盖子上。'
@@ -102,7 +119,7 @@ def one(job, key, row, tag=''):
     img = f'img_{job}'
     if f'"{name}"' not in lt('node', 'list'):
         lt('node', '--x', '700', '--y', str(row * 600), 'create', name, '-t', 'video', '--left', img,
-           '-s', f'model={model}', '-s', 'modeType=singleImage2video', *sets, '--prompt', PROMPTS[job] + STYLE)
+           '-s', f'model={model}', '-s', 'modeType=singleImage2video', *sets, '--prompt', PROMPTS[job] + STYLES.get(job, STYLE))
     t0 = time.time(); ok = run_until_done(name)
     if ok:
         lt('download', '-n', name, '-o', str(OUT), '--without-ai-watermark', '--vip')

@@ -1,0 +1,7 @@
+TASK: a heavy round cut-glass ASHTRAY with a half-smoked cigar resting in its notch and a little grey ash, seen from directly above.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

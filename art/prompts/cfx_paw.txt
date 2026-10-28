@@ -1,0 +1,9 @@
+Attached reference: Image 1 = the comic's LEAD CHARACTER MODEL SHEET; use it only for the colour and shape of this prop (draw no characters).
+
+TASK: a small KITTEN'S FRONT PAW and forearm, coloured like YOYO on Image 1 (silver-grey tabby with darker stripes), reaching straight DOWN from the top as if sneaking in to snatch something off a desk: soft striped fur, the paw open with the toes spread and the pink toe beans showing, tiny claws just out; round the wrist a cuff of fine BLACK LACE tied with a small WINE-RED velvet ribbon bow. The forearm runs up to the top of the object and ends in a clean straight cut (it continues out of the picture).
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

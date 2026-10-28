@@ -318,7 +318,7 @@ export default {
         [{ fn: 'exhibit' }, { note: 'Next Sunday: the back alley.', x: 0.4, y: 0.12, w: 0.56, tilt: -2 }, { fn: 'sticker', delay: 1100 }],
       ],
       async setup(api, p) {
-        const ex = api.exhibit(p, { id: 'ribbon', letter: 'A', what: 'The wine ribbon.', back: 24.03, pos: [0.08, 0.36] });
+        const ex = api.exhibit(p, { id: 'ribbon', letter: 'A', what: 'The wine ribbon.', back: 24.6, pos: [0.08, 0.36] });
         const st = await api.sticker(p, { src: A('heads.webp'), i: 6, mark: '?' });   // still a mystery in No. 1
         return { ...ex, ...st, reset: () => { ex.reset(); st.reset(); } };
       },

@@ -1,0 +1,9 @@
+Attached reference: Image 1 = the comic's LEAD CHARACTER MODEL SHEET; use it only for the colour and shape of this prop (draw no characters).
+
+TASK: Jojo's long-handled GOLD OPERA GLASSES (a lorgnette: two round lenses side by side on one long ornate gold handle), lying flat, the lenses glinting.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

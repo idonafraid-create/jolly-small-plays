@@ -1,0 +1,7 @@
+TASK: a folded broadsheet NEWSPAPER, yellowed, columns of tiny unreadable grey print (no legible characters) and a grainy halftone photo, seen from directly above.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

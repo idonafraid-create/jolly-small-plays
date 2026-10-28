@@ -1,0 +1,7 @@
+TASK: a thick white diner COFFEE CUP on its saucer, half full of black coffee, a teaspoon on the saucer, seen from directly above.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

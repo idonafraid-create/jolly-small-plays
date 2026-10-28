@@ -315,7 +315,7 @@ export default {
         [{ fn: 'exhibit' }, { note: 'Next Sunday: the cellar.', x: 0.05, y: 0.72, w: 0.42, tilt: -2 }, { fn: 'sticker', delay: 1100 }],
       ],
       async setup(api, p) {
-        const ex = api.exhibit(p, { id: 'bell', letter: 'B', what: 'The bell.', back: 21.4, hint: "▶ It's only there for a second.", pos: [0.03, 0.47] });
+        const ex = api.exhibit(p, { id: 'bell', letter: 'B', what: 'The bell.', back: 21.75, hint: "▶ It's only there for a second.", pos: [0.03, 0.47] });
         const st = await api.sticker(p, { src: A('heads.webp'), i: 2 });
         return { ...ex, ...st, reset: () => { ex.reset(); st.reset(); } };
       },

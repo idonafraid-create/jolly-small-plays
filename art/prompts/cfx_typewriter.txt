@@ -1,0 +1,7 @@
+TASK: a black 1950s portable TYPEWRITER seen from directly above, a blank sheet of paper standing in its roller, round keys.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

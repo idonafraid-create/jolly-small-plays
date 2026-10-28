@@ -1,0 +1,7 @@
+TASK: a vintage 1950s LIPSTICK: the ribbed gold metal tube lying on its side, its gold cap off beside it, the bright crimson bullet twisted up and worn to a slant, a smear of red on the gold rim.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

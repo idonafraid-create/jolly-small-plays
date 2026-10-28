@@ -1,0 +1,7 @@
+TASK: ONE single blank sheet of old letter-size typing paper, portrait, lying flat and filling most of the picture: ivory gone yellow with age, darker tanned edges, faint foxing, folded in thirds long ago (two faint horizontal creases), a couple of tiny edge tears; plus cellar damp: a greyish-green mildew bloom in the bottom-left corner, two drips of white candle wax hardened on the paper, a smear of dust.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

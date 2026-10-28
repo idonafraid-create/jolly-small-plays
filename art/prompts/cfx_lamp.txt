@@ -1,0 +1,7 @@
+TASK: a green glass-shaded brass BANKER'S DESK LAMP seen from directly above: the long green glass shade and the round weighted brass base, its brass pull chain hanging.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

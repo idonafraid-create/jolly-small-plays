@@ -1,0 +1,7 @@
+TASK: a single bold RED LIPSTICK KISS print as real lips leave it on paper: the two lip shapes with fine lip-crease lines, rich crimson, slightly smudged at one edge. The mark ONLY, no paper: everything that is not lipstick is transparent.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

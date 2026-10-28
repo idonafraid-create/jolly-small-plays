@@ -1,0 +1,7 @@
+TASK: a CLOSED high-end LEATHER-BOUND detective's case book (a big portfolio notebook), its FRONT cover only, lying flat, filling the picture top to bottom: rich dark oxblood-brown full-grain leather, worn soft and darkened along the edges and corners by years of handling, fine scuffs and a few creases, a blind-embossed double rule border near the edges, a recessed rectangular title panel near the top (EMPTY: no lettering at all), small aged brass corner protectors on the two right-hand corners, the spine side on the left slightly rounded with raised bands. No strap, no clasp, no text.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

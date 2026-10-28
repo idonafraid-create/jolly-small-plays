@@ -1,0 +1,9 @@
+Attached references: Image 1 = the CLUB STAFF MODEL SHEET (the singer MADAME LAPIN is the white rabbit in the gold sequined gown); Image 2 = the BAND MODEL SHEET (JOJO the white bulldog in a grey suit and porkpie hat with a gold alto saxophone; LYLY the chocolate-brown bully dog in a dark green suit with an upright double bass). Draw these cartoon animal characters as they appear on the sheets (they are cartoon animals, NOT humans).
+
+TASK: ONE torn-out yellowed NEWSPAPER CLIPPING, roughly square, ragged torn edges: most of it is a grainy black-and-white HALFTONE PRESS PHOTO of the nightclub stage, printed in coarse newspaper dots: Madame Lapin singing at a chrome ribbon microphone in the middle, Jojo playing the saxophone on the left, Lyly slapping the double bass on the right, a spotlight and curtains behind them; below the photo a short column of tiny unreadable grey print (no legible characters).
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

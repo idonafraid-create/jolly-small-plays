@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { Stage, clamp, makeMarker, canvasOf } from './engine.js';
 import { Comic } from './comic.js';
+import { CaseFile, FLOORS } from './casefile.js';
 
 const QS = new URLSearchParams(location.search);
 const CAPTURE = QS.has('capture');
@@ -172,8 +173,10 @@ $('timeline').addEventListener('click', e => {
   if (comic?.active) comic.exit(t); else seek(t);
 });
 addEventListener('keydown', e => {
+  if (casefile?.active) { casefile.key(e); return; }
   if ((comic?.active || comic?.busy) && !(e.key >= '1' && e.key <= '4')) { comic.key(e); return; }
   if (e.key === 'c' || e.key === 'C') { openComic(); return; }
+  if ((e.key === 'f' || e.key === 'F') && !e.repeat) { openCase(); return; }
   if (e.code === 'Space') { if (!e.repeat) setPlaying(!playing); e.preventDefault(); }        // a held space bar toggles once
   else if (e.key >= '1' && e.key <= '4') switchTo(ORDER[+e.key - 1], true);
   else if (e.key === 'ArrowRight') seek(tNow() + 2);
@@ -216,15 +219,30 @@ function collect(c) {
   else toast('Evidence', c.label.toLowerCase().replace(/^the /, 'The '), `${found.size} / 4`);
 }
 paintCase();
+// a twinkle on the evidence: a white core, gold arms that grow and shrink, a dark rim so it reads on bright floors too
+function sparkle(g, x, y, now, hot) {
+  x = Math.round(x); y = Math.round(y);
+  const ph = Math.floor(now / 140) % 6, L = hot ? 4 : [1, 2, 3, 4, 3, 2][ph];
+  const arms = (col, w) => {
+    g.fillStyle = col;
+    g.fillRect(x - w, y - 2 - L - w, 1 + 2 * w, L + 2 * w); g.fillRect(x - w, y + 2 - w, 1 + 2 * w, L + 2 * w);
+    g.fillRect(x - 2 - L - w, y - w, L + 2 * w, 1 + 2 * w); g.fillRect(x + 2 - w, y - w, L + 2 * w, 1 + 2 * w);
+  };
+  arms('rgba(20, 10, 0, .55)', 1); arms('#ffe28a', 0);
+  g.fillStyle = '#ffffff'; g.fillRect(x - 1, y - 1, 3, 3);
+  if (ph === 3 || hot) { g.fillStyle = '#fff6c8'; for (const [dx, dy] of [[-3, -3], [3, -3], [-3, 3], [3, 3]]) g.fillRect(x + dx, y + dy, 1, 1); }
+}
 function drawClues(t) {
-  const g = stage.hg, under = clueUnder();
+  const g = stage.hg, under = clueUnder(), now = performance.now();
   for (const c of activeClues(t)) {
-    const [x, y] = stage.screenOf(c.at()), on = Math.floor(performance.now() / 300) % 3 !== 0;
-    if (on || c === under) { g.fillStyle = '#ffe28a'; g.fillRect(x, y - 5, 1, 2); g.fillRect(x, y + 4, 1, 2); g.fillRect(x - 5, y, 2, 1); g.fillRect(x + 4, y, 2, 1); }
-    if (c === under) names.push({ x, y: y - 6, text: c.label, sub: 'Click to inspect', cls: 'clue' });
+    const [x, y] = stage.screenOf(c.at());
+    sparkle(g, x, y, now, c === under);
+    if (c === under) names.push({ x, y: y - 8, text: c.label, sub: 'Click to inspect', cls: 'clue' });
   }
   canvas.style.cursor = under ? 'zoom-in' : '';
 }
+// a way back to a floor's evidence (the case file, a comic's EXHIBIT tag): the footage stopped on a moment it is out
+function holdForClue() { setPlaying(false); toast('Look closer', 'Something glints. Click it.', 'PAUSED'); }
 // DOM labels: fixed small type whatever the art-pixel size
 let names = [];
 const namesEl = $('names'), namePool = [];
@@ -279,7 +297,7 @@ const comic = CAPTURE ? null : new Comic({
   viewport, stage, audio, grab, toast,
   draw: () => render(Math.min(tNow(), cur.total - 0.001)),
   found: id => found.has(id),
-  onExit: t => { seek(t); setPlaying(true); },
+  onExit: (t, hold) => { seek(t); if (hold) holdForClue(); else setPlaying(true); },
   // the issues run in story order (a page's `nextScene`); otherwise on to the next floor
   onNext: () => switchTo(comic.page?.def.nextScene || ORDER[(ORDER.indexOf(cur.def.id) + 1) % ORDER.length], true),
 });
@@ -291,6 +309,25 @@ function openComic(atEnd = false) {
   comic.enter(cur.def.id, { t, atEnd });
 }
 $('read').addEventListener('click', () => openComic());
+
+// ── the case file: Jojo's folder (js/casefile.js), open any time from the CASE FILE in the corner (or F) ──
+const casefile = CAPTURE ? null : new CaseFile({
+  viewport, foley: comic.foley, toast,
+  found: id => found.has(id),
+  // back to the footage at a moment of a floor, or straight into that floor's comic
+  goFloor: async (id, t, hold) => { await switchTo(id, true); seek(t); if (hold) holdForClue(); else setPlaying(true); },
+  readComic: async id => { await switchTo(id, true); setPlaying(false); comic.enter(id, { t: 0 }); },
+});
+let caseResume = false;
+function openCase(floorId) {
+  if (!cur || switching || comic?.busy || casefile?.active) return;
+  caseResume = playing && !comic?.active;
+  if (comic?.active) comic.close();
+  setPlaying(false);
+  casefile.onClose = () => { if (caseResume) setPlaying(true); };
+  casefile.show(floorId);
+}
+$('case').addEventListener('click', () => openCase());
 
 // ── frame ──
 function drawNames() {
@@ -332,12 +369,15 @@ function loop() {
   requestAnimationFrame(loop);
   const now = performance.now(), dt = Math.min(0.1, (now - last) / 1000); last = now;
   if (!cur) return;
+  if (casefile?.active) return;                                          // the folder covers the footage: nothing to draw under it
   if (comic?.active || comic?.busy) { if (comic.active) comic.frame(); return; }
   stage.stepView(dt);
   if (holdUntil && now > holdUntil) { holdUntil = 0; seek(0); if (playing) audio.play().catch(() => {}); }
   if (playing && !holdUntil && (audio.error || audio.readyState < 2)) clockT = Math.min(cur.total - 0.01, clockT + dt);
   const t = Math.min(tNow(), cur.total - 0.001);
   render(t);
+  const fl = FLOORS.find(f => f.id === cur.def.id);                  // YOYO's moment on this floor, once played past, goes in the file
+  if (fl && playing && t >= fl.seen && t < fl.seen + 4) casefile?.see(fl.id);
   $('tc').innerHTML = `${fmt(t)} <small>/ ${fmt(cur.total)}</small>`;
   const u = t / cur.total * 100;
   $('prog').style.width = u + '%'; $('head').style.left = u + '%';
@@ -359,4 +399,4 @@ if (CAPTURE) {
   if (QS.has('t')) { clockT = +QS.get('t'); }
   loop();
 }
-window.__sp = { stage, defs, built, seek, switchTo, comic, grab, get t() { return tNow(); } };
+window.__sp = { stage, defs, built, seek, switchTo, comic, casefile, grab, get t() { return tNow(); } };

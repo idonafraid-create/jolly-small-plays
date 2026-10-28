@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (YOYO the kitten wears a big wine-red velvet bow on her head and a wine-red collar with a small gold bell; Jojo carries long-handled gold opera glasses). Image 2 = the BAND MODEL SHEET (Jojo's narrow black tie carries a small PINK STILETTO-SHAPED TIE CLIP). Use them only for the colours and shapes of the props; draw no characters.
+
+TASK: ONE prop drawn as a CUT-OUT for a detective's case file: YOYO's big WINE-RED VELVET HAIR BOW, dropped and a little crushed: two plump loops, a knotted centre, two short tails with V-cut ends (one tail folded under), the velvet's soft sheen shown as a couple of lighter flat bands, one loose thread.
+Seen from DIRECTLY ABOVE (a flat lay, as if photographed on a table from straight above), centred, filling about 70% of the picture, on a PLAIN FLAT PURE GREEN (#00FF00) BACKGROUND with nothing else in the picture: no table, no cast shadow, no hands, no tag, no label, no text.
+
+{STYLE}
+
+Render it like a prop close-up in a 1950s comic: bold black ink outline, flat colours with one flat shadow tone, crisp white highlights on shiny metal, enamel and patent leather so the materials read. Absolutely NO green anywhere on the object itself (the background will be keyed out).
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

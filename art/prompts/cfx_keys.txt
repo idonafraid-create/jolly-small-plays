@@ -1,0 +1,7 @@
+TASK: a small ring of old brass and steel KEYS with a long brass hotel key fob (blank) attached.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

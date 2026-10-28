@@ -1,0 +1,7 @@
+TASK: ONE torn-out newspaper clipping, yellowed newsprint, a short column of tiny unreadable grey print (no legible characters) and a small grainy halftone photo of a nightclub stage, ragged torn edges.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

@@ -1,0 +1,7 @@
+TASK: ONE small manila EVIDENCE ENVELOPE, portrait, with a large rectangular clear cellophane WINDOW in its middle: the window is EMPTY and see-through (transparent, nothing behind it, only a faint glossy sheen and crinkle on the cellophane); a thick red printed band across the top (blank), blank ruled write-on lines below the window; the flap at the top folded over and sealed with a strip of red evidence tape; aged and creased.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

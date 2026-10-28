@@ -1,0 +1,7 @@
+TASK: a CLOSED manila case folder, its FRONT cover only, lying flat, filling the picture top to bottom: heavily handled, darker edges, softened scuffed corners, creases, a coffee ring near the bottom right, an amber tape repair at the top-left corner; a BLANK cream gummed paper label stuck near the top (empty); two round dark-red fibre string-tie buttons with brass rivets near the right edge, one above the other, WITHOUT any string.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

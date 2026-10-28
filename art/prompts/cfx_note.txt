@@ -1,0 +1,7 @@
+TASK: ONE page torn out of a small spiral notebook, portrait, faint blue ruled lines and a red margin line, ragged torn holes along the left edge, a little crumpled, blank.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

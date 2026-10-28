@@ -362,7 +362,7 @@ export default {
         if (t > EV.stamp + 0.6) stage.centerText(typed('IT WAS A PRANK. IT WAS ALWAYS YOYO.', t, EV.stamp + 0.6, 0.8), stage.lowH - 18, COL.ink, 1, COL.cream);
       }
     };
-    return { scene, update, hud, people, clues: [{ id: 'stiletto', label: 'THE PINK STILETTO', t0: EV.stiletto + 0.5, until: EV.pick, at: () => stiletto.getWorldPosition(new THREE.Vector3()) }], chapters: [
+    return { scene, update, hud, people, clues: [{ id: 'stiletto', label: 'THE PINK STILETTO', t0: EV.stiletto, until: EV.pick, at: () => stiletto.getWorldPosition(new THREE.Vector3()) }], chapters: [
       { t: 0, label: 'THE SCENE' }, { t: EV.lens1, label: 'THE GLASSES' }, { t: EV.bolt1, label: 'LIGHTNING' }, { t: EV.lights, label: 'SIGNED' }, { t: EV.sitUp, label: 'THE VICTIM' }, { t: EV.stamp, label: 'CLOSED' },
     ] };
   },

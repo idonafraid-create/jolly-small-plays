@@ -1,0 +1,5 @@
+TASK: a detective's desk top seen from directly above, filling the WHOLE picture edge to edge (this one is NOT isolated and NOT transparent): dark, polished mahogany planks with scratches, worn varnish and faint old cup rings; a large dark-green leather desk blotter pad with darker leather corner pieces and a thin gold tooled border covering the middle two thirds. EVERYTHING IS EMPTY: no objects at all on the blotter or the desk. A warm lamp from the upper left: a soft pool of light on the upper-left of the blotter, the bottom-right corner sinking into deep brown shadow.
+
+{CFSTYLE}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

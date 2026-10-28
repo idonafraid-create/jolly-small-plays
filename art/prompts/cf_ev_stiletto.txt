@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (YOYO the kitten wears a big wine-red velvet bow on her head and a wine-red collar with a small gold bell; Jojo carries long-handled gold opera glasses). Image 2 = the BAND MODEL SHEET (Jojo's narrow black tie carries a small PINK STILETTO-SHAPED TIE CLIP). Use them only for the colours and shapes of the props; draw no characters.
+
+TASK: ONE prop drawn as a CUT-OUT for a detective's case file: Jojo's PINK STILETTO TIE CLIP (as on Image 2), drawn large: a gold tie-clip bar whose front carries a small glossy PINK ENAMEL HIGH-HEEL SHOE (a 1950s stiletto pump with a pointed toe and a thin heel); the gold bar is slightly bent from being yanked off a tie.
+Seen from DIRECTLY ABOVE (a flat lay, as if photographed on a table from straight above), centred, filling about 70% of the picture, on a PLAIN FLAT PURE GREEN (#00FF00) BACKGROUND with nothing else in the picture: no table, no cast shadow, no hands, no tag, no label, no text.
+
+{STYLE}
+
+Render it like a prop close-up in a 1950s comic: bold black ink outline, flat colours with one flat shadow tone, crisp white highlights on shiny metal, enamel and patent leather so the materials read. Absolutely NO green anywhere on the object itself (the background will be keyed out).
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

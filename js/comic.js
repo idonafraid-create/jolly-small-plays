@@ -593,7 +593,7 @@ export class Comic {
         const got = this.found?.(id);
         tag = el(got ? 'div' : 'button', 'exhibit ' + (got ? 'got' : 'miss'), p.ov,
           `EXHIBIT ${letter}<small>${what}<br>${got ? 'In your case file ✓' : 'Not in your case file yet.<br>' + hint}</small>`);
-        if (!got) tag.addEventListener('click', e => { e.stopPropagation(); this.exit(back); });
+        if (!got) tag.addEventListener('click', e => { e.stopPropagation(); this.exit(back, true); });
         if (pos) Object.assign(tag.style, { left: pos[0] * p.w + 'px', top: pos[1] * p.h + 'px' });
         requestAnimationFrame(() => tag.classList.add('on'));
       },
@@ -898,7 +898,7 @@ export class Comic {
   }
 
   // ── out: zoom to the panel for `t`, the footage takes its place, the press runs backwards ──
-  async exit(t = this.entry?.atEnd ? 0 : this.entry?.t ?? 0) {
+  async exit(t = this.entry?.atEnd ? 0 : this.entry?.t ?? 0, hold = false) {
     if (!this.active || this.busy) return;
     this.setAuto(false);
     this.busy = true;
@@ -924,7 +924,7 @@ export class Comic {
     lc.style.display = 'none';
     this.active = false; this.busy = false; this.panel = null;
     if (this.view0) { this.stage.zoomT = this.view0.zoomT; this.stage.panT = this.view0.panT; }    // the play eases back out to its own framing
-    this.onExit?.(t);
+    this.onExit?.(t, hold);                                   // hold: stopped there (on a moment the evidence is out)
   }
   // clip-path from the whole canvas (e = 0) to the panel's outline on screen (e = 1)
   shrink(p, pr, cvr, e) {

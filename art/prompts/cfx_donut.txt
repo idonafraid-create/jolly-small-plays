@@ -1,0 +1,7 @@
+TASK: a pink-frosted DONUT with sprinkles and one bite out of it, on a crumpled white paper napkin.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

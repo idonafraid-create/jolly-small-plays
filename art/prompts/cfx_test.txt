@@ -1,0 +1,7 @@
+TASK: ONE small slightly rusty steel PAPER CLIP, lying flat, drawn large.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

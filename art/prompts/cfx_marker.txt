@@ -1,0 +1,7 @@
+TASK: a red CHINA MARKER (a paper-wrapped grease pencil with its spiral peel string half unwound and a blunt red wax tip), lying diagonally.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

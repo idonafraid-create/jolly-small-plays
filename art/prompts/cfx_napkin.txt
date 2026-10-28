@@ -1,0 +1,7 @@
+TASK: a white cocktail NAPKIN with a scalloped edge, a little crumpled, with a red LIPSTICK KISS print on it.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

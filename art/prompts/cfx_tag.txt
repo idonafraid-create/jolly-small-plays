@@ -1,0 +1,7 @@
+TASK: ONE manila shipping tag with a reinforced round eyelet and a loop of thin white string through it, blank, slightly bent and grubby.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

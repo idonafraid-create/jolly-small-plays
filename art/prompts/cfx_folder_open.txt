@@ -1,0 +1,7 @@
+TASK: an OPEN, EMPTY, well-worn MANILA CASE FOLDER lying flat, both halves open side by side, the vertical centre crease (the spine) EXACTLY in the middle of the picture, each half a little taller than wide; aged manila card: darker handled edges, scuffed corners, a few creases, a faint coffee ring on the left half, an amber tape repair on one corner; the right half has a shallow pocket flap across its bottom quarter. No papers in it.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

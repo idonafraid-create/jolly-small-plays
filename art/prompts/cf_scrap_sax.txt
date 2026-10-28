@@ -1,0 +1,11 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (copy Jojo's face exactly; ignore the outfit shown there). Image 2 = the BAND MODEL SHEET: Jojo's outfit here is EXACTLY the one on Image 2 (grey suit, flat grey porkpie hat, narrow black tie with the small pink stiletto tie clip, gold alto sax).
+
+PANEL: A SNEAKY SNAPSHOT taken from INSIDE the coat check of the Jolly Club, by someone small hiding among the coats. We peek out through a narrow vertical GAP between two hanging winter coats: a WINE-RED wool coat fills the left third of the picture and a dark grey-green coat fills the right third, both very close to us, big soft dark shapes with a few ink folds and a button or two, a wooden coat-hanger hook showing at the top. Through the gap, far across the dark club, on the stage: Jojo ALONE in one round white SPOTLIGHT, eyes shut, cheeks puffed, blowing his gold alto sax and leaning back a little, lost in the music, both paws on the keys; the small pink stiletto tie clip shows on his tie. Behind him the navy-and-gold sunburst backdrop, dim; a few tiny cream specks of dust floating in the spotlight beam. Everything outside the spotlight is deep shadow. Jojo is small in the frame (about a third of the picture's height), centred in the gap.
+
+{JOJOCLUB}
+
+{CLUB}
+
+{STYLE}
+
+SQUARE, aspect ratio 1:1 (for example 1024x1024).

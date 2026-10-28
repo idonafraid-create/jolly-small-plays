@@ -210,7 +210,7 @@ export default {
         [{ tag: '<b>●</b> CAM 203 · 00:13:34', x: 0.07 }, { cap: 'Filed at 00:13:34. No charges.', corner: 'tr', aspect: 2.6 }],
         [{ fn: 'exhibit' }, { note: 'Next Sunday: she does it again.', x: 0.48, y: 0.22, w: 0.48, tilt: -2 }],
       ],
-      setup: (api, p) => api.exhibit(p, { id: 'stiletto', letter: 'D', what: 'The pink stiletto.', back: 25.4 }),
+      setup: (api, p) => api.exhibit(p, { id: 'stiletto', letter: 'D', what: 'The pink stiletto.', back: 26.2 }),
     },
   ],
 };

@@ -1,0 +1,7 @@
+TASK: ONE long black ELASTIC STRAP closure of a leather notebook, a flat woven band about as wide as a finger, lying straight and vertical, slightly worn and stretched, its two ends sewn into small dark leather tabs.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

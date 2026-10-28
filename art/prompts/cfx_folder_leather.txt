@@ -1,0 +1,7 @@
+TASK: the same kind of high-end leather case book lying OPEN and flat, seen from directly above: the vertical centre fold (the spine) EXACTLY in the middle of the picture; both inner covers lined with smooth dark-brown leather with a stitched border, a little worn; the right inner cover has a wide leather pocket across its bottom third with a stitched edge; the left inner cover has two small card slots near the bottom. EMPTY: no papers in it, no text.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

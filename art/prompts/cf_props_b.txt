@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (YOYO the kitten wears a big wine-red velvet bow on her head and a wine-red collar with a small gold bell; Jojo carries long-handled gold opera glasses). Image 2 = the BAND MODEL SHEET (Jojo's narrow black tie carries a small PINK STILETTO-SHAPED TIE CLIP). Use them only for the colours and shapes of the props; draw no characters.
+
+TASK: THREE SEPARATE props drawn as CUT-OUTS for a detective's desk, laid out in a row from left to right with plenty of empty green space between them (they must not touch or overlap), each lying diagonally: (1) LEFT: a FINGERPRINT POWDER BRUSH: a fat round head of fine dark-grey fibreglass bristles on a slim black handle with a brass ferrule; (2) MIDDLE: a yellow hexagonal wooden PENCIL, sharpened, with a pink eraser in a brass ferrule and a few bite marks; (3) RIGHT: a red CHINA MARKER (a paper-wrapped grease pencil with its spiral peel-string and a blunt red wax tip).
+Seen from DIRECTLY ABOVE (a flat lay, as if photographed on a table from straight above), centred, filling about 70% of the picture, on a PLAIN FLAT PURE GREEN (#00FF00) BACKGROUND with nothing else in the picture: no table, no cast shadow, no hands, no tag, no label, no text.
+
+{STYLE}
+
+Render it like a prop close-up in a 1950s comic: bold black ink outline, flat colours with one flat shadow tone, crisp white highlights on shiny metal, enamel and patent leather so the materials read. Absolutely NO green anywhere on the object itself (the background will be keyed out).
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

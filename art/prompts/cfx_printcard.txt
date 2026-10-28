@@ -1,0 +1,7 @@
+TASK: ONE white 1950s FINGERPRINT CARD, landscape, slightly yellowed card stock with faded black printed ruled boxes (blank, no words) and one LARGE box in the middle filled with flat pure MAGENTA (#FF00FF).
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

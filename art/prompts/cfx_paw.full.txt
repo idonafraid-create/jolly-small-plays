@@ -1,0 +1,11 @@
+Use your built-in image generation tool (image_gen). Produce ONE image, then copy the final PNG into the current working directory as `cfx_paw.png` (never overwrite an existing file). Do not write any code or other files.
+
+Attached reference: Image 1 = the comic's LEAD CHARACTER MODEL SHEET; use it only for the colour and shape of this prop (draw no characters).
+
+TASK: a small KITTEN'S FRONT PAW and forearm, coloured like YOYO on Image 1 (silver-grey tabby with darker stripes), reaching straight DOWN from the top as if sneaking in to snatch something off a desk: soft striped fur, the paw open with the toes spread and the pink toe beans showing, tiny claws just out; round the wrist a cuff of fine BLACK LACE tied with a small WINE-RED velvet ribbon bow. The forearm runs up to the top of the object and ends in a clean straight cut (it continues out of the picture).
+
+STYLE (the case file, the same for every object): a high-end photographic still life for a 1950s detective game — a real vintage object shot from DIRECTLY ABOVE (flat lay, no perspective tilt), lit by one warm tungsten desk lamp from the upper left: rich physical textures (paper fibres, foxing, yellowed and darkened edges, creases, small tears, dog-eared corners, coffee stains, amber old tape, slightly rusty steel, worn brass, velvet, leather), crisp focus, warm sepia-amber colour grade, subtle film grain. Realistic, tactile and expensive-looking: NOT a cartoon, NOT flat colour, NOT a 3D-render look. Absolutely NO text, NO letters, NO numbers, NO logos anywhere (anything meant for writing is left blank; printed matter is only unreadable grey lines).
+
+OUTPUT: the object ALONE, isolated, centred with a small margin, on a TRANSPARENT background (a PNG with an alpha channel: everything that is not the object fully transparent). Keep a soft, natural contact shadow under the object only if it can stay semi-transparent; otherwise no shadow. If your image tool cannot make a transparent background, use a perfectly flat, evenly lit PURE CHROMA-GREEN (#00FF00) background instead, with no shadow on it and no green anywhere on the object.
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

@@ -1,0 +1,7 @@
+TASK: ONE old police-department form card, portrait, off-white card stock aged and a little stained, printed in faded black ink: a thick double border, in the upper part a LARGE square frame whose inside is filled with flat pure MAGENTA (#FF00FF) (a drawing goes there later), and below it six empty ruled lines each with a short blank label box at its left, a small blank box in the top-right corner. No printed words: every field blank.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

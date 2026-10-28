@@ -262,7 +262,7 @@ export default {
         [{ fn: 'exhibit' }, { note: 'Next Sunday: Room 203.', x: 0.5, y: 0.1, w: 0.46, tilt: -2 }, { fn: 'sticker', delay: 1100 }],
       ],
       async setup(api, p) {
-        const ex = api.exhibit(p, { id: 'lipstick', letter: 'C', what: 'The lipstick.', back: 12.6, pos: [0.52, 0.4] });
+        const ex = api.exhibit(p, { id: 'lipstick', letter: 'C', what: 'The lipstick.', back: 13.2, pos: [0.52, 0.4] });
         const st = await api.sticker(p, { src: A('heads.webp'), i: 1 });          // she signs off: her head from the cover's cast strip
         return { ...ex, ...st, reset: () => { ex.reset(); st.reset(); } };
       },

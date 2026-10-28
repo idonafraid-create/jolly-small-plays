@@ -1,0 +1,7 @@
+TASK: ONE vintage black-and-white photo print with a white DECKLED (wavy-cut) border, landscape 3:2, one corner slightly curled, aged ivory border with a faint thumbprint; the PICTURE AREA inside the border is a perfectly flat, uniform mid grey (#808080) with nothing in it.
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

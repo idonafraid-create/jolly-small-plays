@@ -50,6 +50,8 @@
   .case { display: flex; align-items: center; gap: 6px; cursor: help; }
   .case i { width: 7px; height: 7px; border: 1px solid var(--ink-2); transform: rotate(45deg); transition: background .3s, border-color .3s; }
   .case i.got { background: var(--accent); border-color: var(--accent); }
+  .case .ex { display: flex; align-items: center; gap: 4px; font: 9px var(--pix); letter-spacing: .04em; color: var(--ink-3); transition: color .3s; }
+  .case .ex:has(i.got) { color: var(--accent); }
   .case b { font-weight: 500; color: var(--ink); letter-spacing: .08em; }
   #toast { position: absolute; left: 50%; top: 18px; transform: translate(-50%, -8px); background: var(--paper); border: 1px solid var(--ink); padding: 8px 14px 7px; display: flex; gap: 12px; align-items: baseline;
     font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; z-index: 6; }
@@ -377,12 +379,14 @@
   .cv-cast figcaption { font: 400 15px/1 Bangers, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #fbf8f1; }
   .cv-cast canvas, .cv-corner canvas { inset: 0; width: 100%; height: 100%; }
   .comic-hud { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 3; display: flex; gap: 14px; align-items: center; white-space: nowrap;
-    background: var(--ink); color: var(--on-ink); padding: 6px 7px 6px 14px; font-size: 9.5px; letter-spacing: .16em; cursor: default; }
+    color: #f2ead8; padding: 6px 7px 6px 14px; font-size: 9.5px; letter-spacing: .16em; cursor: default; border-radius: 6px;
+    background: rgba(22, 20, 24, .58); border: 1px solid rgba(242, 234, 216, .14); box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); }
   .comic-hud .cnt { font: 11px var(--pix); letter-spacing: .06em; }
   .comic-hud .keys { opacity: .65; }
-  .comic-hud button { border: 1px solid currentColor; padding: 6px 10px 5px; font-size: 9.5px; letter-spacing: .14em; }
-  .comic-hud button:hover { background: var(--on-ink); color: var(--ink); }
-  .comic-hud button.auto.on { background: var(--accent); border-color: var(--accent); color: var(--on-ink); }
+  .comic-hud button { border: 1px solid rgba(242, 234, 216, .32); border-radius: 4px; padding: 6px 10px 5px; font-size: 9.5px; letter-spacing: .14em; color: inherit; transition: background .15s, border-color .15s; }
+  .comic-hud button:hover { background: rgba(242, 234, 216, .16); border-color: rgba(242, 234, 216, .6); }
+  .comic-hud button.auto.on { background: #e3687c; border-color: #e3687c; color: #151417; }
   .comic-end { position: absolute; left: 50%; bottom: 64px; z-index: 3; display: flex; gap: 12px; opacity: 0; pointer-events: none; transform: translate(-50%, 16px); transition: opacity .4s, transform .4s; }
   .comic-end.on { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
   /* face and printed dot shadow are two layers under the label, so the dots can never land on top of the button */
@@ -394,6 +398,273 @@
   .comic-end button:hover { translate: -2px -2px; } .comic-end button:hover::after { translate: 8px 8px; }
   .comic-end button:active { translate: 3px 3px; } .comic-end button:active::after { translate: 1px 1px; }
   @media (max-width: 900px) { .comic-hud .keys { display: none; } }
+
+  /* ── the case file (js/casefile.js): Jojo's folder on his desk. Every object is a cut-out photograph (assets/casefile/obj)
+     laid out in page px by js/case/layout.js; the board scales with its camera ── */
+  .case { cursor: pointer; } .case:hover span { color: var(--accent); }
+  .casefile { position: absolute; inset: 0; z-index: 4; display: none; overflow: hidden; background: #0b0807; cursor: pointer; touch-action: none; color: #2b211b; }
+  .casefile.on { display: block; }
+  .casefile.dragging { cursor: grabbing; }
+  .cf-board { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  /* the play's own canvas rule (absolute, pixelated, grab cursor) is not for paper: case-file canvases scale smoothly */
+  #viewport .casefile canvas { position: absolute; left: 0; top: 0; image-rendering: auto; cursor: inherit; }
+  .cf-desk { position: absolute; pointer-events: none; }
+  .cf-desk img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cf-it { position: absolute; }
+  .cf-it > .pic { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+  .cf-it[data-act] { cursor: pointer; }
+  .cf-spot { position: absolute; }
+  .cf-folder { position: absolute; z-index: 2; perspective: 3600px; }
+  .cf-inside { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cf-folder:not(.open) .cf-inside { clip-path: inset(0 0 0 50%); }
+  .cf-left { position: absolute; visibility: hidden; }
+  .cf-left.on, .cf-face .cf-left { visibility: visible; }
+  /* (the page's own box is click-through: it would cover the tabs of the reports under it; what lies on it is not) */
+  .cf-page { position: absolute; transform-origin: 40% 60%; pointer-events: none; }
+  .cf-page > * { pointer-events: auto; }
+  /* shut, nothing hangs out under the cover's foot (the envelopes do, open); the tabs still stick out at the side */
+  .cf-folder:not(.open) .cf-page { clip-path: inset(-80px -260px 0 -80px); }
+  .cf-page.under > :not(.r-sheet) { display: none; }
+  .cf-it.desk { pointer-events: none; }
+  /* index tabs: each report's divider, sticking out from under its right edge: a card the floor's colour (::before) with
+     the grain and worn edge of the sheet's own stock over it (::after: the sheet's picture, the strip by that edge, grey,
+     multiplied; it masks both, for the ragged edge), the floor typed on it in cream. The button is a margin --m bigger
+     than the card (but on the left), to be easy to hit. Once the book is open the top report's tab is pulled out a little and glows its colour;
+     the tabs of the reports under it lie in its shade */
+  .cf-it > .cf-tab { --glow: color-mix(in srgb, var(--tab) 45%, #fff6dc); position: absolute; z-index: -1; margin: 0; padding: var(--m) calc(var(--m) + 6px) var(--m) 30px; border: 0; display: grid; place-content: center; justify-items: center; gap: 4px;
+    background: none; color: #fbf1dc; font-family: 'Special Elite', monospace; text-transform: uppercase; mix-blend-mode: normal; cursor: pointer;
+    filter: drop-shadow(1.6px 2.6px 1.7px rgba(28, 15, 4, .55)) drop-shadow(4.5px 8px 11px rgba(20, 10, 2, .34)); transition: translate .35s cubic-bezier(.3, 1.4, .5, 1), filter .3s; }
+  .cf-it > .cf-tab::before, .cf-it > .cf-tab::after { content: ''; position: absolute; inset: var(--m) var(--m) var(--m) 0; z-index: -1; border-radius: 0 9px 9px 0;
+    -webkit-mask: var(--paper) var(--ppos) / var(--psize) no-repeat; mask: var(--paper) var(--ppos) / var(--psize) no-repeat; }
+  .cf-it > .cf-tab::before { background: radial-gradient(ellipse at 70% 18%, rgba(255, 250, 235, .3), transparent 62%), var(--tab);
+    box-shadow: inset 0 4px 5px -3px rgba(10, 6, 2, .45), inset 0 -4px 5px -3px rgba(10, 6, 2, .5), inset -3px 0 5px -2px rgba(10, 6, 2, .3); }
+  .cf-it > .cf-tab::after { background: var(--paper) var(--ppos) / var(--psize) no-repeat; filter: grayscale(1) contrast(1.5) brightness(1.08); mix-blend-mode: multiply; opacity: .6; }
+  .cf-it > .cf-tab:hover { background: none; translate: 5px 0; }
+  .cf-folder.open .cf-page:not(.under) .cf-it > .cf-tab { translate: 12px 0; animation: cfTabGlow 1.8s ease-in-out infinite alternate; }
+  @keyframes cfTabGlow { from { filter: drop-shadow(1.6px 2.6px 1.7px rgba(28, 15, 4, .55)) drop-shadow(0 0 3px var(--glow)) drop-shadow(0 0 10px var(--glow)); }
+    to { filter: drop-shadow(1.6px 2.6px 1.7px rgba(28, 15, 4, .55)) drop-shadow(0 0 6px var(--glow)) drop-shadow(0 0 24px var(--glow)); } }
+  .cf-page.under .cf-it > .cf-tab { filter: brightness(.8) saturate(.85) drop-shadow(1.6px 2.6px 1.7px rgba(28, 15, 4, .55)) drop-shadow(4.5px 8px 11px rgba(20, 10, 2, .34)); }
+  .cf-page.under .cf-it > .cf-tab:hover { filter: brightness(.96) drop-shadow(1.6px 2.6px 1.7px rgba(28, 15, 4, .55)) drop-shadow(4.5px 8px 11px rgba(20, 10, 2, .34)); }
+  .cf-tab > * { display: block; white-space: nowrap; opacity: .94; }
+  .cf-tab em { font-size: 13px; font-style: normal; letter-spacing: .12em; }
+  .cf-tab strong { font-size: 42px; line-height: .9; font-weight: 400; }
+  .cf-tab small { font-size: 13px; letter-spacing: .1em; }
+  .cf-tab .w i { font-style: normal; display: inline-block; transform: translateY(var(--y)); opacity: var(--o); }
+  /* the book's shadow on the desk (tools/cf_props.py ground): shut, then open as the cover swings */
+  .cf-ground { position: absolute; left: -160px; top: -160px; width: 2040px; height: 1400px; z-index: 2; pointer-events: none; }
+  .cf-ground img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity 1.3s ease-in-out; }
+  .cf-ground .open, .cf-ground.open .shut { opacity: 0; }
+  .cf-ground.open .open { opacity: 1; }
+  /* a coat-check stub: printed in the ticket's own red (sized from the ticket: --k) */
+  .cf-stub { display: grid; place-content: center; justify-items: center; color: #b4272b; mix-blend-mode: multiply; opacity: .88; text-transform: uppercase; font-family: 'Alfa Slab One', serif; font-size: calc(var(--k) * 12px); }
+  .cf-stub small { font-size: 1em; line-height: 1.2; letter-spacing: .24em; }
+  .cf-stub b { font-size: 3.1em; line-height: 1; font-weight: 400; letter-spacing: .03em; }
+  /* typewriter: every letter struck a little differently (js: typed()) */
+  .cf-type { position: absolute; color: #2b211b; font-family: 'Special Elite', monospace; mix-blend-mode: multiply; }
+  .cf-type .w { white-space: nowrap; }
+  .cf-type i { font-style: normal; display: inline-block; transform: translateY(var(--y)); opacity: var(--o); }
+  .cf-type.head { font-size: 13px; line-height: 1.55; letter-spacing: .07em; text-transform: uppercase; }
+  .cf-type.head b { display: block; margin: 5px 0 3px; padding-bottom: 7px; border-bottom: 2px solid rgba(43, 33, 27, .55); font-size: 29px; line-height: 1.15; font-weight: 400; letter-spacing: .02em; }
+  .cf-type.report { font-size: 17px; line-height: 1.7; }
+  .cf-type.tw { font-size: 10px; line-height: 1.3; padding: 6px 8px; }
+  /* handwriting: pencil (Jojo's notes, the tags, Lyly's statement) and blue-black ink (the form) */
+  .hand { display: flex; flex-direction: column; justify-content: center; font-family: 'Patrick Hand SC', cursive; mix-blend-mode: multiply; }
+  .hand p { margin: 0; white-space: nowrap; transform: rotate(var(--t)) translateX(var(--x)); }
+  .hand.pencil { color: rgba(52, 48, 46, .82); font-size: 25px; line-height: 1.25; }
+  .hand.ink { color: #1f2c62; font-size: 22px; }
+  /* red grease pencil (Jojo's marks) and his pencil doodles */
+  .cf-scrawl { display: flex; flex-direction: column; justify-content: center; color: #c8202c; mix-blend-mode: multiply; opacity: .9; transform: rotate(-3deg); }
+  .cf-scrawl b { font: 400 29px/1 'Permanent Marker', cursive; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+  .cf-scrawl svg { width: 96%; height: 12px; margin-top: 2px; overflow: visible; }
+  .cf-scrawl path { fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; }
+  .cf-doodle svg { width: 100%; height: 100%; overflow: visible; mix-blend-mode: multiply; }
+  .cf-doodle path, .cf-doodle circle, .cf-doodle ellipse { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .cf-doodle .pc { stroke: rgba(52, 48, 46, .78); stroke-width: 2.1; } .cf-doodle .pc .re { stroke-width: 1.2; opacity: .55; } .cf-doodle .pc .f { fill: rgba(52, 48, 46, .78); stroke: none; }
+  .cf-doodle .rd { stroke: rgba(200, 32, 44, .88); stroke-width: 3; } .cf-doodle text { fill: rgba(200, 32, 44, .9); stroke: none; font: 400 24px 'Permanent Marker', cursive; }
+  div.cf-doodle { position: absolute; pointer-events: none; } .cf-doodle text.pt { fill: rgba(52, 48, 46, .78); font: 400 17px 'Patrick Hand SC', cursive; }
+  .r-waybill .wb { display: flex; align-items: center; padding: 0 3px; font-size: 7.5px; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+  .r-waybill .wb.h { justify-content: center; font-size: 7px; letter-spacing: .3em; }
+  .r-waybill .hand.pencil { font-size: 12.5px; line-height: 1.32; }
+  .r-tag .hand { font-size: 21px; justify-content: flex-start; padding-top: 6%; } .r-statement .hand { font-size: 20px; line-height: 1.32; } .r-notes .hand { font-size: 22px; line-height: 1.36; }
+  #viewport .casefile .cf-ov { left: 0; top: 0; width: 100%; height: 100%; mix-blend-mode: multiply; pointer-events: none; }
+  #viewport .casefile .cf-ov.grease { mix-blend-mode: normal; opacity: .93; }
+  /* the evidence envelope: the exhibit lies behind the cellophane window */
+  .cf-win { position: absolute; overflow: hidden; display: grid; place-items: center; }
+  .cf-win img { width: 86%; height: 86%; object-fit: contain; filter: drop-shadow(2px 4px 4px rgba(20, 10, 2, .5)); }
+  .r-bag .band { display: grid; place-items: center; }
+  .r-bag .band b { font: 400 25px/1 'Alfa Slab One', serif; letter-spacing: .16em; color: rgba(255, 244, 230, .86); }
+  .r-bag .lines { padding: 1% 3%; font-size: 13px; line-height: 20px; }
+  .r-bag .lines p { margin: 0; }
+  .r-bag .lines .hint { font: 14px/1.15 'Patrick Hand SC', cursive; }
+  .r-bag.miss .lines { font-size: 13px; }
+  .cf-it button { margin-top: 4px; padding: 4px 8px 3px; border: 1.5px solid #2b211b; background: rgba(247, 224, 138, .85); color: #2b211b; font: 11px 'Special Elite', monospace; text-transform: uppercase; letter-spacing: .06em; mix-blend-mode: normal; }
+  .cf-it button:hover { background: #f7d64a; }
+  /* YOYO's frames from the footage, in the photo's picture area */
+  .cf-photoslot { display: grid; place-content: center; text-align: center; overflow: hidden; }
+  #viewport .casefile .cf-photoslot canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; filter: sepia(.22) contrast(1.06) brightness(.96); }
+  .cf-photoslot .cf-type { position: static; color: #d9cfbf; mix-blend-mode: normal; font-size: 14px; }
+  /* the fingerprint card */
+  .cf-printslot { display: grid; place-items: center; }
+  #viewport .casefile .cf-printslot canvas { position: static; max-width: 92%; max-height: 94%; width: auto; height: auto; mix-blend-mode: multiply; }
+  .r-card .cells { display: flex; }
+  .r-card .cells > span { flex: 1; padding: 3px 5px; font-size: 9px; line-height: 1.15; text-transform: uppercase; letter-spacing: .03em; }
+  .r-card .cells.low { align-items: center; } .r-card .cells.low > span { font-size: 12px; }
+  .r-card .phead { padding: 4px 6px; font-size: 12px; line-height: 1.4; letter-spacing: .05em; text-transform: uppercase; }
+  .r-card .phead p { margin: 0; } .r-card .phead p + p { font-size: 11px; letter-spacing: .02em; text-transform: none; }
+  .cf-pstamp { display: grid; place-items: center; }
+  .cf-pstamp b { padding: 4px 9px 3px; border: 2.5px solid currentColor; border-radius: 5px; color: #c22a33; font: 400 17px/1 'Alfa Slab One', serif; letter-spacing: .14em; text-transform: uppercase;
+    transform: rotate(-9deg); mix-blend-mode: multiply; opacity: .8; }
+  /* the composite form */
+  .cf-sketchbox { overflow: hidden; }
+  .r-sketch .flabel { font-size: 10px; line-height: 1; text-transform: uppercase; letter-spacing: .04em; display: flex; align-items: center; }
+  .r-sketch .field { font-size: 20px; display: flex; align-items: flex-end; white-space: nowrap; }
+  .r-sketch .formno { display: grid; place-items: center; font-size: 15px; }
+  /* the route map's pins: grease-pencil rings with the time */
+  .cf-pin { position: absolute; transform: translate(-50%, -50%) rotate(-5deg); padding: 4px 9px 3px; border: 2.5px solid rgba(190, 20, 40, .8); border-radius: 50%; background: none;
+    color: #b3121f; font: 17px/1 'Patrick Hand SC', cursive; text-align: center; mix-blend-mode: multiply; }
+  .cf-pin small { display: block; font-size: 12px; }
+  .cf-pin:hover { transform: translate(-50%, -50%) rotate(-5deg) scale(1.15); }
+  /* the cover: a flap on the fold; its back is the folder's inside left half */
+  .cf-flap { position: absolute; transform-origin: 0 50%; transform-style: preserve-3d; z-index: 20; }
+  .cf-face { position: absolute; inset: 0; backface-visibility: hidden; }
+  .cf-face.back { transform: rotateY(180deg); overflow: hidden; }
+  .cf-coverimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cf-backimg { position: absolute; left: 0; top: 0; width: 1720px; height: 1080px; }
+  /* the leather cover: the title gold-blocked into the embossed panel, the exhibits blind-stamped (gilded once found) */
+  .cf-label, .cf-foil { position: absolute; font-family: 'Playfair Display', serif; text-transform: uppercase; text-align: center; }
+  .cf-label { display: grid; align-content: center; justify-items: center; gap: 4px; }
+  .cf-label > *, .cf-foil, .cf-boxes > i.on { background: linear-gradient(180deg, #f8e3a2 0%, #d8ac52 38%, #8f6824 52%, #c8994a 70%, #f0d38c 100%); -webkit-background-clip: text; background-clip: text;
+    color: transparent; filter: drop-shadow(0 1.5px 0 rgba(20, 8, 4, .75)) drop-shadow(0 -1px 0 rgba(255, 220, 160, .12)); }
+  .cf-label small { font-size: 13px; letter-spacing: .32em; }
+  .cf-label b { font-size: 50px; line-height: 1; font-weight: 500; letter-spacing: .1em; }
+  .cf-label span { font-size: 17px; font-style: italic; letter-spacing: .26em; }
+  .cf-foil.sig, .cf-boxes { transform: translateX(-50%); }
+  .cf-foil.sig { font-size: 15px; letter-spacing: .3em; white-space: nowrap; }
+  .cf-boxes { position: absolute; display: flex; gap: 16px; }
+  .cf-boxes > i { width: 52px; height: 52px; display: grid; place-content: center; border-radius: 3px; font: 500 30px/1 'Playfair Display', serif; font-style: normal; color: rgba(20, 8, 4, .5);
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, .55), inset -1px -1px 1px rgba(255, 200, 160, .12); text-shadow: 0 1px 0 rgba(255, 200, 160, .12); }
+  .cf-boxes > i.on { box-shadow: inset 2px 2px 3px rgba(0, 0, 0, .55), inset -1px -1px 1px rgba(255, 200, 160, .12), inset 0 0 0 2px rgba(216, 172, 82, .55); }
+  .cf-band { position: absolute; top: -26px; height: calc(100% + 52px); width: 44px; pointer-events: none; filter: drop-shadow(4px 6px 5px rgba(0, 0, 0, .55)); }
+  /* the lamp: a warm pool over the folder, the desk's far corners falling into dark */
+  .cf-light { position: absolute; pointer-events: none; z-index: 40; mix-blend-mode: multiply;
+    background: radial-gradient(ellipse 1650px 1180px at 1700px 1180px, rgba(255, 255, 255, 0) 30%, rgba(70, 42, 18, .36) 60%, rgba(12, 6, 2, .88) 100%); }
+  .cf-light::after { content: ''; position: absolute; inset: 0; mix-blend-mode: soft-light;
+    background: radial-gradient(ellipse 1300px 950px at 1500px 980px, rgba(255, 190, 110, .55), rgba(255, 170, 90, 0) 70%); }
+  .cf-lamp { position: absolute; inset: 0; background: #050304; opacity: 0; pointer-events: none; z-index: 2; }
+  .cf-lamp.lit { animation: cfLamp 1.1s linear both; }
+  @keyframes cfLamp { 0% { opacity: 1; } 22% { opacity: 1; } 24% { opacity: .25; } 28% { opacity: .8; } 31% { opacity: .1; } 60%, 100% { opacity: 0; } }
+  /* dusting */
+  .cf-dim { position: absolute; z-index: 34; pointer-events: none; background: rgba(5, 3, 2, .88); opacity: 0; transition: opacity .5s; }
+  .cf-dim.on { opacity: 1; }
+  /* the card under a pool of light: its edges fade into the dark, a warm hot spot a little up and left (the lamp) */
+  .cf-dust { position: absolute; z-index: 35; cursor: none; }
+  #viewport .casefile .cf-dust > canvas { position: static; width: 100%; height: 100%; display: block;
+    -webkit-mask-image: radial-gradient(ellipse 48.5% 49% at 51% 48%, #000 60%, transparent 100%); mask-image: radial-gradient(ellipse 48.5% 49% at 51% 48%, #000 60%, transparent 100%); }
+  .cf-dust::after { content: ''; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+    background: radial-gradient(ellipse 34% 38% at 45% 40%, rgba(255, 222, 170, .16), transparent 75%); }
+  .cf-brush { position: absolute; width: 300px; margin: -48px 0 0 -36px; transform-origin: 12% 25%; pointer-events: none; filter: drop-shadow(10px 16px 9px rgba(0, 0, 0, .42)); }
+  .cf-dustbar { position: absolute; left: 90px; right: 90px; bottom: -58px; display: flex; justify-content: space-between; align-items: center; padding: 8px 10px 8px 18px; border-radius: 6px;
+    background: rgba(22, 20, 24, .58); border: 1px solid rgba(242, 234, 216, .14); box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); color: #f2e8d0; font: 18px 'Special Elite', monospace; text-transform: uppercase; }
+  .cf-dustbar .lift { padding: 10px 18px 8px; background: #f7d64a; color: #1d1a1c; border: 2.5px solid #1d1a1c; font: 400 26px/1 Bangers, sans-serif; letter-spacing: .08em; box-shadow: 5px 5px 0 #1d1a1c; }
+  .cf-dustbar .lift:disabled { opacity: .35; box-shadow: none; }
+  .cf-tape { position: absolute; left: 4%; top: 34%; width: 92%; pointer-events: none; filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, .3)); }
+  .cf-hud { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 3; display: flex; gap: 14px; align-items: center; white-space: nowrap;
+    color: #f2ead8; padding: 6px 7px 6px 14px; font-size: 9.5px; letter-spacing: .16em; cursor: default; border-radius: 6px;
+    background: rgba(22, 20, 24, .58); border: 1px solid rgba(242, 234, 216, .14); box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); }
+  .cf-hud .where { font: 11px var(--pix); letter-spacing: .06em; } .cf-hud .keys { opacity: .65; }
+  .cf-hud button { border: 1px solid rgba(242, 234, 216, .32); border-radius: 4px; padding: 6px 10px 5px; font-size: 9.5px; letter-spacing: .14em; color: inherit; transition: background .15s, border-color .15s; }
+  .cf-hud button:hover { background: rgba(242, 234, 216, .16); border-color: rgba(242, 234, 216, .6); }
+  /* the easter eggs (js/case/eggs.js). Desk things that do something are clicked on their own shape */
+  .cf-it .hit { position: absolute; pointer-events: auto; cursor: pointer; }
+  .cf-it .hit.round { border-radius: 50%; }
+  .cf-it.desk { transition: opacity .3s; } .cf-it.desk.lifted { opacity: 0; }
+  /* 1F: lights out. Darker everywhere but where the neon comes in through the blinds (it buzzes off now and then) */
+  .cf-dark { position: absolute; z-index: 50; pointer-events: none; opacity: 0; }
+  .cf-dark > i { position: absolute; inset: 0; }
+  .cf-dark .shade { background: radial-gradient(ellipse 1300px 1700px at 86% 46%, rgba(46, 4, 30, .58), rgba(4, 2, 6, .95) 72%); }
+  .cf-dark .blinds { background: repeating-linear-gradient(-22deg, rgba(4, 2, 6, .6) 0 30px, transparent 30px 58px);
+    -webkit-mask-image: radial-gradient(ellipse 1300px 1700px at 86% 46%, #000 25%, transparent 70%); mask-image: radial-gradient(ellipse 1300px 1700px at 86% 46%, #000 25%, transparent 70%); }
+  .cf-dark .off { background: radial-gradient(ellipse 1300px 1700px at 86% 46%, rgba(4, 2, 6, .75), transparent 70%); opacity: 0; }
+  .cf-dark.on { opacity: 1; }
+  .cf-dark.on .off { animation: cfNeon 3.6s steps(1) infinite; }
+  @keyframes cfNeon { 0%, 61%, 66%, 71%, 100% { opacity: 0; } 62%, 69% { opacity: 1; } 64% { opacity: .45; } }
+  .cf-dark.relit { animation: cfRelit .75s linear both; }
+  @keyframes cfRelit { 0% { opacity: 1; } 16% { opacity: .15; } 28% { opacity: .85; } 40% { opacity: 0; } 52% { opacity: .5; } 66%, 100% { opacity: 0; } }
+  .cf-eyes { position: absolute; z-index: 55; width: 0; height: 0; pointer-events: none; opacity: 0; }
+  .cf-eyes i { position: absolute; top: -12px; width: 34px; height: 24px; border-radius: 50%; background: #d8ecff; box-shadow: 0 0 18px 7px rgba(150, 200, 255, .5); }
+  .cf-eyes i:first-child { left: -48px; } .cf-eyes i + i { left: 14px; }
+  .cf-eyes.blink { animation: cfEyes 3.4s linear both; }
+  .cf-eyes.blink i { animation: cfBlink 3.4s linear both; }
+  @keyframes cfEyes { 0%, 18% { opacity: 0; } 24%, 86% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes cfBlink { 0%, 40%, 46%, 58%, 64%, 100% { transform: scaleY(1); } 43%, 61% { transform: scaleY(.08); } }
+  .cf-kiss > .pic { mix-blend-mode: multiply; opacity: .86; }
+  .cf-kiss.new > .pic { animation: cfKiss .45s cubic-bezier(.3, 1.5, .5, 1) both; }
+  @keyframes cfKiss { from { opacity: 0; transform: scale(1.35); } to { opacity: .86; transform: none; } }
+  /* AL: the bell (in the folder, so it can roll over the fold) */
+  .cf-bellegg { position: absolute; left: 0; top: 0; z-index: 18; display: none; cursor: pointer; }
+  .cf-bellegg.on { display: block; } .cf-folder:not(.open) .cf-bellegg { display: none; }
+  .cf-bellegg img { width: 100%; height: 100%; display: block; pointer-events: none; }
+  /* B1: the tentacle, its cut end fading off into the shadows */
+  .cf-tentacle { position: absolute; z-index: 6; display: none; pointer-events: none; }
+  .cf-tentacle.on { display: block; }
+  .cf-tentacle img { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    -webkit-mask-image: linear-gradient(60deg, transparent 3%, #000 20%); mask-image: linear-gradient(60deg, transparent 3%, #000 20%); }
+  .cf-tentacle .tip { position: absolute; width: 0; height: 0; }
+  /* 2F: through the opera glasses; and the lipstick in the margins they're for */
+  .cf-scope { position: absolute; inset: 0; z-index: 2; pointer-events: none; display: none; }
+  .cf-scope.on { display: block; }
+  .cf-scope .dark { fill: rgba(6, 4, 3, .96); fill-rule: evenodd; }
+  .cf-scope .shade { fill: none; stroke: rgba(0, 0, 0, .65); filter: url(#cfSoft); }
+  .cf-scope .rim { fill: none; stroke: url(#cfRim); }
+  .cf-scope .glint { fill: none; stroke: rgba(255, 255, 255, .3); stroke-linecap: round; }
+  .cf-scope .bridge { fill: url(#cfRim); }
+  .cf-scope .rod { fill: none; stroke: url(#cfRim); stroke-linecap: round; stroke-linejoin: round; }
+  .casefile.scoping, .casefile.scoping * { cursor: none !important; }
+  #viewport .casefile .cf-secret { z-index: 2; opacity: .07; transform-origin: 0 0; mix-blend-mode: multiply; pointer-events: none; transition: opacity .4s; }
+  #viewport .casefile.scoping .cf-secret { opacity: .95; }
+  /* case closed (js/case/finale.js): the composite's wink, the stamp, the paw, her lipstick, the corner she turns up */
+  .cf-v1 { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; visibility: hidden; pointer-events: none; }
+  .cf-v1.on { visibility: visible; } .cf-sketchbox:has(.cf-v1.on) > canvas { visibility: hidden; }
+  .cf-stamp { position: absolute; z-index: 7; transform: translate(-50%, -50%) rotate(var(--r, -13deg)); display: none; padding: 12px 24px 9px; border: 7px double rgba(186, 22, 40, .86);
+    border-radius: 8px; color: rgba(186, 22, 40, .86); text-align: center; mix-blend-mode: multiply; pointer-events: none; -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.2 0 0 0 2.45'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.2 0 0 0 2.45'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+  .cf-stamp.on { display: block; }
+  .cf-stamp b { display: block; font: 400 66px/1 'Alfa Slab One', serif; letter-spacing: .06em; white-space: nowrap; }
+  .cf-stamp small { display: block; margin-top: 7px; font: 15px 'Special Elite', monospace; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+  .cf-stamp.cover { left: 52%; top: 50%; --r: -17deg; mix-blend-mode: normal; color: rgba(214, 36, 52, .9); border-color: rgba(214, 36, 52, .9); }
+  .cf-it.taken { display: none; }
+  #viewport .casefile .cf-ov.lips { z-index: 3; }
+  .cf-paw { position: absolute; left: 0; top: 0; z-index: 30; display: none; pointer-events: none; filter: drop-shadow(10px 18px 12px rgba(20, 10, 2, .45)); }
+  .cf-paw.on { display: block; }
+  .cf-corner { position: absolute; left: 1590px; top: 1000px; z-index: 16; padding: 0; border: 0; background: none; font: inherit; cursor: pointer; --r: -6deg;
+    transform: rotate(var(--r)) scale(0); transition: transform .5s cubic-bezier(.3, 1.4, .5, 1), translate .2s, scale .2s; filter: drop-shadow(3px 6px 6px rgba(20, 10, 2, .5)); }
+  .cf-corner.on { transform: rotate(var(--r)); animation: cfNote 4.2s ease-in-out 1.5s infinite, cfGlow 1.6s ease-in-out infinite alternate; }
+  .cf-corner:hover { translate: 0 -6px; scale: 1.06; }
+  @keyframes cfGlow { from { filter: drop-shadow(3px 6px 6px rgba(20, 10, 2, .5)) drop-shadow(0 0 3px rgba(255, 120, 160, .45)); }
+    to { filter: drop-shadow(3px 6px 6px rgba(20, 10, 2, .5)) drop-shadow(0 0 10px rgba(255, 190, 210, .95)) drop-shadow(0 0 36px rgba(255, 92, 140, .95)); } }
+  .casefile.turned .cf-board > .cf-corner, .casefile[data-view="cover"] .cf-board > .cf-corner { display: none; }
+  @keyframes cfNote { 0%, 78%, 100% { transform: rotate(var(--r)); } 84% { transform: rotate(calc(var(--r) + 5deg)) translateY(-4px); } 90% { transform: rotate(calc(var(--r) - 3deg)); } 95% { transform: rotate(calc(var(--r) + 1deg)); } }
+  .cf-corner span { position: relative; overflow: hidden; display: block; padding: 13px 24px 10px; white-space: nowrap; font: 48px/1 'Patrick Hand SC', cursive; color: #b00a33;
+    background: linear-gradient(170deg, rgba(255, 255, 255, .45), transparent 40%), radial-gradient(ellipse at 30% 20%, #ffe4ec, #f5b3c6 85%);
+    clip-path: polygon(0 4%, 9% 0, 22% 3%, 37% 0, 52% 2%, 68% 0, 83% 3%, 100% 1%, 99% 30%, 100% 62%, 98% 100%, 80% 97%, 63% 100%, 45% 97%, 28% 100%, 12% 97%, 1% 100%, 2% 66%, 0 34%); }
+  .cf-corner::before { content: ''; position: absolute; left: -26px; top: -14px; width: 104px; height: 34px; transform: rotate(-24deg); opacity: .9; z-index: 1;
+    background: url(assets/casefile/obj/tape_1.webp) center / 100% 100% no-repeat; }
+  .cf-corner span::after { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 40%; pointer-events: none;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .75), transparent); animation: cfSheen 3.6s ease-in-out 1s infinite; }
+  @keyframes cfSheen { 0%, 62% { transform: translateX(-130%) skewX(-14deg); } 100% { transform: translateX(340%) skewX(-14deg); } }
+  .cf-corner.bk { left: -170px; top: 1000px; --r: 6deg; }
+  .cf-corner.bk::before { left: auto; right: -26px; transform: rotate(24deg); }
+  /* the back (js/case/scrapbook.js): the outside of both covers, YOYO's scrapbook on the back one */
+  .cf-backside { position: absolute; z-index: 2; filter: drop-shadow(1.5px 2.5px 2px rgba(20, 10, 2, .5)); }
+  .cf-bk, .cf-fc { position: absolute; }
+  .cf-bk .hide { position: absolute; overflow: hidden; }
+  .cf-bk .leather { position: absolute; left: 0; transform: scaleX(-1); filter: brightness(.9) saturate(.95); }
+  .cf-photoslot.snap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; filter: sepia(.25) contrast(1.08) brightness(1.06); }
+  #viewport .casefile .cf-photoslot.moving canvas { image-rendering: auto; filter: none; }
+  #viewport .casefile .cf-ov.scrapink { z-index: 7; }
+  @media (max-width: 900px) { .cf-hud .keys { display: none; } }
+  @media (max-width: 600px) { .cf-hud .where { max-width: calc(100vw - 200px); overflow: hidden; text-overflow: ellipsis; } }
 
   body.capture .top, body.capture .bottom, body.capture .crop, body.capture .reg, body.capture .side, body.capture #hint, body.capture #zoomPill { display: none; }
   body.capture #viewport { inset: 0; }
@@ -423,7 +694,7 @@
   <div class="meta">
     <div class="live off" id="live"><i></i><span>Paused</span></div>
     <div class="tc" id="tc">00:00.0 <small>/ 00:30.0</small></div>
-    <div class="case" id="case" title="Find one piece of evidence on every floor. Click it when it glints."><span>Case file</span><i data-id="ribbon"></i><i data-id="bell"></i><i data-id="lipstick"></i><i data-id="stiletto"></i><b id="caseN">0/4</b></div>
+    <div class="case" id="case" title="Find one piece of evidence on every floor. Click it when it glints."><span>Case file</span><span class="ex" title="B1 · The cellar: the lipstick"><i data-id="lipstick"></i>B1</span><span class="ex" title="1F · The club: the wine ribbon"><i data-id="ribbon"></i>1F</span><span class="ex" title="AL · The alley: the bell"><i data-id="bell"></i>AL</span><span class="ex" title="2F · Room 203: the pink stiletto"><i data-id="stiletto"></i>2F</span><b id="caseN">0/4</b></div>
   </div>
 </header>
 

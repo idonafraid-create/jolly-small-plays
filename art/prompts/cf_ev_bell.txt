@@ -1,0 +1,10 @@
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (YOYO the kitten wears a big wine-red velvet bow on her head and a wine-red collar with a small gold bell; Jojo carries long-handled gold opera glasses). Image 2 = the BAND MODEL SHEET (Jojo's narrow black tie carries a small PINK STILETTO-SHAPED TIE CLIP). Use them only for the colours and shapes of the props; draw no characters.
+
+TASK: ONE prop drawn as a CUT-OUT for a detective's case file: a small round BRASS JINGLE BELL from a cat's collar (the kind with a slot across its lower half ending in a round hole at each end, and a little loop on top), seen from above and slightly to the side so the slot shows, drawn large; threaded through its loop, a short cut piece of wine-red ribbon; a tiny dent and a scratch on the brass.
+Seen from DIRECTLY ABOVE (a flat lay, as if photographed on a table from straight above), centred, filling about 70% of the picture, on a PLAIN FLAT PURE GREEN (#00FF00) BACKGROUND with nothing else in the picture: no table, no cast shadow, no hands, no tag, no label, no text.
+
+{STYLE}
+
+Render it like a prop close-up in a 1950s comic: bold black ink outline, flat colours with one flat shadow tone, crisp white highlights on shiny metal, enamel and patent leather so the materials read. Absolutely NO green anywhere on the object itself (the background will be keyed out).
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

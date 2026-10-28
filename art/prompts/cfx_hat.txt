@@ -1,0 +1,9 @@
+Attached reference: Image 1 = the BAND MODEL SHEET; use it only for the colour and shape of this prop (draw no characters).
+
+TASK: Jojo's flat grey PORKPIE HAT with a black band, as on Image 1, seen from directly above, lying on its brim.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

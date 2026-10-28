@@ -62,3 +62,9 @@ THE ALLEY REGULARS: TUBBS, a big round orange tabby tomcat with darker orange st
 
 ### ROOM
 THE ROOM: Room 203 of a shabby 1960s Brooklyn motel at midnight: mustard-gold patterned wallpaper, an orange-and-brown diamond-pattern carpet, a sash window with half-raised white venetian blinds, a black iron fire escape and rain outside, a red neon sign glowing across the street (no readable letters on it), warm lamp light inside, a white chalk outline of a very tall rabbit on the carpet.
+
+### CFSTYLE
+STYLE (the case file, the same for every object): a high-end photographic still life for a 1950s detective game — a real vintage object shot from DIRECTLY ABOVE (flat lay, no perspective tilt), lit by one warm tungsten desk lamp from the upper left: rich physical textures (paper fibres, foxing, yellowed and darkened edges, creases, small tears, dog-eared corners, coffee stains, amber old tape, slightly rusty steel, worn brass, velvet, leather), crisp focus, warm sepia-amber colour grade, subtle film grain. Realistic, tactile and expensive-looking: NOT a cartoon, NOT flat colour, NOT a 3D-render look. Absolutely NO text, NO letters, NO numbers, NO logos anywhere (anything meant for writing is left blank; printed matter is only unreadable grey lines).
+
+### CFCUT
+OUTPUT: the object ALONE, isolated, centred with a small margin, on a TRANSPARENT background (a PNG with an alpha channel: everything that is not the object fully transparent). Keep a soft, natural contact shadow under the object only if it can stay semi-transparent; otherwise no shadow. If your image tool cannot make a transparent background, use a perfectly flat, evenly lit PURE CHROMA-GREEN (#00FF00) background instead, with no shadow on it and no green anywhere on the object.

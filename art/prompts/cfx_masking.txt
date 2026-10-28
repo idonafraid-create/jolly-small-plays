@@ -1,0 +1,7 @@
+TASK: THREE separate strips of beige masking tape with torn ends, laid well apart (none touching).
+
+{CFSTYLE}
+
+{CFCUT}
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).

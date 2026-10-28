@@ -1,0 +1,7 @@
+TASK: ONE single blank sheet of old letter-size typing paper, portrait, lying flat and filling most of the picture: ivory gone yellow with age, darker tanned edges, faint foxing, folded in thirds long ago (two faint horizontal creases), a couple of tiny edge tears; plus a pink frosting fingerprint smudge and a little dusting of powdered donut sugar near the right edge, a small cigarette burn hole, a staple hole at the top-left corner.
+
+{CFSTYLE}
+
+{CFCUT}
+
+PORTRAIT, aspect ratio 2:3 (for example 1024x1536).

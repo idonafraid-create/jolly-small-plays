@@ -1,0 +1,7 @@
+TASK: ONE old square instant-camera print with a wider bottom border, the border yellowed with a crease and a thumbprint; the square PICTURE AREA is a perfectly flat, uniform mid grey (#808080) with nothing in it.
+
+{CFSTYLE}
+
+{CFCUT}
+
+SQUARE, 1024x1024.

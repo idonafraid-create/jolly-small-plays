@@ -1,0 +1,12 @@
+Use your built-in image generation tool (image_gen). Produce ONE image, then copy the final PNG into the current working directory as `cf_ev_lipstick.png` (never overwrite an existing file). Do not write any code or other files.
+
+Attached references: Image 1 = the comic's LEAD CHARACTER MODEL SHEET (YOYO the kitten wears a big wine-red velvet bow on her head and a wine-red collar with a small gold bell; Jojo carries long-handled gold opera glasses). Image 2 = the BAND MODEL SHEET (Jojo's narrow black tie carries a small PINK STILETTO-SHAPED TIE CLIP). Use them only for the colours and shapes of the props; draw no characters.
+
+TASK: ONE prop drawn as a CUT-OUT for a detective's case file: a vintage 1950s LIPSTICK: the gold metal tube with fine ribbing lying on its side, its gold cap off and lying beside it, the bright crimson-red lipstick bullet twisted up and worn to a slant; a small smear of the red on the gold rim.
+Seen from DIRECTLY ABOVE (a flat lay, as if photographed on a table from straight above), centred, filling about 70% of the picture, on a PLAIN FLAT PURE GREEN (#00FF00) BACKGROUND with nothing else in the picture: no table, no cast shadow, no hands, no tag, no label, no text.
+
+ART STYLE (must stay identical across the whole series): a hand-inked panel from a 1950s American Sunday-newspaper "funny animal" detective comic. Bold black brush-and-nib ink outlines with confident, varied line weight; generous spotted solid blacks and hard noir cast shadows; simple FLAT cel colours from a restricted vintage four-colour-press palette (brick red, coral pink, mustard yellow, teal blue, olive green, tan, cream, black), at most one flat shadow tone per colour. Cartoon animals with big readable expressions in the tradition of Carl Barks and Walt Kelly, staged and lit like a Will Eisner crime page. Clean flat colour areas only: absolutely NO halftone dots, NO Ben-Day screen, NO paper texture, NO gradients, NO airbrush glow, NO 3D render, NO photo-realism (dots and paper are added later in print). NO text, NO letters, NO numbers, NO speech balloons, NO captions, NO sound-effect lettering, NO signature, NO panel border: full-bleed artwork only.
+
+Render it like a prop close-up in a 1950s comic: bold black ink outline, flat colours with one flat shadow tone, crisp white highlights on shiny metal, enamel and patent leather so the materials read. Absolutely NO green anywhere on the object itself (the background will be keyed out).
+
+LANDSCAPE, aspect ratio 3:2 (for example 1536x1024).
